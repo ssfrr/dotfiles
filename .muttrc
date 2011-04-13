@@ -1,0 +1,24 @@
+set from = "srussell@bulogics.com"
+set realname = "Spencer Russell"
+set imap_user = "srussell"
+
+set folder = "imaps://mail.bulogics.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+Drafts"
+set record = "+Sent Messages"
+
+set copy = yes
+
+set smtp_url = "smtp://srussell@mail.bulogics.com"
+
+set alias_file=~/.mutt/aliases
+source $alias_file
+
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+
+color status brightwhite magenta
+
+bind index "<Esc>r" imap-fetch-mail
+bind index "I" toggle-new

@@ -1,0 +1,3 @@
+bind h resize -5
+bind l resize +5
+startup_message off

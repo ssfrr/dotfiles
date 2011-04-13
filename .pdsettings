@@ -1,0 +1,20 @@
+audioapi: 1
+noaudioin: False
+audioindev1: 0 2
+noaudioout: False
+audiooutdev1: 0 2
+audiobuf: 50
+rate: 44100
+callback: 0
+nomidiin: True
+nomidiout: True
+path1: /usr/lib/pd/extra/abstractions
+path2: /usr/lib/pd/extra/deprecated
+npath: 2
+standardpath: 1
+verbose: 0
+loadlib1: gridflow
+loadlib2: Gem
+nloadlib: 2
+defeatrt: 0
+flags: -rt -alsa 
