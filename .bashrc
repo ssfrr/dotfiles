@@ -15,13 +15,15 @@ HISTCONTROL=ignoreboth
 export PATH="$PATH:$HOME/local/bin"
 export PATH="$PATH:$HOME/scripts"
 export EDITOR="vim"
-alias v='vim'
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # add /opt/local/bin to path for MacPorts
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+# add COSMIC compiler bins to PATH
+export PATH=${PATH}:/cygdrive/c/Program\ Files/COSMIC/CXSTM8_32K
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 
@@ -116,13 +118,30 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# enable bash completion when we're on MacPorts
-if [ -f /opt/local/etc/bash_completion ]; then
-   . /opt/local/etc/bash_completion
-fi
-
 # case-insensitive completion:
 set completion-ignore-case on
 
 # add grep variant that ignores tags and .map files for dev grepping
 function dgrep { grep --color=always --exclude="*.map" --exclude="*tags*" -RIi $* .; }
+
+# Uncomment the following to enable ssh-agent in Cygwin
+# start ssh-agent to cache ssh credentials
+# export SSH_AUTH_SOCK=/tmp/.ssh-socket
+# 
+# ssh-add -l >/dev/null 2>&1
+# if [ $? = 2 ]; then
+#    # Exit status 2 means couldn't connect to ssh-agent; start one now
+#    rm -rf /tmp/.ssh-*
+#    ssh-agent -a $SSH_AUTH_SOCK >/tmp/.ssh-script
+#    . /tmp/.ssh-script
+#    echo $SSH_AGENT_PID >/tmp/.ssh-agent-pid
+# fi
+
+# use color prompt with git branch info
+export GIT_PS1_SHOWDIRTYSTATE=1
+export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
+
+function kill-agent {
+pid=`cat /tmp/.ssh-agent-pid`
+kill $pid
+}
