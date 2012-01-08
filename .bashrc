@@ -66,13 +66,6 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -114,8 +107,8 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+if [ -f /opt/local/etc/bash_completion ] && ! shopt -oq posix; then
+    . /opt/local/etc/bash_completion
 fi
 
 # case-insensitive completion:
@@ -124,24 +117,7 @@ set completion-ignore-case on
 # add grep variant that ignores tags and .map files for dev grepping
 function dgrep { grep --color=always --exclude="*.map" --exclude="*tags*" -RIi $* .; }
 
-# Uncomment the following to enable ssh-agent in Cygwin
-# start ssh-agent to cache ssh credentials
-# export SSH_AUTH_SOCK=/tmp/.ssh-socket
-# 
-# ssh-add -l >/dev/null 2>&1
-# if [ $? = 2 ]; then
-#    # Exit status 2 means couldn't connect to ssh-agent; start one now
-#    rm -rf /tmp/.ssh-*
-#    ssh-agent -a $SSH_AUTH_SOCK >/tmp/.ssh-script
-#    . /tmp/.ssh-script
-#    echo $SSH_AGENT_PID >/tmp/.ssh-agent-pid
-# fi
 
 # use color prompt with git branch info
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
-
-function kill-agent {
-pid=`cat /tmp/.ssh-agent-pid`
-kill $pid
-}
