@@ -11,6 +11,8 @@
 [core]
 	autocrlf = false
 [merge] 
-      tool = vimdiff
+   tool = vimdiff
 [diff]
-      tool = vimdiff
+   tool = vimdiff
+[alias]
+   tree = log --all --graph --decorate --pretty=oneline --abbrev-commit
