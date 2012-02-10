@@ -19,12 +19,6 @@ export EDITOR="vim"
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# add /opt/local/bin to path for MacPorts
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
-# add COSMIC compiler bins to PATH
-export PATH=${PATH}:/cygdrive/c/Program\ Files/COSMIC/CXSTM8_32K
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 
 # check the window size after each command and, if necessary,
@@ -107,8 +101,8 @@ fi
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
-if [ -f /opt/local/etc/bash_completion ] && ! shopt -oq posix; then
-    . /opt/local/etc/bash_completion
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+   . `brew --prefix`/etc/bash_completion
 fi
 
 # case-insensitive completion:
