@@ -71,8 +71,6 @@ set nocp
 filetype plugin on
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 set tags=.tags,.TAGS,tags,TAGS,./tags,../tags,../../tags,../../../tags;
-set tags+=~/.vim/tags/em35xtags
-set tags+=~/.vim/tags/stm8tags
 "set custom syntax highlighting
 au BufNewFile,BufRead SCons* setf scons
 
