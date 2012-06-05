@@ -14,6 +14,7 @@ HISTCONTROL=ignoreboth
 # add local binary dir to path
 export PATH="$PATH:$HOME/local/bin"
 export PATH="$PATH:$HOME/scripts"
+export PATH="$PATH:$HOME/Dev/codingstandards"
 export EDITOR="vim"
 
 # append to the history file, don't overwrite it
