@@ -1,5 +1,5 @@
 " set gVim font
-set gfn=Monospace\ 10 
+set gfn=Monospace\ 10
 
 "remove menubar junk from gvim
 set guioptions-=m
@@ -7,7 +7,7 @@ set guioptions-=T
 
 " set colorscheme
 "set t_Co=256
-"colorscheme desert256
+colorscheme molokai
 
 " change pwd to the directory of the current file
 set autochdir
@@ -18,6 +18,9 @@ set cinoptions=l1
 filetype plugin indent on
 " make completion more sane
 set wildmode=longest,list
+
+" highlight trailing whitespace with dots
+set list listchars=tab:\ \ ,trail:·
 
 " update ctags automatically when source files are written
 " au BufWritePost .c,.cpp,*.h silent! !ctags -R &
@@ -32,9 +35,9 @@ set backspace=indent,eol,start
 set ignorecase
 
 " set tabbing behavior
-set tabstop=3
-set softtabstop=3
-set shiftwidth=3
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 
 " always show status bar
