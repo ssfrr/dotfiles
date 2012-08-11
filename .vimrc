@@ -57,7 +57,7 @@ set foldlevel=0
 " set to only fold indented blocks more than 2 lines
 set foldminlines=2
 " set the background to black so it's not so gaudy
-highlight Folded ctermbg=black ctermfg=cyan guibg=black
+" highlight Folded ctermbg=black ctermfg=cyan guibg=black
 " don't ignore preprocessor lines when deciding where to fold
 set foldignore=
 
@@ -65,6 +65,7 @@ set showbreak=@
 " set j and k to move down visual lines, not real lines
 map j gj
 map k gk
+
 
 " set the underscore as a word delimiter
 set iskeyword-=_
@@ -82,6 +83,11 @@ au BufNewFile,BufRead SCons* setf scons
 " set F9,F10 to toggle spellcheck
 map <F9> <Esc>:setlocal spell spelllang=en_us<CR>
 map <F10> <Esc>:setlocal nospell<CR>
+
+" set F11 to list the syntax highlighting rules under the cursor
+map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+            \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+            \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 "include other useful scripts
 source ~/.vim/hexconvert

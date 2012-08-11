@@ -106,6 +106,8 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
    . `brew --prefix`/etc/bash_completion
 fi
 
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+
 # case-insensitive completion:
 set completion-ignore-case on
 

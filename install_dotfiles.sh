@@ -14,3 +14,11 @@ done
 # remove the link to the .git directory so that our home dir isn't
 # seen as versioned
 rm ~/.git
+
+# pull submodules
+git submodule init
+git submodule update
+
+# init janus
+cd .vim
+rake

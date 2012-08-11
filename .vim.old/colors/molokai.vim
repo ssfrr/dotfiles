@@ -79,7 +79,7 @@ hi Search          guifg=#FFFFFF guibg=#455354
 hi SignColumn      guifg=#A6E22E guibg=#232526
 hi SpecialChar     guifg=#F92672               gui=bold
 hi SpecialComment  guifg=#465457               gui=bold
-hi Special         guifg=#66D9EF guibg=bg      gui=italic
+hi Special         guifg=#66D9EF               gui=italic
 hi SpecialKey      guifg=#888A85               gui=italic
 if has("spell")
     hi SpellBad    guisp=#FF0000 gui=undercurl
@@ -134,7 +134,7 @@ if &t_Co > 255
    hi Constant        ctermfg=135               cterm=bold
    hi Cursor          ctermfg=16  ctermbg=253
    hi Debug           ctermfg=225               cterm=bold
-   hi Define          ctermfg=81
+   hi Define          ctermfg=75
    hi Delimiter       ctermfg=241
 
    hi DiffAdd                     ctermbg=24
@@ -157,7 +157,7 @@ if &t_Co > 255
    hi Keyword         ctermfg=161               cterm=bold
    hi Label           ctermfg=229               cterm=none
    hi Macro           ctermfg=193
-   hi SpecialKey      ctermfg=81
+   hi SpecialKey      ctermfg=75
 
    hi MatchParen      ctermfg=16  ctermbg=208 cterm=bold
    hi ModeMsg         ctermfg=229
@@ -165,14 +165,14 @@ if &t_Co > 255
    hi Operator        ctermfg=161
 
    " complete menu
-   hi Pmenu           ctermfg=81  ctermbg=16
+   hi Pmenu           ctermfg=75  ctermbg=16
    hi PmenuSel                    ctermbg=244
    hi PmenuSbar                   ctermbg=232
-   hi PmenuThumb      ctermfg=81
+   hi PmenuThumb      ctermfg=75
 
    hi PreCondit       ctermfg=118               cterm=bold
    hi PreProc         ctermfg=118
-   hi Question        ctermfg=81
+   hi Question        ctermfg=75
    hi Repeat          ctermfg=161               cterm=bold
    hi Search          ctermfg=253 ctermbg=66
 
@@ -180,27 +180,27 @@ if &t_Co > 255
    hi SignColumn      ctermfg=118 ctermbg=235
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=81  ctermbg=232
+   hi Special         ctermfg=75
    hi SpecialKey      ctermfg=245
 
    hi Statement       ctermfg=161               cterm=bold
    hi StatusLine      ctermfg=238 ctermbg=253
    hi StatusLineNC    ctermfg=244 ctermbg=232
    hi StorageClass    ctermfg=208
-   hi Structure       ctermfg=81
+   hi Structure       ctermfg=75
    hi Tag             ctermfg=161
    hi Title           ctermfg=166
-   hi Todo            ctermfg=231 ctermbg=232   cterm=bold
+   hi Todo            ctermfg=000               cterm=bold
 
-   hi Typedef         ctermfg=81
-   hi Type            ctermfg=81                cterm=none
+   hi Typedef         ctermfg=75
+   hi Type            ctermfg=75                cterm=none
    hi Underlined      ctermfg=244               cterm=underline
 
    hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
    hi VisualNOS                   ctermbg=238
    hi Visual                      ctermbg=235
    hi WarningMsg      ctermfg=231 ctermbg=238   cterm=bold
-   hi WildMenu        ctermfg=81  ctermbg=16
+   hi WildMenu        ctermfg=75  ctermbg=16
 
    hi Normal          ctermfg=247 ctermbg=233
    hi Comment         ctermfg=59
