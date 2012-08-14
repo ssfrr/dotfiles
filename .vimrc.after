@@ -2,7 +2,6 @@ colorscheme molokai
 
 set autochdir
 
-"
 " set tabbing behavior
 set tabstop=4
 set softtabstop=4
@@ -24,6 +23,9 @@ set showbreak=@
 
 " disable line numbers (on by default in janus)
 set nonumber
+
+" make completion more sane
+set wildmode=longest,list
 
 " set j and k to move down visual lines, not real lines
 map j gj
