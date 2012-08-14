@@ -19,8 +19,8 @@ rm ~/.git
 git submodule init
 git submodule update
 
-if [ -e ~/.vimrc ]; then mv ~/.vimrc ~/.vimrc.bak; fi
-if [ -e ~/.gvimrc ]; then mv ~/.gvimrc ~/.gvimrc.bak; fi
+if [ -e ~/.vimrc -o -L ~/.vimrc ]; then mv ~/.vimrc ~/.vimrc.bak; fi
+if [ -e ~/.gvimrc -o -L ~/.gvimrc ]; then mv ~/.gvimrc ~/.gvimrc.bak; fi
 # init janus
 cd .vim
 rake
