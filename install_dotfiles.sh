@@ -15,6 +15,7 @@ done
 # seen as versioned
 rm ~/.git
 
+cd dotfiles
 # pull submodules
 git submodule init
 git submodule update
