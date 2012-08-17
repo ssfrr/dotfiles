@@ -1,3 +1,6 @@
+" make sure vim knows our terminal is 256-capable (gnome-terminal doesn't
+" report itself as such)
+set t_Co=256
 colorscheme molokai
 
 set autochdir
