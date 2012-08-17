@@ -48,6 +48,16 @@ map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<
 " janus tries to steal ctrl-T to run the ctrlp browser
 map <c-t> :pop<CR>
 
+" make enter clear search highlighting
+nnoremap <silent> <CR> :noh<CR>
+
+"override smartcase
+set ignorecase
+
+" ignore case in filename completion, even on platforms that are case
+" sensitive
+set wildignorecase
+
 " Override existing colorscheme with version found in
 " ~/.janus/<colorscheme>/colors/<colorscheme>.vim
 if exists("g:colors_name")
