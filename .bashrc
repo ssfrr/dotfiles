@@ -14,7 +14,6 @@ HISTCONTROL=ignoreboth
 # add local binary dir to path
 export PATH="$PATH:$HOME/local/bin"
 export PATH="$PATH:$HOME/scripts"
-export PATH="$PATH:$HOME/Library/Haskell/bin"
 export EDITOR="vim"
 
 # append to the history file, don't overwrite it
@@ -99,24 +98,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-   . `brew --prefix`/etc/bash_completion
-fi
-
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-
 # case-insensitive completion:
 set completion-ignore-case on
 
 # add grep variant that ignores tags and .map files for dev grepping
 function dgrep { grep --color=always --exclude="*.map" --exclude="*tags*" -RIi $* .; }
 
-
 # use color prompt with git branch info
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
