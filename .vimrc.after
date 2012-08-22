@@ -58,6 +58,11 @@ set ignorecase
 " sensitive
 set wildignorecase
 
+" tell vim to start parsing for highlighting at the beginning of the
+" doc. this is to prevent it from getting confused, especially when
+" folding is involved.
+syntax sync fromstart
+
 " Override existing colorscheme with version found in
 " ~/.janus/<colorscheme>/colors/<colorscheme>.vim
 if exists("g:colors_name")
