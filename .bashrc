@@ -20,6 +20,10 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
 fi
 
+if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+fi
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
