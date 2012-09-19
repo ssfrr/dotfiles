@@ -16,6 +16,10 @@ export PATH="$PATH:$HOME/local/bin"
 export PATH="$PATH:$HOME/scripts"
 export EDITOR="vim"
 
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
