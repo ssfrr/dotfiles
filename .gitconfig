@@ -10,7 +10,8 @@
 	interactive = auto
 [core]
 	autocrlf = false
-	excludesfile = /Users/srussell/.gitignore_global
+	excludesfile = /home/srussell/.gitignore_global
+	whitespace = cr-at-eol
 [merge] 
       tool = vimdiff
 [diff]
