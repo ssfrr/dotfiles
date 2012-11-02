@@ -11,6 +11,7 @@
 [core]
 	autocrlf = false
 	excludesfile = /Users/srussell/.gitignore_global
+	whitespace = cr-at-eol
 [merge] 
       tool = vimdiff
 [diff]
