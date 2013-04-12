@@ -1,0 +1,30 @@
+MoogFF	Moog VCF implementation, designed by Federico Fontana
+
+MoogFF.ar(in, freq, gain, reset)
+
+A digital implementation of the Moog VCF (filter).
+
+	in - the input signal
+	freq - the cutoff frequency
+	gain - the filter resonance gain, between zero and 4
+	reset - when greater than zero, this will reset the state of the digital filters at the beginning of a computational block.
+
+The design of this filter is described in the conference paper Fontana, F. (2007) Preserving the Digital Structure of the Moog VCF. In Proc. ICMC07, Copenhagen, 25-31 August 2007
+
+
+Examples
+
+s.boot;
+// Play it with the mouse...
+x = { MoogFF.ar(WhiteNoise.ar(01.1), MouseY.kr(100, 10000, 1), MouseX.kr(0, 4)) }.play(s);
+x.free;
+
+// Mmmm, throbby
+x = { MoogFF.ar(Pulse.ar([40,121],[0.3,0.7]),SinOsc.kr(LFNoise0.kr(0.42).range(0.001,2.2)).range(30,4200), 0.83 * 4)}.play(s);
+x.free;
+
+
+Original Java code created by F. Fontana - August 2007 - federico.fontana@univr.it
+Ported to C++ for SuperCollider by Dan Stowell
+
+

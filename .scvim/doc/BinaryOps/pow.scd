@@ -1,0 +1,5 @@
+pow			exponentiation
+
+see **
+
+

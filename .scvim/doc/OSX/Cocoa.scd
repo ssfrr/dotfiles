@@ -1,0 +1,35 @@
+Cocoa
+
+see also: CocoaDialog
+
+
+Cocoa.getPathsInDirectory(path)
+
+
+// example:
+Cocoa.getPathsInDirectory("plugins")
+
+
+// note: it is better to now use pathMatch (unix compatible). Wild cards like * can be used.
+
+"plugins/*".pathMatch;
+"plugins/D*".pathMatch;
+"plugins/[D,T]*".pathMatch;
+
+
+/*
+
+	This is a temporary implementation before I (felix) gets around to doing the proper
+	Directory implementation.
+	It gets all paths in that directory and subdirectories.
+	maxItems is the size of the array to use, and should be larger than the number of items
+	you might return, else a primitive index error.
+	
+
+	all paths are standardized
+	
+*/
+	
+	
+
+
