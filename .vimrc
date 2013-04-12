@@ -74,7 +74,7 @@ so ~/.scvimrc
 
 " set ctrlp to open in vertical split by default
 let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-cr>', '<2-LeftMouse>'],
-    \ 'AcceptSelection("h")': ['<shift-cr>', '<2-LeftMouse>'],
+    \ 'AcceptSelection("e")': ['<c-o>', '<2-LeftMouse>'],
+    \ 'AcceptSelection("h")': ['<c-h>', '<2-LeftMouse>'],
     \ 'AcceptSelection("v")': ['<cr>', '<RightMouse>'],
     \ }
