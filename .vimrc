@@ -12,6 +12,8 @@ syntax on
 
 set autochdir
 
+filetype indent on
+
 " set tabbing behavior
 set tabstop=4
 set softtabstop=4
