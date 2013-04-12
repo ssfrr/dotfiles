@@ -12,8 +12,10 @@ HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 HISTCONTROL=ignoreboth
 
 # add local binary dir to path
-export PATH="$PATH:$HOME/local/bin"
-export PATH="$PATH:$HOME/scripts"
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/BuLogics/codingstandards:$PATH"
+export PATH="$HOME/local/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
 export EDITOR="vim"
 
 # append to the history file, don't overwrite it
@@ -111,3 +113,5 @@ function dgrep { grep --color=always --exclude="*.map" --exclude="*tags*" -RIi $
 # use color prompt with git branch info
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\033[01;34m\] \$\[\033[00m\] '
+
+source /usr/local/share/python/virtualenvwrapper.sh
