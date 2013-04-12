@@ -1,0 +1,54 @@
+For SuperCollider 3
+
+To access sections of this tutorial, select the chapter title (you can double click) and then ask for help. The help system should then open the appropriate file. 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+First_steps
+
+1_Startup
+2_Evaluating_code
+3_Comments
+4_Help
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+Synthesis
+
+1_The_network
+2_Prerequisites
+3_SynthDefs
+4_Rates
+5_Buses
+6_Controls
+7_Test_functions
+8_UnaryOp_synthesis
+9_BinaryOp_synthesis
+10_Subtractive_synthesis
+11_Groups
+12_Playbuf
+13_Delays_reverbs
+14_Frequency_modulation
+15_Scheduling
+
+Please see the Japanese translation by Shigeru Kobayashi
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Debugging
+
+1_Debugging
+2_Syntax_errors
+3_Runtime_errors
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+last revised: August 2, 2004
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Mark Polishook
+polishoo@cwu.edu
+
+
+

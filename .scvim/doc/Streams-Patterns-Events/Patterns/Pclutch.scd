@@ -1,0 +1,49 @@
+Pclutch		sample and hold a pattern
+
+superclass: FilterPattern
+
+
+Pclutch(pattern, connected)
+		
+		pattern - any pattern
+		connected - a pattern that returns either a series of [Booleans] or the equivalent 0 and 1.
+				if true (or 1), the pattern plays as usual, if false (or 0), the previous value is kept.	
+		
+
+see also: StreamClutch, Pstutter, Latch
+
+
+
+// example:
+
+Pclutch(Pseq([1, 2, 3, 4, 5], 3), Pseq([0, 0, 1, 0, 0, 0, 1, 1])).asStream.nextN(10);
+
+// sound example
+(
+SynthDef(\help_sinegrain, 
+	{ arg out=0, freq=440, sustain=0.05;
+		var env;
+		env = EnvGen.kr(Env.perc(0.01, sustain, 0.2), doneAction:2);
+		Out.ar(out, SinOsc.ar(freq, 0, env))
+	}).add;
+)
+
+
+(
+var a;
+a = Pclutch(
+		Pseq([1, 2, 3, 4, 5], inf), 
+		Pseq([0, 0, 1, 0, Pn(0, {30.rand}), 0, 1, 1], inf)
+	).asStream;
+{
+	loop {
+		Synth(\help_sinegrain, [\freq, a.next * 200 + 200]);
+		0.02.wait;
+	}
+}.fork;
+)
+
+
+
+
+
