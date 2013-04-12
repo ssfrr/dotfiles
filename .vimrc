@@ -1,9 +1,18 @@
+set nocp
+
+" invoke pathogen
+call pathogen#infect()
+
 " make sure vim knows our terminal is 256-capable (gnome-terminal doesn't
 " report itself as such)
 set t_Co=256
 colorscheme molokai
 
+syntax on
+
 set autochdir
+
+filetype indent on
 
 " set tabbing behavior
 set tabstop=4
@@ -23,9 +32,6 @@ set foldminlines=2
 set foldignore=
 
 set showbreak=@
-
-" disable line numbers (on by default in janus)
-set nonumber
 
 " make completion more sane
 set wildmode=longest,list
@@ -51,20 +57,15 @@ map <c-t> :pop<CR>
 " make enter clear search highlighting, resync syntax hilightlighting and recalculate folds
 nnoremap <silent> <CR> :noh<CR>:syntax sync fromstart<CR>:set foldmethod=indent<CR>
 
+" Now we can change indentation without losing selection
+vnoremap < <gv
+vnoremap > >gv
+
 "override smartcase
 set ignorecase
 
 " ignore case in filename completion, even on platforms that are case
 " sensitive
 set wildignorecase
-
-" Override existing colorscheme with version found in
-" ~/.janus/<colorscheme>/colors/<colorscheme>.vim
-if exists("g:colors_name")
-  let color_override = expand('~/.janus/' . g:colors_name . '/colors/' . g:colors_name . '.vim')
-  if filereadable(color_override)
-    exe 'source ' . color_override
-  endif
-endif
 
 so ~/.scvimrc
