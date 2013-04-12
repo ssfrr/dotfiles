@@ -1,9 +1,0 @@
-[submodule ".vim"]
-	path = .vim
-	url = git://github.com/carlhuda/janus.git
-[submodule ".janus/molokai"]
-	path = .janus/molokai
-	url = git@github.com:ssfrr/molokai.git
-[submodule ".janus/code_complete"]
-	path = .janus/code_complete
-	url = git://github.com/mbbill/code_complete.git
