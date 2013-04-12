@@ -48,8 +48,8 @@ map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<
 " janus tries to steal ctrl-T to run the ctrlp browser
 map <c-t> :pop<CR>
 
-" make enter clear search highlighting and recalculate folds
-nnoremap <silent> <CR> :noh<CR>:set foldmethod=indent<CR>
+" make enter clear search highlighting, resync syntax hilightlighting and recalculate folds
+nnoremap <silent> <CR> :noh<CR>:syntax sync fromstart<CR>:set foldmethod=indent<CR>
 
 "override smartcase
 set ignorecase
