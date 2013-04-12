@@ -3,6 +3,8 @@
 set t_Co=256
 colorscheme molokai
 
+syntax on
+
 set autochdir
 
 " set tabbing behavior
