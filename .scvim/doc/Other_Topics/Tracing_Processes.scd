@@ -1,0 +1,161 @@
+Tracing processes in SC
+
+What goes on in a running system? In SC, various methods help to get information about processes on different levels: server side and client side (in sclang).
+
+related:  Debugging-tips
+
+Tracing sclang processes:
+
+In order to know more about objects as they are created by processes like tasks or even simply by evaluating a bit of code, one can insert messages like postln and postcs anywhere in the code.
+
+// calculating the sum of n subsequent squares
+(
+var n = 8, x = 0;
+(1..n).do { |num| x = x + num.squared };
+x
+)
+
+// what happens while we are doing this?
+(
+var n = 8, x = 0;
+(1..n).do { |num| x = x + num.squared.postln; };
+x
+)
+
+// or more in detail:
+(
+var n = 8, x = 0;
+(1..n).do { |num| [\before, x].postln; x = x + num.squared; [\after, x].postln;};
+x
+)
+
+
+// when posting several values, some more verbose posts can be useful.
+// postf formats a string and inserts values for %-characters.
+// here separate statements are needed.
+
+(
+var n = 8, x = 0;
+(1..n).do { |num| x = x + num.squared; "num: % num-squared: % new x: %\n".postf(num, num.squared, x) };
+x
+) 
+
+// in some cases, postln will only post part of the data, or a simplified
+// representation.
+
+// n times 200 random numbers
+// will just add ... etc ... after 123
+(
+var n = 3;
+(1..n).do { |num| { 1000.rand }.dup(200).postln };
+)
+
+// posts the compile string, i.e. the code needed to recreate the receiver (here the array)
+(
+var n = 3;
+(1..n).do { |num| { num.rand }.dup(200).postcs };
+)
+
+
+// in streams, tasks and routines, this works just as well:
+(
+fork {	
+	var n = 14;
+	(1..n).do { |num| 
+		{ num.rand }.dup(200).postcs;
+		1.wait;
+	};
+}
+)
+
+(
+fork {	
+	var str = Routine { |in| 10.do { in = in.rand.yield } };
+	12.0.do { |i|
+		str.next(i).postln;
+		0.5.wait;
+	};
+}
+)
+
+
+// for creating a pattern that once it is used posts its values,
+// the message trace can be used (in returns a Ptrace)
+
+a = Pseq([1, 4, 1, Pwhite(0, 6, 3), 100, 39], inf).trace(prefix: "value: ");
+b = a.asStream;
+b.next;
+b.next;
+b.next;
+b.next;
+
+// in a running stream:
+(
+Pbind(
+	\degree, Pseq([1, 4, 1, Pwhite(0, 6, 3), 100, 39], inf).trace(prefix: "value: "),
+	\dur, 0.2
+).play
+);
+
+// post only a slot of the events
+(
+Pbind(
+	\degree, Pseq([1, 4, 1, Pwhite(0, 6, 3), 100, 39], inf),
+	\dur, 0.2
+).trace(\degree).play
+);
+
+// several slots at once:
+(
+Pbind(
+	\degree, Pseq([1, 4, 1, Pwhite(0, 6, 3), 100, 39], inf),
+	\dur, Pwhite(0.2, 0.4, inf)
+).trace([\degree, \dur], prefix: ["degree ", "dur "]).play
+);
+
+
+
+Tracing server processes:
+
+Using postln or post on a UGen will only return the UGen, but not the values it produces in a running synth. The poll message creates a Poll UGen which posts at regular intervals when given a time value or as a response to a trigger (see Poll helpfile)
+
+// postln returns only the UGen itself (a MulAdd here)
+{ SinOsc.ar(SinOsc.kr(0.2, 0, 300, 400).postln) * 0.1 }.play;
+
+// poll traces the values
+{ SinOsc.ar(SinOsc.kr(0.2, 0, 300, 400).poll) * 0.1 }.play;
+
+// using a label:
+{ SinOsc.ar(SinOsc.kr(0.2, 0, 300, 400).poll(label: "freq")) * 0.1 }.play;
+
+
+For demand ugens, poll does not work - these ugens are called by a Demand or Duty Ugen at certain intervals. The message dpoll creates a Dpoll ugen that posts when they are called (see Dpoll helpfile)
+
+
+{ SinOsc.ar(Duty.kr(0.5, 0, (Dseries(0, 1, inf) * 200 + 300).dpoll)) * 0.1 }.play;
+
+{ SinOsc.ar(Duty.kr(0.5, 0, (Dseries(0, 1, inf) * 200 + 300).dpoll(label: "freq"))) * 0.1 }.play;
+
+
+When using the internal server (see Server help), the scope window can give valuable information about the ongoing sound (see Stethoscope help):
+
+// must use internal server
+s = Server.internal.boot;
+{ SinOsc.ar(SinOsc.kr(0.2, 0, 300, 400)) * 0.1 }.scope;
+
+A FreqScope window can be used for observing the spectrum of the output:
+
+// must use internal server
+Server.default = s = Server.internal.boot;
+		
+// create a new analyzer
+FreqScope.new;
+
+{ SinOsc.ar(SinOsc.ar(0.2, 0, 3000, 4000)) * 0.1 }.play;
+{ SinOsc.ar(SinOsc.ar((1..4) * 0.02, 0, 3000, 4000)).sum * 0.1 }.play;
+
+
+
+
+
+
