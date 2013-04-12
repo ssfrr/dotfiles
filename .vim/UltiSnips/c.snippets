@@ -1,0 +1,17 @@
+snippet while "while loop" !
+while(${1:/* condition */})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet fund "function declaration" b!
+${1:void} ${2:function_name}(${3:void});
+endsnippet
+
+snippet fun "function" b!
+${1:void} ${2:function_name}(${3:void})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
