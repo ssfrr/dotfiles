@@ -12,8 +12,10 @@ HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 HISTCONTROL=ignoreboth
 
 # add local binary dir to path
-export PATH="$PATH:$HOME/local/bin"
-export PATH="$PATH:$HOME/scripts"
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/BuLogics/codingstandards:$PATH"
+export PATH="$HOME/local/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
 export EDITOR="vim"
 
 if [ -f `brew --prefix`/etc/bash_completion ]; then
