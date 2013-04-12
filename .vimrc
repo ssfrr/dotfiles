@@ -59,6 +59,8 @@ map <c-t> :pop<CR>
 " make enter clear search highlighting, resync syntax hilightlighting and recalculate folds
 nnoremap <silent> <CR> :noh<CR>:syntax sync fromstart<CR>:set foldmethod=indent<CR>
 
+map <c-r> :!rake<CR>
+
 " Now we can change indentation without losing selection
 vnoremap < <gv
 vnoremap > >gv
