@@ -2,6 +2,8 @@ set nocp
 
 " invoke pathogen
 call pathogen#infect()
+" make sure help docs work
+Helptags
 
 " make sure vim knows our terminal is 256-capable (gnome-terminal doesn't
 " report itself as such)
@@ -69,3 +71,10 @@ set ignorecase
 set wildignorecase
 
 so ~/.scvimrc
+
+" set ctrlp to open in vertical split by default
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-o>', '<2-LeftMouse>'],
+    \ 'AcceptSelection("h")': ['<c-h>', '<2-LeftMouse>'],
+    \ 'AcceptSelection("v")': ['<cr>', '<RightMouse>'],
+    \ }
