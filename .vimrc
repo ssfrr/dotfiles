@@ -80,3 +80,7 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("h")': ['<c-h>', '<2-LeftMouse>'],
     \ 'AcceptSelection("v")': ['<cr>', '<RightMouse>'],
     \ }
+
+" put a dot for trailing whitespace
+set listchars=trail:¤
+set list
