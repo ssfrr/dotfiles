@@ -15,6 +15,17 @@ syntax on
 "set autochdir
 
 filetype indent on
+filetype plugin on
+
+" set the mapleader key to be more convenient
+let mapleader = ";"
+
+" maintain more context when scrolling
+set scrolloff=3
+
+" make searching more interactive
+set hlsearch
+set incsearch
 
 " set tabbing behavior
 set tabstop=4
@@ -68,7 +79,7 @@ endfunction
 nnoremap <silent> <CR> :call HandleReturn()<CR>
 
 nmap <C-k> :w<CR>:!rake test:delta 2>&1 \| tee errors.err<CR>
-nmap <C-f> :cfile<CR>:copen<CR><C-w>k
+nmap <C-q> :cfile<CR>:copen<CR><C-w>k
 
 " Now we can change indentation without losing selection
 vnoremap < <gv
