@@ -80,6 +80,8 @@ set ignorecase
 " ignore case in filename completion, even on platforms that are case
 " sensitive
 set wildignorecase
+" ignore binary files in filename completion (and ctrlP indexing)
+set wildignore+=*.so,*.swp,*.zip,*.o,*.obj
 
 so ~/.scvimrc
 
