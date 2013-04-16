@@ -12,7 +12,7 @@ colorscheme molokai
 
 syntax on
 
-set autochdir
+"set autochdir
 
 filetype indent on
 
@@ -53,13 +53,22 @@ map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<
             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" janus tries to steal ctrl-T to run the ctrlp browser
-map <c-t> :pop<CR>
+" make enter clear search highlighting, resync syntax hilightlighting and
+" recalculate folds, unless we're in a quickfix window where we want to
+" select the error under the cursor
+function! HandleReturn()
+    if &buftype == "quickfix"
+        .cc
+    else
+        noh
+        syntax sync fromstart
+        set foldmethod=indent
+    endif
+endfunction
+nnoremap <silent> <CR> :call HandleReturn()<CR>
 
-" make enter clear search highlighting, resync syntax hilightlighting and recalculate folds
-nnoremap <silent> <CR> :noh<CR>:syntax sync fromstart<CR>:set foldmethod=indent<CR>
-
-map <C-k> :w<CR>:!rake test:delta<CR>
+nmap <C-k> :w<CR>:!rake test:delta 2>&1 \| tee errors.err<CR>
+nmap <C-f> :cfile<CR>:copen<CR><C-w>k
 
 " Now we can change indentation without losing selection
 vnoremap < <gv
