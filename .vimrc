@@ -104,5 +104,8 @@ let g:ctrlp_prompt_mappings = {
     \ }
 
 " put a dot for trailing whitespace
-set listchars=trail:¤
+set list listchars=tab:→\ ,trail:·
 set list
+
+"disable line numbering, which is enabled by the python plugin
+set nonumber
