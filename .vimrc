@@ -15,6 +15,17 @@ syntax on
 "set autochdir
 
 filetype indent on
+filetype plugin on
+
+" set the mapleader key to be more convenient
+let mapleader = ";"
+
+" maintain more context when scrolling
+set scrolloff=3
+
+" make searching more interactive
+set hlsearch
+set incsearch
 
 " set tabbing behavior
 set tabstop=4
@@ -68,7 +79,7 @@ endfunction
 nnoremap <silent> <CR> :call HandleReturn()<CR>
 
 nmap <C-k> :w<CR>:!rake test:delta 2>&1 \| tee errors.err<CR>
-nmap <C-f> :cfile<CR>:copen<CR><C-w>k
+nmap <C-q> :cfile<CR>:copen<CR><C-w>k
 
 " Now we can change indentation without losing selection
 vnoremap < <gv
@@ -80,6 +91,8 @@ set ignorecase
 " ignore case in filename completion, even on platforms that are case
 " sensitive
 set wildignorecase
+" ignore binary files in filename completion (and ctrlP indexing)
+set wildignore+=*.so,*.swp,*.zip,*.o,*.obj
 
 so ~/.scvimrc
 
@@ -91,5 +104,8 @@ let g:ctrlp_prompt_mappings = {
     \ }
 
 " put a dot for trailing whitespace
-set listchars=trail:¤
+set list listchars=tab:→\ ,trail:·
 set list
+
+"disable line numbering, which is enabled by the python plugin
+set nonumber
