@@ -109,3 +109,8 @@ set list
 
 "disable line numbering, which is enabled by the python plugin
 set nonumber
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
