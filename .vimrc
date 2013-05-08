@@ -53,7 +53,7 @@ set wildmode=longest,list
 map j gj
 map k gk
 
-set tags=.tags,.TAGS,tags,TAGS,./tags,../tags,../../tags,../../../tags;
+set tags=.tags,.TAGS,tags,TAGS,./tags,../tags,../../tags,../../../tags,../../../../tags,../../../../../tags;
 
 " set F9,F10 to toggle spellcheck
 map <F9> <Esc>:setlocal spell spelllang=en_us<CR>
