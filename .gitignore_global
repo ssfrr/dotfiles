@@ -1,2 +1,6 @@
-tags
+*~
+.DS_Store
 *.swp
+*.pyc
+tags
+*.err
