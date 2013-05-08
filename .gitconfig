@@ -23,4 +23,5 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [alias]
-   tree = log --all --graph --decorate --pretty=oneline --abbrev-commit
+    tree = log --all --graph --decorate --pretty=oneline --abbrev-commit
+    subup = submodule update --init --recursive
