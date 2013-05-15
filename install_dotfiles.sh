@@ -3,6 +3,9 @@
 # this script assumes that the config files are all contained in a
 # directory named "dotfiles" in your home directory
 
+# install the ssh-pageant proxy
+cp bin/ssh-pageant.exe /usr/local/bin
+
 cd ~
 
 # create symbolic links for config files
