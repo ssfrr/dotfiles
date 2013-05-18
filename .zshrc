@@ -6,15 +6,11 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="gallois"
-ZSH_THEME="flazz"
+ZSH_THEME="ssfrr"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
-    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-fi
 
 # set up PATH
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -57,3 +53,17 @@ plugins=(git vi-mode fabric django lein brew osx pip python ssh-agent vagrant vi
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+
+# source the platform-specific config
+case `uname` in
+    "Darwin")
+        source ~/.zshrc_darwin
+        ;;
+    "Linux")
+        source ~/.zshrc_linux
+        ;;
+    "CYGWIN_NT-5.1")
+        source ~/.zshrc_cygwin
+        ;;
+esac
+

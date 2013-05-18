@@ -134,3 +134,5 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
     \ ]
+
+au BufRead,BufNewFile *.zsh-theme    set filetype=zsh
