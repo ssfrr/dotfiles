@@ -5,11 +5,22 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="simple"
+ZSH_THEME="dieter"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
+    alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+fi
+
+# set up PATH
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/BuLogics/codingstandards:$PATH"
+export PATH="$HOME/local/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
+export EDITOR="vim"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
