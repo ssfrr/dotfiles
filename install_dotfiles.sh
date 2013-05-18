@@ -19,3 +19,9 @@ cd dotfiles
 # pull submodules
 git submodule init
 git submodule update
+
+for conffile in zlogin zlogout zprofile zshenv
+do
+    echo "Linking ${conffile}"
+    ln -s ~/.zprezto/runcoms/${conffile} ~/.${conffile}
+done
