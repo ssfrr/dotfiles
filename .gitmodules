@@ -19,6 +19,9 @@
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule ".vim/bundle/vim-markdown"]
+	path = .vim/bundle/vim-markdown
+	url = https://github.com/tpope/vim-markdown.git
 [submodule ".vim/bundle/vim-closure"]
 	path = .vim/bundle/vim-closure
 	url = https://github.com/vim-scripts/VimClojure.git
@@ -40,3 +43,6 @@
 [submodule ".vim/bundle/paredit-vim"]
 	path = .vim/bundle/paredit-vim
 	url = https://github.com/vim-scripts/paredit.vim.git
+[submodule ".vim/bundle/vim-fugitive"]
+	path = .vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git

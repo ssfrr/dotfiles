@@ -68,7 +68,7 @@ map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<
 " recalculate folds, unless we're in a quickfix window where we want to
 " select the error under the cursor
 function! HandleReturn()
-    if &buftype == "quickfix"
+    if &buftype ==# "quickfix"
         .cc
     else
         noh
@@ -86,6 +86,8 @@ vmap <S-E> :Eval<CR>
 " Now we can change indentation without losing selection
 vnoremap < <gv
 vnoremap > >gv
+
+vmap <leader>tp :<C-u>AlignCtrl --ll:<CR>gv:Align " "<CR>
 
 "override smartcase
 set ignorecase
