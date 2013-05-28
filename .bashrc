@@ -18,8 +18,10 @@ export PATH="$HOME/local/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export EDITOR="vim"
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
+if [ -x /usr/local/bin/brew ] && [ -f `brew --prefix`/etc/bash_completion ]; then
     . `brew --prefix`/etc/bash_completion
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
 fi
 
 if [ -f /Applications/MacVim.app/Contents/MacOS/Vim ]; then
@@ -125,4 +127,6 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[01;33m\]$(__git_ps1)\[\
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-source /usr/local/share/python/virtualenvwrapper.sh
+if [ -e /usr/local/share/python/virtualenvwrapper.sh ]; then
+    source /usr/local/share/python/virtualenvwrapper.sh
+fi
