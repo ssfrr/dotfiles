@@ -136,3 +136,6 @@ let g:rbpt_colorpairs = [
     \ ]
 
 au BufRead,BufNewFile *.zsh-theme    set filetype=zsh
+
+" ignore warning on from module import *
+let g:pymode_lint_ignore = "W0401"

@@ -18,6 +18,7 @@ export PATH="$HOME/BuLogics/codingstandards:$PATH"
 export PATH="$HOME/local/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export EDITOR="vim"
+export VISUAL=$EDITOR
 
 # source the platform-specific config
 case `uname` in
