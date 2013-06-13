@@ -71,12 +71,13 @@ function! HandleReturn()
     if &buftype ==# "quickfix"
         .cc
     else
-        noh
         syntax sync fromstart
         set foldmethod=indent
     endif
 endfunction
-nnoremap <silent> <CR> :call HandleReturn()<CR>
+
+"noh doesn't work from inside a function, so we run it here
+nnoremap <CR> :noh<CR>:call HandleReturn()<CR>
 
 nmap <C-k> :w<CR>:!rake test:delta 2>&1 \| tee errors.err<CR>
 nmap <C-q> :cfile<CR>:copen<CR><C-w>k
@@ -141,3 +142,4 @@ au BufRead,BufNewFile *.zsh-theme    set filetype=zsh
 
 " ignore warning on from module import *
 let g:pymode_lint_ignore = "W0401"
+let g:pymode_lint_checker = "pyflakes,pep8"
