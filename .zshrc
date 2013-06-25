@@ -19,6 +19,7 @@ export PATH="$HOME/dev/codingstandards:$PATH"
 export PATH="$HOME/local/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export EDITOR="vim"
+export VISUAL=$EDITOR
 
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh

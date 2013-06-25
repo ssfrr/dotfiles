@@ -64,6 +64,7 @@ map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<
             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+
 " make enter clear search highlighting, resync syntax hilightlighting and
 " recalculate folds, unless we're in a quickfix window where we want to
 " select the error under the cursor
@@ -71,12 +72,13 @@ function! HandleReturn()
     if &buftype ==# "quickfix"
         .cc
     else
-        noh
         syntax sync fromstart
         set foldmethod=indent
     endif
 endfunction
-nnoremap <silent> <CR> :call HandleReturn()<CR>
+
+"noh doesn't work from inside a function, so we run it here
+nnoremap <silent> <CR> :noh<CR>:call HandleReturn()<CR>
 
 nmap <C-k> :w<CR>:!rake test:delta 2>&1 \| tee errors.err<CR>
 nmap <C-q> :cfile<CR>:copen<CR><C-w>k
@@ -138,3 +140,14 @@ let g:rbpt_colorpairs = [
     \ ]
 
 au BufRead,BufNewFile *.zsh-theme    set filetype=zsh
+
+" ignore warning on from module import *
+let g:pymode_lint_ignore = "W0401"
+let g:pymode_lint_checker = "pyflakes,pep8"
+
+set laststatus=2
+" explanation of why the colors are reversed in StatusLine highlight group
+" http://vim.1045645.n5.nabble.com/highlight-with-transparent-background-td3386522.html
+"User1 is used on the prompt for status flags. Color is matched for molokai
+hi User1 ctermfg=118 ctermbg=238
+set statusline=%t\ [%{&ff}]\ %y\ %1*%h%m%r%*%=%4.l\ /%4.L,\ %3.c\ \ %3.P
