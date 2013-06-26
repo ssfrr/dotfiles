@@ -12,17 +12,9 @@ fi
 
 # Customize to your needs...
 #
-# set up the PATH
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="$HOME/BuLogics/codingstandards:$PATH"
-export PATH="$HOME/dev/codingstandards:$PATH"
-export PATH="$HOME/local/bin:$PATH"
-export PATH="$HOME/scripts:$PATH"
-export EDITOR="vim"
-export VISUAL=$EDITOR
 
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+# virtualenvwrapper script sourced in platform-specific zshrc
 
 # source the platform-specific config
 case `uname` in
@@ -36,3 +28,12 @@ case `uname` in
         source ~/.zshrc_cygwin
         ;;
 esac
+
+# set up the PATH
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/BuLogics/codingstandards:$PATH"
+export PATH="$HOME/dev/codingstandards:$PATH"
+export PATH="$HOME/local/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
+export EDITOR="vim"
+export VISUAL=$EDITOR
