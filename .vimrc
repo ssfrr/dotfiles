@@ -113,9 +113,6 @@ let g:ctrlp_prompt_mappings = {
 set list listchars=tab:→\ ,trail:·
 set list
 
-"disable line numbering, which is enabled by the python plugin
-set nonumber
-
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
@@ -141,8 +138,9 @@ let g:rbpt_colorpairs = [
 
 au BufRead,BufNewFile *.zsh-theme    set filetype=zsh
 
-" ignore warning on from module import *
-let g:pymode_lint_ignore = "W0401"
+" ignore warning on from module import * and
+" long lines
+let g:pymode_lint_ignore = "W0401,E501"
 let g:pymode_lint_checker = "pyflakes,pep8"
 
 set laststatus=2
@@ -151,3 +149,10 @@ set laststatus=2
 "User1 is used on the prompt for status flags. Color is matched for molokai
 hi User1 ctermfg=118 ctermbg=238
 set statusline=%t\ [%{&ff}]\ %y\ %1*%h%m%r%*%=%4.l\ /%4.L,\ %3.c\ \ %3.P
+
+" highlight any characters that are over the desired line width
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%80v.\+/
+
+"disable line numbering, which is enabled by the python plugin
+set nonumber
