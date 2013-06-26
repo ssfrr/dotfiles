@@ -1,2 +1,1 @@
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-source /usr/local/share/python/virtualenvwrapper.sh

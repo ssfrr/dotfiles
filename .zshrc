@@ -14,7 +14,7 @@ fi
 #
 
 export WORKON_HOME=$HOME/.virtualenvs
-# virtualenvwrapper script sourced in platform-specific zshrc
+source /usr/local/bin/virtualenvwrapper.sh
 
 # source the platform-specific config
 case `uname` in
