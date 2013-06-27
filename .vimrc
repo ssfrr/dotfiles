@@ -138,9 +138,9 @@ let g:rbpt_colorpairs = [
 
 au BufRead,BufNewFile *.zsh-theme    set filetype=zsh
 
-" ignore warning on from module import * and
-" long lines
-let g:pymode_lint_ignore = "W0401,E501"
+" ignore warning on from module import *,
+" long lines, and semicolons/multiple statements
+let g:pymode_lint_ignore = "W0401,E501,E702"
 let g:pymode_lint_checker = "pyflakes,pep8"
 
 set laststatus=2
