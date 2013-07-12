@@ -37,3 +37,10 @@ export PATH="$HOME/local/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export EDITOR="vim"
 export VISUAL=$EDITOR
+
+# set up the ssh agent
+if command -v keychain >> /dev/null 2>&1; then
+    eval `keychain --eval id_rsa`
+else
+    echo "keychain is not installed. You're in for some typing"
+fi
