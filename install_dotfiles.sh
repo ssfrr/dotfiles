@@ -15,6 +15,18 @@ elif [ $PLATFORM == 'Linux' ] && [ -e /usr/bin/apt-get ]; then
     sudo apt-get install zsh
     grep /usr/bin/zsh /etc/shells || sudo echo "/usr/bin/zsh" >> /etc/shells
     chsh -s /usr/bin/zsh
+elif [ $PLATFORM == 'CYGWIN_NT-6.1-WOW64' ]; then
+    if command -v zsh >> /dev/null 2>&1; then
+        if grep `whoami` /etc/passwd | grep zsh; then
+            echo "zsh already set up as shell. good job"
+        else
+            echo "Please set your shell to zsh by editing /etc/passwd"
+            exit -1
+        fi
+    else
+        echo "ZSH not installed, please install with cygwin setup.exe"
+        exit -1
+    fi
 else
     echo "Unsupported system, please add setup in install_dotfiles.sh"
     exit 1
