@@ -100,8 +100,6 @@ set wildignorecase
 " ignore binary files in filename completion (and ctrlP indexing)
 set wildignore+=*.so,*.swp,*.zip,*.o,*.obj
 
-so ~/.scvimrc
-
 " set ctrlp to open in vertical split by default
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-o>', '<2-LeftMouse>'],
