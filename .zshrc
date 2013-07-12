@@ -14,7 +14,14 @@ fi
 #
 
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+
+if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+elif [ -e /usr/bin/virtualenvwrapper.sh ]; then
+    source /usr/bin/virtualenvwrapper.sh
+else
+    echo "virtualenvwrapper not installed"
+fi
 
 # source the platform-specific config
 case `uname` in
