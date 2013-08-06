@@ -15,7 +15,7 @@ elif [ $PLATFORM == 'Linux' ] && [ -e /usr/bin/apt-get ]; then
     sudo apt-get install zsh
     grep /usr/bin/zsh /etc/shells || sudo echo "/usr/bin/zsh" >> /etc/shells
     chsh -s /usr/bin/zsh
-elif [ $PLATFORM == 'CYGWIN_NT-6.1-WOW64' ]; then
+elif [ $PLATFORM == 'CYGWIN_NT-6.1-WOW64' ] || [ $PLATFORM == 'CYGWIN_NT-5.1' ]; then
     if command -v zsh >> /dev/null 2>&1; then
         if grep `whoami` /etc/passwd | grep zsh; then
             echo "zsh already set up as shell. good job"
