@@ -27,6 +27,9 @@ set scrolloff=3
 set hlsearch
 set incsearch
 
+" fix backspace on cygwin
+set bs=2
+
 " set tabbing behavior
 set tabstop=4
 set softtabstop=4
