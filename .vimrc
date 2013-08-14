@@ -5,10 +5,13 @@ call pathogen#infect()
 " make sure help docs work
 Helptags
 
-" make sure vim knows our terminal is 256-capable (gnome-terminal doesn't
-" report itself as such)
-set t_Co=256
-colorscheme molokai
+" in order to support the solarized colorscheme make sure your terminal is set
+" to use the solarized colors. see
+" https://github.com/sigurdga/gnome-terminal-colors-solarized to set up gnome
+" terminal with the right colors.
+set t_Co=16
+set background=dark
+colorscheme solarized
 
 syntax on
 
