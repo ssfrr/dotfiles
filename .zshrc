@@ -46,7 +46,7 @@ export EDITOR="vim"
 export VISUAL=$EDITOR
 
 # set up the ssh agent if necessary
-if [ -z $GNOME_KEYRING_CONTROL ]; then
+if [ -z $GNOME_KEYRING_CONTROL ] && [ `uname` != "Darwin" ]; then
     if command -v keychain >> /dev/null 2>&1; then
         eval `keychain --eval id_rsa`
     else
