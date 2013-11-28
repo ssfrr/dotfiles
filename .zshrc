@@ -45,6 +45,8 @@ export PATH="$HOME/scripts:$PATH"
 export EDITOR="vim"
 export VISUAL=$EDITOR
 
+alias ijulia="cd ~/Dropbox/julia\ notebooks && ipython notebook --profile=julia"
+
 # set up the ssh agent if necessary
 if [ -z $GNOME_KEYRING_CONTROL ] && [ `uname` != "Darwin" ]; then
     if command -v keychain >> /dev/null 2>&1; then
