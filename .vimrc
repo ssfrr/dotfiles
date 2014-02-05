@@ -140,7 +140,10 @@ let g:rbpt_colorpairs = [
     \ ['red',         'firebrick3'],
     \ ]
 
-au BufRead,BufNewFile *.zsh-theme    set filetype=zsh
+au BufRead,BufNewFile *.zsh-theme set filetype=zsh
+
+" treat Arduino files as C++ source
+au BufRead,BufNewFile *.ino set filetype=cpp
 
 " ignore warning on from module import *,
 " long lines, and semicolons/multiple statements
