@@ -1,1 +1,4 @@
 alias open=xdg-open
+
+# lately vagrant hasn't been exporting the locale corectly...
+export LC_ALL="en_US.UTF8"
