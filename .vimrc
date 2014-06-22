@@ -89,6 +89,7 @@ nnoremap <silent> <CR> :noh<CR>:call HandleReturn()<CR>
 nmap <C-k> :w<CR>:!rake test:delta 2>&1 \| tee errors.err<CR>
 nmap <C-q> :cfile<CR>:copen<CR><C-w>k
 
+" Eval mapping for editing clojure code
 vmap <S-E> :Eval<CR>
 
 " Now we can change indentation without losing selection
@@ -155,8 +156,8 @@ hi User1 ctermfg=118 ctermbg=238
 set statusline=%t\ [%{&ff}]\ %y\ %1*%h%m%r%*%=%4.l\ /%4.L,\ %3.c\ \ %3.P
 
 " highlight any characters that are over the desired line width
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%80v.\+/
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%80v.\+/
 
 "disable line numbering, which is enabled by the python plugin
 set nonumber

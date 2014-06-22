@@ -23,6 +23,26 @@ else
     echo "virtualenvwrapper not installed"
 fi
 
+# set up the PATH
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/BuLogics/codingstandards:$PATH"
+export PATH="$HOME/dev/codingstandards:$PATH"
+export PATH="$HOME/local/bin:$PATH"
+export PATH="$HOME/scripts:$PATH"
+export EDITOR="vim"
+export VISUAL=$EDITOR
+
+alias ijulia="ipython notebook --profile=julia"
+
+# set up the ssh agent if necessary
+if [ -z $GNOME_KEYRING_CONTROL ] && [ `uname` != "Darwin" ]; then
+    if command -v keychain >> /dev/null 2>&1; then
+        eval `keychain --eval id_rsa`
+    else
+        echo "keychain is not installed. You're in for some typing"
+    fi
+fi
+
 # source the platform-specific config
 case `uname` in
     "Darwin")
@@ -35,23 +55,3 @@ case `uname` in
         source ~/.zshrc_cygwin
         ;;
 esac
-
-# set up the PATH
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="$HOME/BuLogics/codingstandards:$PATH"
-export PATH="$HOME/dev/codingstandards:$PATH"
-export PATH="$HOME/local/bin:$PATH"
-export PATH="$HOME/scripts:$PATH"
-export EDITOR="vim"
-export VISUAL=$EDITOR
-
-alias ijulia="cd ~/Dropbox/julia\ notebooks && ipython notebook --profile=julia"
-
-# set up the ssh agent if necessary
-if [ -z $GNOME_KEYRING_CONTROL ] && [ `uname` != "Darwin" ]; then
-    if command -v keychain >> /dev/null 2>&1; then
-        eval `keychain --eval id_rsa`
-    else
-        echo "keychain is not installed. You're in for some typing"
-    fi
-fi
