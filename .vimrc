@@ -1,3 +1,5 @@
+scriptencoding utf-8
+
 set nocp
 
 " invoke pathogen
@@ -141,7 +143,10 @@ let g:rbpt_colorpairs = [
     \ ['red',         'firebrick3'],
     \ ]
 
-au BufRead,BufNewFile *.zsh-theme    set filetype=zsh
+au BufRead,BufNewFile *.zsh-theme set filetype=zsh
+
+" treat Arduino files as C++ source
+au BufRead,BufNewFile *.ino set filetype=cpp
 
 " ignore warning on from module import *,
 " long lines, and semicolons/multiple statements
@@ -156,8 +161,8 @@ hi User1 ctermfg=118 ctermbg=238
 set statusline=%t\ [%{&ff}]\ %y\ %1*%h%m%r%*%=%4.l\ /%4.L,\ %3.c\ \ %3.P
 
 " highlight any characters that are over the desired line width
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"match OverLength /\%80v.\+/
+"au BufRead,BufNewFile *.py highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"au BufRead,BufNewFile *.py match OverLength /\%80v.\+/
 
 "disable line numbering, which is enabled by the python plugin
 set nonumber
