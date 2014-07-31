@@ -148,6 +148,9 @@ au BufRead,BufNewFile *.zsh-theme set filetype=zsh
 " treat Arduino files as C++ source
 au BufRead,BufNewFile *.ino set filetype=cpp
 
+" prefer OpenCL to common lisp for .cl files
+au BufRead,BufNewFile *.cl set filetype=opencl
+
 " ignore warning on from module import *,
 " long lines, and semicolons/multiple statements
 let g:pymode_lint_ignore = "W0401,E501,E702"
