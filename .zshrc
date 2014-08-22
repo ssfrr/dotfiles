@@ -34,6 +34,7 @@ export EDITOR="vim"
 export VISUAL=$EDITOR
 
 alias ijulia="ipython notebook --profile=julia"
+alias git=hub
 
 # set up the ssh agent if necessary
 if [ -z $GNOME_KEYRING_CONTROL ] && [ `uname` != "Darwin" ]; then
