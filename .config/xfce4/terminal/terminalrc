@@ -1,0 +1,26 @@
+[Configuration]
+# colors from https://github.com/Psykukumber/xfce4-terminal-molokai
+ColorPalette=#1b1b1d1d1e1e;#f9f926267272;#8282b4b41414;#fdfd97971f1f;#464654545757;#8c8c5454fefe;#5656c2c2d6d6;#ccccccccc6c6;#505053535454;#ffff59599595;#b6b6e3e35454;#fefeeded6c6c;#8c8cededffff;#adad7f7fa8a8;#3434e2e2e2e2;#f8f8f8f8f2f2
+ColorBackground=#1b1b1d1d1e1e
+ColorCursor=#ffffffffffff
+ColorForeground=#a0a0a0a0a0a0
+Term=xterm-color
+MiscAlwaysShowTabs=FALSE
+MiscBell=FALSE
+MiscBordersDefault=TRUE
+MiscCursorBlinks=FALSE
+MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
+MiscDefaultGeometry=80x24
+MiscInheritGeometry=FALSE
+MiscMenubarDefault=TRUE
+MiscMouseAutohide=FALSE
+MiscToolbarDefault=FALSE
+MiscConfirmClose=TRUE
+MiscCycleTabs=TRUE
+MiscTabCloseButtons=TRUE
+MiscTabCloseMiddleClick=TRUE
+MiscTabPosition=GTK_POS_TOP
+MiscHighlightUrls=TRUE
+MiscScrollAlternateScreen=TRUE
+ScrollingOnOutput=FALSE
+FontName=Monospace 10
