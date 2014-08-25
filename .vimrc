@@ -7,13 +7,10 @@ call pathogen#infect()
 " make sure help docs work
 Helptags
 
-" in order to support the solarized colorscheme make sure your terminal is set
-" to use the solarized colors. see
-" https://github.com/sigurdga/gnome-terminal-colors-solarized to set up gnome
-" terminal with the right colors.
-set t_Co=16
-set background=dark
-colorscheme solarized
+set t_Co=256
+"set background=dark
+colorscheme molokai
+let g:molokai_original = 1
 
 syntax on
 
