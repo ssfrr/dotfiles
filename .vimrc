@@ -5,7 +5,9 @@ set nocp
 " ignore warning on from module import *,
 " long lines, and semicolons/multiple statements
 " note that this MUST be set before pathogen is invoked
-let g:pymode_lint_ignore = "W0401,E501,E702"
+" E261 - expects at least 2 spaces before inline comment
+" E131 - continuation line unaligned for hanging indent
+let g:pymode_lint_ignore = "W0401,E702,E261,E131"
 let g:pymode_lint_checker = "pyflakes,pep8"
 
 " invoke pathogen

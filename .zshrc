@@ -23,6 +23,12 @@ else
     echo "virtualenvwrapper not installed"
 fi
 
+if [ -e /usr/local/bin/hub ] || [ -e /usr/bin/hub ]; then
+    alias git=hub
+else
+    echo "hub not installed. GitHub will be displeased"
+fi
+
 # set up the PATH
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="$HOME/BuLogics/codingstandards:$PATH"
@@ -34,7 +40,6 @@ export EDITOR="vim"
 export VISUAL=$EDITOR
 
 alias ijulia="ipython notebook --profile=julia"
-alias git=hub
 
 # set up the ssh agent if necessary
 if [ -z $GNOME_KEYRING_CONTROL ] && [ `uname` != "Darwin" ]; then
