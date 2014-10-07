@@ -61,3 +61,6 @@
 [submodule ".vim/bundle/opencl.vim"]
 	path = .vim/bundle/opencl.vim
 	url = https://github.com/vim-scripts/opencl.vim.git
+[submodule ".zprezto"]
+	path = .zprezto
+	url = git@github.com:ssfrr/prezto.git
