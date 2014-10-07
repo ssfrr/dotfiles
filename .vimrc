@@ -2,6 +2,14 @@ scriptencoding utf-8
 
 set nocp
 
+" ignore warning on from module import *,
+" long lines, and semicolons/multiple statements
+" note that this MUST be set before pathogen is invoked
+" E261 - expects at least 2 spaces before inline comment
+" E131 - continuation line unaligned for hanging indent
+let g:pymode_lint_ignore = "W0401,E702,E261,E131"
+let g:pymode_lint_checker = "pyflakes,pep8"
+
 " invoke pathogen
 call pathogen#infect()
 " make sure help docs work
@@ -147,11 +155,6 @@ au BufRead,BufNewFile *.ino set filetype=cpp
 
 " prefer OpenCL to common lisp for .cl files
 au BufRead,BufNewFile *.cl set filetype=opencl
-
-" ignore warning on from module import *,
-" long lines, and semicolons/multiple statements
-let g:pymode_lint_ignore = "W0401,E501,E702"
-let g:pymode_lint_checker = "pyflakes,pep8"
 
 set laststatus=2
 " explanation of why the colors are reversed in StatusLine highlight group

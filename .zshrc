@@ -15,12 +15,23 @@ fi
 
 export WORKON_HOME=$HOME/.virtualenvs
 
+export RED="\e[0;31m"
+export YELLOW="\e[0;33m"
+export GREEN="\e[0;32m"
+export NORMAL="\e[0m"
+
 if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 elif [ -e /usr/bin/virtualenvwrapper.sh ]; then
     source /usr/bin/virtualenvwrapper.sh
 else
-    echo "virtualenvwrapper not installed"
+    echo "${YELLOW}virtualenvwrapper not installed${NORMAL}"
+fi
+
+if [ -e /usr/local/bin/hub ] || [ -e /usr/bin/hub ]; then
+    alias git=hub
+else
+    echo "${YELLOW}hub not installed. GitHub will be displeased${NORMAL}"
 fi
 
 # set up the PATH
@@ -34,7 +45,6 @@ export EDITOR="vim"
 export VISUAL=$EDITOR
 
 alias ijulia="ipython notebook --profile=julia"
-alias git=hub
 
 # set up the ssh agent if necessary
 if [ -z $GNOME_KEYRING_CONTROL ] && [ `uname` != "Darwin" ]; then
