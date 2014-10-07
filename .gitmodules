@@ -37,9 +37,6 @@
 [submodule ".vim/bundle/vim-classpath"]
 	path = .vim/bundle/vim-classpath
 	url = https://github.com/tpope/vim-classpath.git
-[submodule ".zprezto"]
-	path = .zprezto
-	url = https://github.com/sorin-ionescu/prezto.git
 [submodule ".vim/bundle/paredit-vim"]
 	path = .vim/bundle/paredit-vim
 	url = https://github.com/vim-scripts/paredit.vim.git
