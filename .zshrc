@@ -67,3 +67,9 @@ case `uname` in
         source ~/.zshrc_cygwin
         ;;
 esac
+
+if [ -e $HOME/.zshrc_local ]; then
+    source $HOME/.zshrc_local
+else
+    echo "${YELLOW}No file $HOME/.zshrc_local found. Feel free to create one${NORMAL}"
+fi
