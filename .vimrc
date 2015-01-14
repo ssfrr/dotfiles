@@ -169,3 +169,6 @@ set statusline=%t\ [%{&ff}]\ %y\ %1*%h%m%r%*%=%4.l\ /%4.L,\ %3.c\ \ %3.P
 
 "disable line numbering, which is enabled by the python plugin
 set nonumber
+
+" close the preview window when completion is done
+autocmd CompleteDone * pclose
