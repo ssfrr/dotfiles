@@ -172,3 +172,10 @@ set nonumber
 
 " close the preview window when completion is done
 autocmd CompleteDone * pclose
+
+" set horizontal splits to be below the current window, this is particularly
+" helpful with the preview window, which otherwise annoyingly moves the
+" current content down
+set splitbelow
+set splitright
+
