@@ -72,7 +72,7 @@ set tags=.tags,.TAGS,tags,TAGS,./tags,../tags,../../tags,../../../tags,../../../
 map <F9> <Esc>:setlocal spell spelllang=en_us<CR>
 map <F10> <Esc>:setlocal nospell<CR>
 
-" set F11 to list the syntax highlighting rules under the cursor
+" set F8 to list the syntax highlighting rules under the cursor
 map <F8> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
             \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
             \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
