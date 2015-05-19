@@ -179,3 +179,5 @@ autocmd CompleteDone * pclose
 set splitbelow
 set splitright
 
+" set the swapfile directory
+set directory=~/.vim/swp//
