@@ -174,8 +174,6 @@ set nonumber
 autocmd CompleteDone * pclose
 
 " Setup backup location and enable
-set backup
-set backupdir=$HOME/.vim/backups/ "where to put those backups
 set directory=$HOME/.vim/swp/     "this  is for swp   files
 
 " set horizontal splits to be below the current window, this is particularly
