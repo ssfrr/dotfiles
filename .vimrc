@@ -40,6 +40,12 @@ set incsearch
 " fix backspace on cygwin
 set bs=2
 
+" enable mouse selection stuff
+set mouse=a
+
+" set yanking buffer to the system clipboard
+set clipboard=unnamed
+
 " set tabbing behavior
 set tabstop=4
 set softtabstop=4
