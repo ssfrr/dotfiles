@@ -93,7 +93,7 @@ endfunction
 "noh doesn't work from inside a function, so we run it here
 nnoremap <silent> <CR> :noh<CR>:call HandleReturn()<CR>
 
-nmap <C-k> :w<CR>:!rake test:delta 2>&1 \| tee errors.err<CR>
+" nmap <C-k> :w<CR>:!rake test:delta 2>&1 \| tee errors.err<CR>
 nmap <C-q> :cfile<CR>:copen<CR><C-w>k
 
 " Eval mapping for editing clojure code
