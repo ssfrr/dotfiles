@@ -1,0 +1,14 @@
+atom-fuzzy-grep@0.4.0
+autocomplete-julia@0.0.7
+autocomplete-plus-clang@0.1.0
+autohide-tree-view@0.20.2
+build-tools-cpp@2.0.6
+git-plus@5.2.2
+language-cmake@0.1.4
+linter@1.1.0
+minimap@4.10.2
+term2@0.9.11
+tree-view-git-modified@0.5.10
+vim-mode@0.54.0
+vim-surround@0.7.2
+

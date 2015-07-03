@@ -54,4 +54,10 @@ do
     ln -s ~/.zprezto/runcoms/${conffile} ~/.${conffile}
 done
 
+# install atom packages
+which -s apm && \
+    apm install --packages-file .atom/packages.txt || \
+    echo "apm not found. not installing Atom packages"
+
+
 echo "Dotfile setup complete. You may need to log out completely for new settings to take effect"

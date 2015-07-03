@@ -1,0 +1,35 @@
+"*":
+  "exception-reporting":
+    userId: "1d4865a0-72ce-c479-a193-d537d41519ae"
+  welcome:
+    showOnStartup: false
+  core: {}
+  editor:
+    invisibles: {}
+    showLineNumbers: false
+    fontSize: 12
+    tabLength: 4
+  minimap:
+    textOpacity: 0.1
+    absoluteMode: true
+  build:
+    saveOnBuild: true
+    scrollOnError: true
+  "fuzzy-finder": {}
+  "vim-mode":
+    useSmartcaseForSearch: true
+    useClipboardAsDefaultRegister: true
+  "autocomplete-plus":
+    minimumWordLength: 0
+    enableBuiltinProvider: false
+  "autocomplete-clang": {}
+  "atom-ctags":
+    extraTagFiles: "tags"
+  "autocomplete-ctags":
+    minimumPrefixLength: 1
+  "atom-beautify":
+    _analyticsUserId: "8884ab2f-2442-4e6b-87ab-a17cae6fb3b0"
+    c_configPath: "/usr/local/bin"
+  linter:
+    showErrorPanel: false
+  "terminal-status": {}
