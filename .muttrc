@@ -1,24 +1,44 @@
-set from = "srussell@bulogics.com"
+set from = "sfr@media.mit.edu"
 set realname = "Spencer Russell"
-set imap_user = "srussell"
 
-set folder = "imaps://mail.bulogics.com:993"
-set spoolfile = "+INBOX"
-set postponed = "+Drafts"
-set record = "+Sent Messages"
+set mbox_type=Maildir
+set folder=$HOME/Mail
+set spoolfile=+Fastmail/INBOX
+set record=+Fastmail/INBOX.Sent
+set header_cache=~/.cache/mutt
+# pull in the actual mailboxes within ~/Mail
+source ~/.mutt_mailboxes
 
-set copy = yes
+# mutt checks for new mail on every keypress or timeout
+# check mail at least every 30 seconds
+set timeout=30
+# don't check mail more than once every 5 seconds
+set mail_check=5
 
-set smtp_url = "smtp://srussell@mail.bulogics.com"
+#SMTP Configuration
+set my_pass='Ichpw?m@e'
+set my_user='sfr@media.mit.edu'
+set use_from=yes
+set smtp_url=smtps://$my_user:$my_pass@outgoing.media.mit.edu
 
-set alias_file=~/.mutt/aliases
-source $alias_file
+set markers=no
+# wrap width needs to include sidebar_width
+set wrap=115
 
-set header_cache =~/.mutt/cache/headers
-set message_cachedir =~/.mutt/cache/bodies
-set certificate_file =~/.mutt/certificates
+bind pager j next-line
+bind pager k previous-line
+bind pager \Cj next-entry
+bind pager \Ck previous-entry
+bind index j next-entry
+bind index k previous-entry
 
-color status brightwhite magenta
+color sidebar_new yellow default
+set sidebar_width = 35
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+macro index,pager y "<save-message>=Fastmail/INBOX.Archive<enter>" "Archive Message"
 
-bind index "<Esc>r" imap-fetch-mail
-bind index "I" toggle-new
+# support for pyCardDAV
+set query_command="pc_query -m '%s'"
+macro index,pager A "<pipe-message>pycard-import<enter>" "add sender address to pycardsyncer"

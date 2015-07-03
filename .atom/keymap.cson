@@ -27,6 +27,7 @@
 'atom-text-editor.vim-mode.command-mode':
   'ctrl-t': 'symbols-view:return-from-declaration'
   'ctrl-shift-t': 'terminal-status:toggle'
+  ':': 'command-palette:toggle'
 
 'atom-text-editor':
   'ctrl-p': 'fuzzy-finder:toggle-file-finder'

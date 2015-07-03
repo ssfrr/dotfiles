@@ -33,3 +33,4 @@
   linter:
     showErrorPanel: false
   "terminal-status": {}
+  term2: {}
