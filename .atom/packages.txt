@@ -1,9 +1,11 @@
+Hydrogen@0.4.2
 atom-fuzzy-grep@0.4.0
 autocomplete-clang@0.8.4
 autocomplete-julia@0.0.7
 build-tools-cpp@2.0.7
 git-plus@5.2.2
 language-cmake@0.1.4
+language-julia@0.2.0
 latex-completions@0.2.0
 linter@1.1.0
 minimap@4.10.2
