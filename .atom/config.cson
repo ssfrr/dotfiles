@@ -3,7 +3,8 @@
     userId: "1d4865a0-72ce-c479-a193-d537d41519ae"
   welcome:
     showOnStartup: false
-  core: {}
+  core:
+    disabledPackages: [ ]
   editor:
     invisibles: {}
     showLineNumbers: false
@@ -20,9 +21,7 @@
     useSmartcaseForSearch: true
     useClipboardAsDefaultRegister: true
   "autocomplete-plus":
-    minimumWordLength: 0
-    enableBuiltinProvider: false
-  "autocomplete-clang": {}
+    minimumWordLength: 1
   "atom-ctags":
     extraTagFiles: "tags"
   "autocomplete-ctags":
@@ -32,5 +31,5 @@
     c_configPath: "/usr/local/bin"
   linter:
     showErrorPanel: false
-  "terminal-status": {}
-  term2: {}
+  zentabs:
+    neverCloseUnsaved: true

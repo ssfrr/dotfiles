@@ -24,13 +24,28 @@
 # If you are unfamiliar with CSON, you can read more about it here:
 # https://github.com/bevry/cson#what-is-cson
 
+
 'atom-text-editor.vim-mode.command-mode':
   'ctrl-t': 'symbols-view:return-from-declaration'
   'ctrl-shift-t': 'terminal-status:toggle'
-  ':': 'command-palette:toggle'
-
-'atom-text-editor':
   'ctrl-p': 'fuzzy-finder:toggle-file-finder'
+  ': w enter': 'core:save'
+  ': q enter': 'core:close'
+  'Z Z': 'custom:save-and-close'
+  '/': 'find-and-replace:show'
+
+'atom-text-editor.vim-mode.visual-mode':
+  'ctrl-r': 'core:redo'
 
 'atom-workspace':
   'ctrl-shift-t': 'terminal-status:toggle'
+
+'atom-workspace atom-text-editor:not([mini])':
+  'ctrl-[': 'unset!'
+
+'atom-text-editor.vim-mode.insert-mode':
+# these are mostly so we can navigate autocomplete responses
+  'ctrl-n': 'core:move-down'
+  'ctrl-p': 'core:move-up'
+  'down': 'core:move-down'
+  'up': 'core:move-up'

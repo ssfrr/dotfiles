@@ -9,3 +9,14 @@
 # atom.workspace.observeTextEditors (editor) ->
 #   editor.onDidSave ->
 #     console.log "Saved! #{editor.getPath()}"
+
+atom.commands.add 'atom-workspace', 'custom:save-and-close', ->
+    pane = atom.workspace.getActivePane()
+    editor = pane.getActiveItem()
+    # assume the active text editor is the active item of the active pane?
+    if editor.getPath()
+        editor.save()
+    else
+        savePath = atom.showSaveDialogSync()
+        editor.saveAs(savePath)
+    editor.destroy()
