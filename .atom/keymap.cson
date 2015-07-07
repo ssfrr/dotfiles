@@ -28,11 +28,20 @@
 'atom-text-editor.vim-mode.command-mode':
   'ctrl-t': 'symbols-view:return-from-declaration'
   'ctrl-shift-t': 'terminal-status:toggle'
-  'ctrl-p': 'fuzzy-finder:toggle-file-finder'
+  'ctrl-enter': 'hydrogen:run'
   ': w enter': 'core:save'
   ': q enter': 'core:close'
   'Z Z': 'custom:save-and-close'
   '/': 'find-and-replace:show'
+
+'atom-text-editor.vim-mode.visual-mode':
+  'ctrl-enter': 'hydrogen:run'
+
+'atom-text-editor.vim-mode.insert-mode':
+  'ctrl-enter': 'hydrogen:run'
+
+'atom-text-editor':
+  'ctrl-p': 'fuzzy-finder:toggle-file-finder'
 
 'atom-text-editor.vim-mode.visual-mode':
   'ctrl-r': 'core:redo'
