@@ -31,6 +31,8 @@
   'ctrl-enter': 'hydrogen:run'
   ': w enter': 'core:save'
   ': q enter': 'core:close'
+  ': v s enter': 'pane:split-right'
+  ': s p enter': 'pane:split-down'
   'Z Z': 'custom:save-and-close'
   '/': 'find-and-replace:show'
 
