@@ -4,7 +4,7 @@
   welcome:
     showOnStartup: false
   core:
-    disabledPackages: [ ]
+    disabledPackages: []
   editor:
     invisibles: {}
     showLineNumbers: false
@@ -22,6 +22,7 @@
     useClipboardAsDefaultRegister: true
   "autocomplete-plus":
     minimumWordLength: 1
+    enableAutoActivation: false
   "atom-ctags":
     extraTagFiles: "tags"
   "autocomplete-ctags":
@@ -33,3 +34,4 @@
     showErrorPanel: false
   zentabs:
     neverCloseUnsaved: true
+  Hydrogen: {}

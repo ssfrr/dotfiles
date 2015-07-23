@@ -38,6 +38,18 @@ atom-text-editor::shadow .cursor {
   // border-color: red;
 }
 
+.hydrogen.output-bubble .bubble-output-container {
+  display: inline-block;
+  max-width: 700px;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.hydrogen.output-bubble.multiline:not(.rich) .bubble-output-container {
+  padding: 3px;
+  padding-right: 15px;
+}
+
 .term2 .terminal {
     font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace
 }

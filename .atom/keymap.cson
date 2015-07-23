@@ -25,7 +25,7 @@
 # https://github.com/bevry/cson#what-is-cson
 
 
-'atom-text-editor.vim-mode.command-mode':
+'atom-text-editor.vim-mode.normal-mode':
   'ctrl-t': 'symbols-view:return-from-declaration'
   'ctrl-shift-t': 'terminal-status:toggle'
   'ctrl-enter': 'hydrogen:run'
@@ -39,8 +39,15 @@
 'atom-text-editor.vim-mode.visual-mode':
   'ctrl-enter': 'hydrogen:run'
 
-'atom-text-editor.vim-mode.insert-mode':
+'atom-text-editor.vim-mode':
   'ctrl-enter': 'hydrogen:run'
+  'ctrl-n': 'autocomplete-plus:activate'
+
+'atom-text-editor:not(mini).autocomplete-active !important':
+  'ctrl-n': 'core:move-down'
+  'ctrl-p': 'core:move-up'
+  'down': 'core:move-down'
+  'up': 'core:move-up'
 
 'atom-text-editor':
   'ctrl-p': 'fuzzy-finder:toggle-file-finder'
@@ -53,10 +60,4 @@
 
 'atom-workspace atom-text-editor:not([mini])':
   'ctrl-[': 'unset!'
-
-'atom-text-editor.vim-mode.insert-mode':
-# these are mostly so we can navigate autocomplete responses
-  'ctrl-n': 'core:move-down'
-  'ctrl-p': 'core:move-up'
-  'down': 'core:move-down'
-  'up': 'core:move-up'
+  'ctrl-enter': 'hydrogen:run'
