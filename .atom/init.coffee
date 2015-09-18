@@ -20,3 +20,5 @@ atom.commands.add 'atom-workspace', 'custom:save-and-close', ->
         savePath = atom.showSaveDialogSync()
         editor.saveAs(savePath)
     editor.destroy()
+
+process.env.PATH = "/usr/local/bin:" + process.env.PATH

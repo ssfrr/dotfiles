@@ -35,9 +35,14 @@
   ': s p enter': 'pane:split-down'
   'Z Z': 'custom:save-and-close'
   '/': 'find-and-replace:show'
+  'g q': 'autoflow:reflow-selection'
 
 'atom-text-editor.vim-mode.visual-mode':
   'ctrl-enter': 'hydrogen:run'
+  'g q': 'autoflow:reflow-selection'
+
+'atom-text-editor.vim-mode:not(.insert-mode)':
+  'g q': 'autoflow:reflow-selection'
 
 'atom-text-editor.vim-mode':
   'ctrl-enter': 'hydrogen:run'
@@ -51,6 +56,7 @@
 
 'atom-text-editor':
   'ctrl-p': 'fuzzy-finder:toggle-file-finder'
+  'cmd-j cmd-f': 'julia-client:work-in-file-folder'
 
 'atom-text-editor.vim-mode.visual-mode':
   'ctrl-r': 'core:redo'

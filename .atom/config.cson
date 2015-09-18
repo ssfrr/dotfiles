@@ -4,11 +4,10 @@
   welcome:
     showOnStartup: false
   core:
-    disabledPackages: []
+    excludeVcsIgnoredPaths: false
   editor:
     invisibles: {}
-    showLineNumbers: false
-    fontSize: 12
+    fontSize: 13
     tabLength: 4
   minimap:
     textOpacity: 0.1
@@ -35,3 +34,30 @@
   zentabs:
     neverCloseUnsaved: true
   Hydrogen: {}
+  "markdown-preview-katex": {}
+  "tree-view": {}
+  wordcount:
+    extensions: [
+      "md"
+      "txt"
+      "markdown"
+      "tex"
+    ]
+  "autocomplete-bibtex":
+    resultTemplate: "\\cite{[key]}"
+    bibtex: [
+      "/Users/srussell/Dropbox/projects/papers/MastersThesis/tex/refs.bib"
+    ]
+    scope: ".text.tex.latex"
+  "autocomplete-julia":
+    juliaPath: "/usr/local/bin/julia"
+  "spell-check":
+    grammars: [
+      "source.asciidoc"
+      "source.gfm"
+      "text.plain"
+      "text.git-commit"
+      "text.tex.latex"
+    ]
+  "julia-client":
+    juliaPath: "/usr/local/bin/julia4"
