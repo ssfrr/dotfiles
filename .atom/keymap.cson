@@ -57,6 +57,7 @@
 'atom-text-editor':
   'ctrl-p': 'fuzzy-finder:toggle-file-finder'
   'cmd-j cmd-f': 'julia-client:work-in-file-folder'
+  'ctrl-j ctrl-f': 'julia-client:work-in-file-folder'
 
 'atom-text-editor.vim-mode.visual-mode':
   'ctrl-r': 'core:redo'

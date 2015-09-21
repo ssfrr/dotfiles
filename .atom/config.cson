@@ -9,6 +9,7 @@
     invisibles: {}
     fontSize: 13
     tabLength: 4
+    scrollPastEnd: true
   minimap:
     textOpacity: 0.1
     absoluteMode: true
@@ -33,7 +34,6 @@
     showErrorPanel: false
   zentabs:
     neverCloseUnsaved: true
-  Hydrogen: {}
   "markdown-preview-katex": {}
   "tree-view": {}
   wordcount:
@@ -59,5 +59,6 @@
       "text.git-commit"
       "text.tex.latex"
     ]
-  "julia-client":
-    juliaPath: "/usr/local/bin/julia4"
+    juliaPath: "/usr/local/bin/julia"
+    terminal: "x-terminal-emulator -e"
+  "autocomplete-julia": {}
