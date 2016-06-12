@@ -12,7 +12,7 @@ It watches for server node status messages:
 
 and sets the isPlaying and isRunning variables on the Node instance accordingly.  A Node that ends is unregistered at that time.
 
-In some cases this can be an invaluable service.  The use of an independant object to maintain the state keeps the implementation of the Node classes simple. 
+In some cases this can be an invaluable service.  The use of an independent object to maintain the state keeps the implementation of the Node classes simple. 
 Note that server notification should be on. (this is default. see: aServer.notify)
 
 	the most common use: 

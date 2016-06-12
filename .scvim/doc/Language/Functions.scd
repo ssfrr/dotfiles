@@ -32,7 +32,7 @@ An argument list immediately follows the open curly bracket of a function defini
 
 Names of arguments in the list may be initialized to a default value by using an equals sign. Arguments which are not explicitly initialized will be set to nil if no value is passed for them.
 
-If the last argument in the list is preceeded by three dots (an ellipsis), then all the remaining arguments that were passed will be assigned to that variable as an Array. Arguments must be separated by commas.
+If the last argument in the list is preceded by three dots (an ellipsis), then all the remaining arguments that were passed will be assigned to that variable as an Array. Arguments must be separated by commas.
 
 examples:
 
@@ -66,7 +66,7 @@ See Literals for more information.
 
 Variables
 
-Following the argument declarations are the variable declarations. These may be declared in any order. Variable lists are preceeded by the reserved word var. There can be multiple var declaration lists if necessary. Variables may be initialized to default values in the same way as arguments. Variable declarations lists may not contain an ellipsis.
+Following the argument declarations are the variable declarations. These may be declared in any order. Variable lists are preceded by the reserved word var. There can be multiple var declaration lists if necessary. Variables may be initialized to default values in the same way as arguments. Variable declarations lists may not contain an ellipsis.
 
 examples:
 

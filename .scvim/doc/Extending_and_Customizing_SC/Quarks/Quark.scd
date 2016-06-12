@@ -46,7 +46,7 @@ However, you may wish to create a parent folder and then keep several quarks ins
 
 It may even be possible to nest quarks inside of quarks (a kind of aggregate package), though a better way to do that would be to define an empty quark (the aggregate) and specify the other sub quarks as dependencies.
 
-Please test that you don't have any syntax errors in your quark file before commiting it.
+Please test that you don't have any syntax errors in your quark file before committing it.
 Thank you.
 
 

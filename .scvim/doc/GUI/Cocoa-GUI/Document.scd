@@ -97,7 +97,7 @@ Creation / Class Methods
 	*autoRun
 	*autoRun_
 	
-		A class variable. If a document begins with the String, "/*RUN*/", then the code following it int he file will be exectued on opening the file, if autorun is set to true.
+		A class variable. If a document begins with the String, "/*RUN*/", then the code following it int he file will be executed on opening the file, if autorun is set to true.
 		arg1 - An instance of Boolean. Default value is true.
 				
 	*wikiBrowse

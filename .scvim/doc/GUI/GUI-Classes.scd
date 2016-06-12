@@ -1,10 +1,10 @@
 GUI Classes		
 
-Lists of kit-specific and kit-independant gui classes.
+Lists of kit-specific and kit-independent gui classes.
 
 See also: GUI, GUI-Overview
 
-List of Kit-independant GUI Classes
+List of Kit-independent GUI Classes
 
 These classes are platform neutral in themselves.
 				

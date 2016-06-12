@@ -21,7 +21,7 @@ Run this example, and look at the scope window.
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Code can be transfered from a test function into a synthdef. In the following example, the code from the function (above) is the second argument to the Out ugen.
+Code can be transferred from a test function into a synthdef. In the following example, the code from the function (above) is the second argument to the Out ugen.
 
 (
 SynthDef("ringMod", { 

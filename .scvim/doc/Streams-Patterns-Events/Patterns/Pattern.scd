@@ -281,7 +281,7 @@ r = Pset(\freq, Pseq([500, 600, 700], 2), q);
 	)	
 	
 	//Pseed(seed, pattern) - set the seed of the random number generator 
-	// to force repetion of pseudo-random patterns
+	// to force repetition of pseudo-random patterns
 	
 	Pn(Pseed(44, Pbindf(q, \ctranspose, Pbrown(-3.0, 3.0, 10) ) ) ).play;
 

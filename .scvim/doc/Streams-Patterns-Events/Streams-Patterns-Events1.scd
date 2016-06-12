@@ -187,7 +187,7 @@ Here is a sound example to show how you might use Streams to generate musical ma
 	Routine({
 		loop({
 			Synth(\help_SPE1, [ \freq, stream.next.midicps ] );
-			dur.wait; // synonym for yield, used by .play to schedule next occurence
+			dur.wait; // synonym for yield, used by .play to schedule next occurrence
 		})
 	}).play
 )

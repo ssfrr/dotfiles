@@ -9,7 +9,7 @@ Penvir(envir, pattern, independent)
 
 	envir		an environment with objects to embed
 	
-	pattern		pattern or stream, ususally a Pfunc, Prout. 
+	pattern		pattern or stream, usually a Pfunc, Prout. 
 	
 	independent	if true (default) streams can write to the environment without influencing other
 				streams created from this pattern. 

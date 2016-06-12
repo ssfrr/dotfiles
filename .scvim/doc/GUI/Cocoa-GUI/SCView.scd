@@ -425,7 +425,7 @@ The next three methods are the ones you will most likely override in your custom
 		
 	defaultReceiveDrag
 	
-		Override this in your subclass. The default method for determining what to do with a recieved . Many subclases override this for their specific behaviors. Called by receiveDrag.
+		Override this in your subclass. The default method for determining what to do with a received . Many subclases override this for their specific behaviors. Called by receiveDrag.
 
 
 	*importDrag

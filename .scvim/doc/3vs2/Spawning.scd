@@ -180,7 +180,7 @@ TSpawn's functionality can be replicated with SendTrig and OSCresponder or OSCre
 	)
 	
 	(
-	// this recieves the trigger on the client side and 'Spawns' a new Synth on the server
+	// this receives the trigger on the client side and 'Spawns' a new Synth on the server
 	OSCresponder(s.addr,'/tr',{ 
 		SynthDef("help-EnvGen",{ arg out=0;
 			Out.ar(out,

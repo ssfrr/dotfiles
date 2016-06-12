@@ -8,7 +8,7 @@ See also: EZRanger
 
 Some Important Issues Regarding SCRangeSlider
 
-SCRangeSlider always has a range between zero and one. You must scale the output and input values to your needs. Using map and unmap, combined with a Spec, is helpful for this. To set the increment or decrement value of the slider, set the step .  By default, the shift, ctrl, and alt keys will modify the stepping by 100x, 10x, or 0.1x repectively, though you can customize this by setting shift_scale, ctrl_scale, or alt_scale (see SCSliderBase) .  Drag and drop returns and accepts Points. Inherits some formatting from SCSliderBase.
+SCRangeSlider always has a range between zero and one. You must scale the output and input values to your needs. Using map and unmap, combined with a Spec, is helpful for this. To set the increment or decrement value of the slider, set the step .  By default, the shift, ctrl, and alt keys will modify the stepping by 100x, 10x, or 0.1x respectively, though you can customize this by setting shift_scale, ctrl_scale, or alt_scale (see SCSliderBase) .  Drag and drop returns and accepts Points. Inherits some formatting from SCSliderBase.
 
 Creation / Class Methods
 
@@ -109,7 +109,7 @@ Subclassing and Internal Methods
 					
 	defaultReceiveDrag
 	
-		The default method called when a drag has been recieved. Sets lo and hi repectively using the Point(currentDrag.x@currentDrag.y). Performs the action.
+		The default method called when a drag has been recieved. Sets lo and hi respectively using the Point(currentDrag.x@currentDrag.y). Performs the action.
 		
 
 Examples

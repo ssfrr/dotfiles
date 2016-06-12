@@ -7,7 +7,7 @@ superclass:  FilterPattern
 			pattern: 		a pattern that returns events
 			min:			beat duration for ending patterns
 			max:		maximum length of pattern
-			tolerance:	difference threshhold that a pattern must exceed max to be ended
+			tolerance:	difference threshold that a pattern must exceed max to be ended
 
 
 

@@ -221,7 +221,7 @@ commons / general attributes
 	accelerated_(aBool)
 		set whether the receiver should use a CoreImage representation or a bitmap representation.
 		this method should never be used directly unless you know perfectly what you are doing. Since the SCImage will switch internally and manage itself
-		the syncronization between representations.
+		the synchronization between representations.
 	
 	interpolation
 		get the level of interpolation used when rendering the image - it has not effect when the SCImage is accelerated. see *interpolations for a valid range of values.

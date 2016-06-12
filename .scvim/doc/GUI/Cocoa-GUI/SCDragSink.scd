@@ -20,7 +20,7 @@ Subclassing and Internal Methods
 						
 	defaultReceiveDrag
 
-		The default method called when a drag has been recieved.
+		The default method called when a drag has been received.
 		By default, this sets the object to the currentDrag and performs the action.
 		
 Examples

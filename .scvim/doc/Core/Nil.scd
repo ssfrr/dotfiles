@@ -21,16 +21,16 @@ notNil
 If the receiver is nil, value the function and return the result.  Since this IS nil, then value the function and return the result. In class Object, ?? is defined to answer the receiver.
 
 add(value)
-Returns an array with the value. This makes it unecessary to initialize when adding to a variable.
+Returns an array with the value. This makes it unnecessary to initialize when adding to a variable.
 
 addAll(array)
-Returns an array with all the values. This makes it unecessary to initialize when adding to a variable.
+Returns an array with all the values. This makes it unnecessary to initialize when adding to a variable.
 
 remove
-Returns nil. This makes it unecessary to initialize when adding to a variable.
+Returns nil. This makes it unnecessary to initialize when adding to a variable.
 
 ++ array
-Returns an array with all the values. This makes it unecessary to initialize when adding to a variable.
+Returns an array with all the values. This makes it unnecessary to initialize when adding to a variable.
 
 Dependancy
 

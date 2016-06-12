@@ -199,7 +199,7 @@ Sending values from a gui object to the sound server is basically the same as se
 	});
 	)
 
-Recieving values, however is asynchronous, and requires either using an OSCresponderNode, or polling values.
+Receiving values, however is asynchronous, and requires either using an OSCresponderNode, or polling values.
 In this example a Routine polls values:
 
 	(

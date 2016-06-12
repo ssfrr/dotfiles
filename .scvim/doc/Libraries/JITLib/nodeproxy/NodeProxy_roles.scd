@@ -91,7 +91,7 @@ Existing roles:
 	a.clear(3); 
 
 	\filterIn -> function:
-		Like \filter, only that the input is controled by the \wet control, not the output.
+		Like \filter, only that the input is controlled by the \wet control, not the output.
 	
 	// example:
 	a = NodeProxy(s);

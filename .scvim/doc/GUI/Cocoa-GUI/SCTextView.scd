@@ -8,7 +8,7 @@ Some Important Issues Regarding SCTextView
 
 While SCTextView allows you to load and display formatted text, and while it understands rtf or html markup, you cannot save formatted text currently. You only have acces to the text-content of the view as a String.
 
-By default, SCTextView will recieve drags containing any Object, and insert them into the text asString. If you drag a file from the finder onto an SCTextView, it will display the file path in quotation marks.
+By default, SCTextView will receive drags containing any Object, and insert them into the text asString. If you drag a file from the finder onto an SCTextView, it will display the file path in quotation marks.
 
 Creation / Class Methods
 

@@ -1,7 +1,7 @@
 TWChoose		randomly select one of several inputs
 
 
-An output is selected randomly on recieving a trigger from an array of inputs.
+An output is selected randomly on receiving a trigger from an array of inputs.
 the weights of this choice are determined from the weights array.
 If normalize is set to 1 the weights are continuously normalized (this is an extra overhead)
 	when using fixed values the normalizeSum method can be used to normalize the values

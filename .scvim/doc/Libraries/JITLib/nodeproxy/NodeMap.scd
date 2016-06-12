@@ -1,6 +1,6 @@
 NodeMap
 
-object to store control values and bus mappings independant of of a specific node.
+object to store control values and bus mappings independent of of a specific node.
 
 	set(key1, value1, ...) 			set arguments of a node
 	map(key1, busindex1, ...) 		set bus mappings of a node

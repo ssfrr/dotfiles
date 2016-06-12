@@ -8,7 +8,7 @@ lock [sk]- If this argument is greater than 0.5, the tracker will lock at its cu
 
 Autocorrelation based beat tracker; the underlying model assumes 4/4, but it should work on any isochronous beat structure, though there are biases to 100-120 bpm; a fast 7/8 may not be tracked in that sense. There are four k-rate outputs, being ticks at quarter, eighth and sixteenth level from the determined beat, and the current detected tempo. Note that the sixteenth note output won't necessarily make much sense if the music being tracked has swing; it is provided just as a convenience. 
 
-This beat tracker determines the beat, biased to the midtempo range by weighting functions. It does not determine the measure level, only a tactus. It is also slow reacting, using a 6 second temporal window for its autocorrelation maneouvres. Don't expect human musician level predictive tracking. 
+This beat tracker determines the beat, biased to the midtempo range by weighting functions. It does not determine the measure level, only a tactus. It is also slow reacting, using a 6 second temporal window for its autocorrelation manoeuvres. Don't expect human musician level predictive tracking. 
 
 On the other hand, it is tireless, relatively general (though obviously best at transient 4/4 heavy material without much expressive tempo variation), and can form the basis of computer processing that is decidedly faster than human. 
 

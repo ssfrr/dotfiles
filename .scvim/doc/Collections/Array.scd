@@ -93,7 +93,7 @@ Return a new Array whose elements are repeated n times. The receiver is unchange
 [1, 2, 3].stutter(2).postln;
 
 rotate(n)
-Return a new Array whose elements are in rotated order. Negative n values rotate left, postive n values
+Return a new Array whose elements are in rotated order. Negative n values rotate left, positive n values
 rotate right. The receiver is unchanged.
 
 [1, 2, 3, 4, 5].rotate(1).postln;

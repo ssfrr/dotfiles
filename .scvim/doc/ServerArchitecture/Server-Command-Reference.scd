@@ -666,7 +666,7 @@ Replies to sender with /done when complete.
 
 Replies to Commands
 
-These messages are sent by the server in reponse to some commands.
+These messages are sent by the server in response to some commands.
 
 /done					an asynchronous message has completed.
 	string - the name of the command

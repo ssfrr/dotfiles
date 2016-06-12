@@ -73,7 +73,7 @@ this.cmdLine
 
 codeDump
 
-this interpreter variable can be set to evaluate a function with any sucessfully compiled code.
+this interpreter variable can be set to evaluate a function with any successfully compiled code.
 see e.g. the class History.
 
 a = [ ]; // store all the code evaulated in a

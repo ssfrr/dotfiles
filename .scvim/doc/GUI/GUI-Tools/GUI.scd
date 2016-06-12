@@ -135,7 +135,7 @@ Methods and Variables for GUI
 		
 	*use (aScheme, func)
 	
-		Executes a function body, temporarily setting the current GUI scheme. This is usefull inside view's action functions in order to make this function use the GUI scheme that was originally used for the view of the action, even if the scheme has been switched meanwhile.
+		Executes a function body, temporarily setting the current GUI scheme. This is useful inside view's action functions in order to make this function use the GUI scheme that was originally used for the view of the action, even if the scheme has been switched meanwhile.
 		aScheme - The scheme to use during the function execution.
 		func - An Instance of Function.
 

@@ -55,7 +55,7 @@ See also FFT Overview.
 }.play;	
 )
 
-// not so sucessful with this test sound: 
+// not so successful with this test sound: 
 // mouse y is difficulty, mouse x is threshold
 (
 {

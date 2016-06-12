@@ -51,7 +51,7 @@ Instance Methods
 
 Class Methods
 
-	Class Methods are methods that implement messages sent to the class object. A common example is the message new which is sent to the class object to create a new instance of the class. Class method names have an asterisk preceeding the message selector.
+	Class Methods are methods that implement messages sent to the class object. A common example is the message new which is sent to the class object to create a new instance of the class. Class method names have an asterisk preceding the message selector.
 	
 See also: Class
 

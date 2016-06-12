@@ -7,7 +7,7 @@ See also: SCTextField
 Some Important Issues Regarding SCNumberBox
 Whatever is entered into the number box is converted to a Float upon hitting return or enter. You can also use exponential notation for entering a number, e.g. "2.1e-2" will be converted to 0.02. Drag and drop accepts a Number.  SCNumberBox inherits formatting methods from SCStaticTextBase. 
 
-By default, scroll is set to to true, and you can use mouse scrolling in the SCNumberBox by step. By default, the shift, ctrl, and alt keys will modify the arrow stepping and scrolling by 100x, 10x, or 0.1x repectively, though you can customize this by setting shift_scale, ctrl_scale, or alt_scale..  
+By default, scroll is set to to true, and you can use mouse scrolling in the SCNumberBox by step. By default, the shift, ctrl, and alt keys will modify the arrow stepping and scrolling by 100x, 10x, or 0.1x respectively, though you can customize this by setting shift_scale, ctrl_scale, or alt_scale..  
 
 
 Creation / Class Methods

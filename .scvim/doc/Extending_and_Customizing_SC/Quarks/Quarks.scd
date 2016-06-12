@@ -204,7 +204,7 @@ Be careful to commit only changes to your own quark and to the directory entry y
 
 Local Repository Example
 
-Besides the public repos at sourceforge you can use any other subversion host including a repository running on your local machine.  Running a local repository is suprisingly easy.   This is useful in that you get version control and an easy way to manage package installation.
+Besides the public repos at sourceforge you can use any other subversion host including a repository running on your local machine.  Running a local repository is surprisingly easy.   This is useful in that you get version control and an easy way to manage package installation.
 
 For obvious reasons you need to have a running subversion system somewhere in order to use this feature.
 Nevertheless it is possible to use alreadily existing subversion quarks directories (as the SonEnvir one).

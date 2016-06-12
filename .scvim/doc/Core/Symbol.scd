@@ -14,7 +14,7 @@ Creating a Symbol
 
 	'foo bar'
 
-	Or by a preceeding backslash (then it may not include whitespace):
+	Or by a preceding backslash (then it may not include whitespace):
 
 	\foo
 

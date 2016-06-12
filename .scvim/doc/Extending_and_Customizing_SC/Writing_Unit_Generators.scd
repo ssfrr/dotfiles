@@ -401,7 +401,7 @@ The server uses a "buffer coloring" algorithm to minimize use of buffers to opti
 		else if (phase <= -1.f) phase += 2.f;
 	}
 
-If your unit generator cannot be written efficiently when pointers are aliased, then you can tell the server this by using one of the following macros when definining it.
+If your unit generator cannot be written efficiently when pointers are aliased, then you can tell the server this by using one of the following macros when defining it.
 
 	DefineSimpleCantAliasUnit(MyUGen);
 	

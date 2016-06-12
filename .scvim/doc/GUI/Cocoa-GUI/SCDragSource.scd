@@ -47,7 +47,7 @@ s.waitForBoot({	//only needed if you are using sound
 	
 	// receive anthing
 	g=DragSink(w,Rect(170,10,200,20)).align_(\center);
-	g.string="recieve anything, do nothing";
+	g.string="receive anything, do nothing";
 	
 	// receive only floats
 	g=DragSink(w,Rect(170,40,200,20)).align_(\center);

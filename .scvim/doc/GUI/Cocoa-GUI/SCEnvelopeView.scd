@@ -207,7 +207,7 @@ Subclassing and Internal Methods
 		
 	defaultCanReceiveDrag
 	
-		The method called by default when attempting to place a drag in this object. Will recieve any drag, but the drag should be an array of values of the form:
+		The method called by default when attempting to place a drag in this object. Will receive any drag, but the drag should be an array of values of the form:
 		
 		[ [ x1, x2, x3, ... ], [ y1, y2, y3, ... ] ]
 										

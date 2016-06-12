@@ -6,7 +6,7 @@ See also: SCStaticText, SCTextView
 
 Some Important Issues Regarding SCTextField
 
-Does not allow copying and pasting. Does not handle composed character sequences ( etc. ). Use SCTextView for these features. Hit delete before typing to clear the text field. Drag and drop accepts a any Object and recieves it asString. Inherits formatting methods from SCStaticTextBase. If you drag a file from the finder onto an SCTextView, it will display the file path.
+Does not allow copying and pasting. Does not handle composed character sequences ( etc. ). Use SCTextView for these features. Hit delete before typing to clear the text field. Drag and drop accepts a any Object and receives it asString. Inherits formatting methods from SCStaticTextBase. If you drag a file from the finder onto an SCTextView, it will display the file path.
 
 Creation / Class Methods
 	*new (parent, bounds)

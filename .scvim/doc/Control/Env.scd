@@ -28,7 +28,7 @@ Class Methods
 		a Float - a curvature value for all segments.
 		An Array of Floats - curvature values for each segments.
 	releaseNode - an Integer or nil. The envelope will sustain at the release node until released.
-	loopNode - an Integer or nil. If not nil the output will loop through those nodes startign at the loop node to the node immediately preceeding the release node, before back to the loop node, and so on. Note that the envelope only transitions to the release node when released. Examples are below. The loop is escaped when a gate signal is sent, when the output transitions to the release node, as described below.
+	loopNode - an Integer or nil. If not nil the output will loop through those nodes startign at the loop node to the node immediately preceding the release node, before back to the loop node, and so on. Note that the envelope only transitions to the release node when released. Examples are below. The loop is escaped when a gate signal is sent, when the output transitions to the release node, as described below.
 
 
 		s.boot; 	//.test below will run a synthesis example 
