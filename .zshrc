@@ -68,6 +68,28 @@ case `uname` in
         ;;
 esac
 
+# set up some useful aliases
+
+alias gcam='git commit -am'
+alias gca='git commit -a'
+alias gcm='git commit -m'
+alias gps='git push'
+alias gpl='git pull'
+alias gd='git diff'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+alias ll='ls -la'
+alias mkdir='mkdir -pv'
+
+alias j4=julia4
+alias j5=julia5
+
+alias v=vim
+
+
 if [ -e $HOME/.zshrc_local ]; then
     source $HOME/.zshrc_local
 else

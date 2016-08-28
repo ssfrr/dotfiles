@@ -25,10 +25,8 @@
 # https://github.com/bevry/cson#what-is-cson
 
 
-'atom-text-editor.vim-mode.normal-mode':
+'atom-text-editor.vim-mode-plus.normal-mode':
   'ctrl-t': 'symbols-view:return-from-declaration'
-  'ctrl-shift-t': 'terminal-status:toggle'
-  'ctrl-enter': 'hydrogen:run'
   ': w enter': 'core:save'
   ': q enter': 'core:close'
   ': v s enter': 'pane:split-right'
@@ -37,15 +35,17 @@
   '/': 'find-and-replace:show'
   'g q': 'autoflow:reflow-selection'
 
-'atom-text-editor.vim-mode.visual-mode':
-  'ctrl-enter': 'hydrogen:run'
+'atom-text-editor.vim-mode-plus.visual-mode':
   'g q': 'autoflow:reflow-selection'
 
-'atom-text-editor.vim-mode:not(.insert-mode)':
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
   'g q': 'autoflow:reflow-selection'
+  's': 'vim-mode-plus:surround-smart-word'
+  's d': 'vim-mode-plus:delete-surround-any-pair'
+  's c': 'vim-mode-plus:change-surround-any-pair'
+  's y': 'vim-mode-plus:surround'
 
-'atom-text-editor.vim-mode':
-  'ctrl-enter': 'hydrogen:run'
+'atom-text-editor.vim-mode-plus':
   'ctrl-n': 'autocomplete-plus:activate'
 
 'atom-text-editor:not(mini).autocomplete-active !important':
@@ -57,6 +57,11 @@
 'atom-text-editor':
   'ctrl-p': 'fuzzy-finder:toggle-file-finder'
   'cmd-j cmd-f': 'julia-client:work-in-file-folder'
+  'ctrl-j ctrl-f': 'julia-client:work-in-file-folder'
+  'cmd-j cmd-c': 'julia-client:toggle-console'
+  'ctrl-j ctrl-c': 'julia-client:toggle-console'
+  'cmd-l cmd-l': 'lcov-info:toggle'
+  'ctrl-l ctrl-l': 'lcov-info:toggle'
 
 'atom-text-editor.vim-mode.visual-mode':
   'ctrl-r': 'core:redo'
@@ -67,3 +72,8 @@
 'atom-workspace atom-text-editor:not([mini])':
   'ctrl-[': 'unset!'
   'ctrl-enter': 'hydrogen:run'
+
+'.ink-console atom-text-editor:not([mini])':
+  'down': 'console:next-in-history'
+  'up': 'console:previous-in-history'
+  'ctrl-j': 'console:clear-console'
