@@ -1,56 +1,52 @@
 "*":
-  "exception-reporting":
-    userId: "1d4865a0-72ce-c479-a193-d537d41519ae"
-  welcome:
-    showOnStartup: false
-  core:
-    excludeVcsIgnoredPaths: false
-  editor:
-    invisibles: {}
-    fontSize: 13
-    tabLength: 4
-    scrollPastEnd: true
-  minimap:
-    textOpacity: 0.1
-    absoluteMode: true
-  build:
-    saveOnBuild: true
-    scrollOnError: true
-  "fuzzy-finder": {}
-  "vim-mode":
-    useSmartcaseForSearch: true
-    useClipboardAsDefaultRegister: true
-  "autocomplete-plus":
-    minimumWordLength: 1
-    enableAutoActivation: false
-  "atom-ctags":
-    extraTagFiles: "tags"
-  "autocomplete-ctags":
-    minimumPrefixLength: 1
   "atom-beautify":
     _analyticsUserId: "8884ab2f-2442-4e6b-87ab-a17cae6fb3b0"
     c_configPath: "/usr/local/bin"
-  linter:
-    showErrorPanel: false
-  zentabs:
-    neverCloseUnsaved: true
-  "markdown-preview-katex": {}
-  "tree-view": {}
-  wordcount:
-    extensions: [
-      "md"
-      "txt"
-      "markdown"
-      "tex"
-    ]
+  "atom-ctags":
+    extraTagFiles: "tags"
   "autocomplete-bibtex":
-    resultTemplate: "\\cite{[key]}"
     bibtex: [
       "/Users/srussell/Dropbox/projects/papers/MastersThesis/tex/refs.bib"
     ]
+    resultTemplate: "\\cite{[key]}"
     scope: ".text.tex.latex"
-  "autocomplete-julia":
-    juliaPath: "/usr/local/bin/julia"
+  "autocomplete-ctags":
+    minimumPrefixLength: 1
+  "autocomplete-julia": {}
+  "autocomplete-plus":
+    enableAutoActivation: false
+    minimumWordLength: 1
+  build:
+    saveOnBuild: true
+    scrollOnError: true
+  core:
+    disabledPackages: [
+      "whitespace"
+    ]
+    excludeVcsIgnoredPaths: false
+  editor:
+    fontSize: 13
+    invisibles: {}
+    scrollPastEnd: true
+    softWrapAtPreferredLineLength: true
+    tabLength: 4
+  "exception-reporting":
+    userId: "1d4865a0-72ce-c479-a193-d537d41519ae"
+  "fuzzy-finder": {}
+  ink:
+    monotypeResults: true
+  "julia-client":
+    juliaPath: "julia5"
+  latexer: {}
+  "lcov-info":
+    highlightType: "gutter"
+  linter:
+    showErrorPanel: false
+  "markdown-preview-katex": {}
+  minimap:
+    absoluteMode: true
+    textOpacity: 0.1
+  "one-dark-ui": {}
   "spell-check":
     grammars: [
       "source.asciidoc"
@@ -61,4 +57,39 @@
     ]
     juliaPath: "/usr/local/bin/julia"
     terminal: "x-terminal-emulator -e"
-  "autocomplete-julia": {}
+  "trailing-spaces":
+    enableForIndentation: true
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+    useSmartcaseForSearch: true
+  "vim-mode-plus":
+    highlightSearch: true
+    ignoreCaseForSearch: true
+    ignoreCaseForSearchCurrentWord: true
+    incrementalSearch: true
+  "vim-surround": {}
+  welcome:
+    showOnStartup: false
+  wordcount:
+    extensions: [
+      "md"
+      "txt"
+      "markdown"
+      "tex"
+    ]
+  zentabs:
+    neverCloseUnsaved: true
+".asciidoc.source":
+  editor:
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+".gfm.source":
+  editor:
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+".latex.tex.text":
+  editor:
+    softWrap: true
+    softWrapAtPreferredLineLength: true
