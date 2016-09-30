@@ -84,8 +84,12 @@ alias ....='cd ../../..'
 alias ll='ls -la'
 alias mkdir='mkdir -pv'
 
+alias julia4='julia4 --color=yes'
+alias julia5='julia5 --color=yes'
+alias julia6='julia6 --color=yes'
 alias j4=julia4
 alias j5=julia5
+alias j6=julia5
 
 alias v=vim
 
