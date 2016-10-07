@@ -60,7 +60,8 @@
   "trailing-spaces":
     enableForIndentation: true
   "tree-view":
-    hideVcsIgnoredFiles: true
+    hideIgnoredNames: true
+    squashDirectoryNames: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
     useSmartcaseForSearch: true
