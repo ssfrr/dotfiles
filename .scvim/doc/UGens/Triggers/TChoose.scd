@@ -2,7 +2,7 @@ TChoose		randomly select one of several inputs
 
 superclass: Object (TChoose returns a combination of Select and TIRand)
 
-An output is selected randomly on recieving a trigger from an array of inputs.
+An output is selected randomly on receiving a trigger from an array of inputs.
 
 see also: TWChoose
 

@@ -8,7 +8,7 @@ Typically, Controls are created from the arguments of a SynthDef function.
 related subclasses are: TrigControl, LagControl.
 For a more concise combination of name, default value and lag, see NamedControl 
 
-The rate may be either .kr (continous control rate signal), .ar (audio rate) or .ir (a static value, set at the time the synth starts up, and subsequently unchangeable).
+The rate may be either .kr (continuous control rate signal), .ar (audio rate) or .ir (a static value, set at the time the synth starts up, and subsequently unchangeable).
 
 Control.ar(values)
 Control.kr(values)

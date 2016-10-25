@@ -7,7 +7,7 @@ Warp1.ar(numChannels, bufnum, pointer, freqScale, windowSize, envbufnum, overlap
 
 	numChannels - the number of channels in the soundfile used in bufnum.
 	bufnum - the buffer number of a mono soundfile.
-	pointer - the position in the buffer.  The value should be between 0 and 1, with 0 being the begining
+	pointer - the position in the buffer.  The value should be between 0 and 1, with 0 being the beginning
 		of the buffer, and 1 the end.
 	freqScale- the amount of frequency shift. 1.0 is normal, 0.5 is one octave down, 2.0 is one octave up.
 		Negative values play the soundfile backwards.

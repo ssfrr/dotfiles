@@ -23,7 +23,7 @@ The output is selected from an array of inputs.
 }.play;
 )
 	
-Note: all the ugens are continously running. This may not be the most efficient way if each input is  cpu-expensive.
+Note: all the ugens are continuously running. This may not be the most efficient way if each input is  cpu-expensive.
 
 	
 

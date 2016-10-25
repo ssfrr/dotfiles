@@ -73,7 +73,7 @@ C-wCut
 C-x C-oDelete blank lines
 
 Search and replace
-C-sSearch / find. This allows you to set a string in the mini-buffer. The occurences in the text will be highlighted and you can press C-s again and again to jump to next occurences
+C-sSearch / find. This allows you to set a string in the mini-buffer. The occurrences in the text will be highlighted and you can press C-s again and again to jump to next occurrences
 C-rSearch / find backwards.
 M-%Replace and find next
 M-,Replace

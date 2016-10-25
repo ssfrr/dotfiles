@@ -50,7 +50,7 @@ Routine(nextFunction, stacksize)
 
 In a FuncStream, the nextFunction runs through to completion for each element of the stream.
 In a Routine, the nextFunction returns values with yield and resumes execution (when it receives
-a next  message) at the expression folowing the yield.  This allows a sequence of expressions in
+a next  message) at the expression following the yield.  This allows a sequence of expressions in
 the function definition to represent a sequence of distinct events, like a musical score.
 
 

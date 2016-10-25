@@ -1,4 +1,4 @@
-Pprotect			evaluate a function when an error occured in the thread
+Pprotect			evaluate a function when an error occurred in the thread
 
 superclass: FilterPattern
 

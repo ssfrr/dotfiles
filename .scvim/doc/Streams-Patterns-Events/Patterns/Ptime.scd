@@ -27,7 +27,7 @@ Pbind(
 )
 
 
-// change degree independant of number of events that have been playing
+// change degree independent of number of events that have been playing
 
 (
 var a, b;

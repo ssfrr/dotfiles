@@ -44,7 +44,7 @@ Therefore it is usually better style to fully parenthesize your expressions.
 
 Functional notation messages
 
-The message selector preceeds the parenthesized argument list. The first argument in the list is actually 
+The message selector precedes the parenthesized argument list. The first argument in the list is actually 
 the receiver.
 
 	sin(x)		// sine of x

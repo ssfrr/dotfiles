@@ -8,7 +8,7 @@ PlayBuf.ar(numChannels, bufnum, rate, trigger, startPos, loop, doneAction)
 PlayBuf.kr(numChannels, bufnum, rate, trigger, startPos, loop, doneAction)
 
 	numChannels - number of channels that the buffer will be.
-			this must be a fixed integer. The architechture of the SynthDef
+			this must be a fixed integer. The architecture of the SynthDef
 			cannot change after it is compiled.
 			warning: if you supply a bufnum of a buffer that has a different
 			numChannels then you have specified to the PlayBuf, it will

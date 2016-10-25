@@ -217,7 +217,7 @@ Subclassing and Internal Methods
 		
 	defaultCanReceiveDrag
 	
-		The method called by default when attempting to place a drag in this object. Will recieve any drag, but the drag should either be an array of values, ( [ values ] ), or an array containg an array of values and an array of reference values ( [ [values], [references] ] ).
+		The method called by default when attempting to place a drag in this object. Will receive any drag, but the drag should either be an array of values, ( [ values ] ), or an array containg an array of values and an array of reference values ( [ [values], [references] ] ).
 								
 	defaultReceiveDrag
 	

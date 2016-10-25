@@ -249,7 +249,7 @@ Syntax:
 
 Slotted classes
 
-Classes defined with [slot]  can use the syntax myClass[i] which will call  myClass.at(i). This is usefull when defining classes that inherit from a Collection type class.
+Classes defined with [slot]  can use the syntax myClass[i] which will call  myClass.at(i). This is useful when defining classes that inherit from a Collection type class.
 
 Syntax:
 

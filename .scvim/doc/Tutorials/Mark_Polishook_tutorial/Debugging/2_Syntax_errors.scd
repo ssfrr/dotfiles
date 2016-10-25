@@ -25,7 +25,7 @@ Common errors
 
 Two helpful commands in the SuperCollider Edit menu: 
 
-1. "Go to Line ..." transports you to the line number of your choice. Use this when an error message identifies the line number on which a problem occured.
+1. "Go to Line ..." transports you to the line number of your choice. Use this when an error message identifies the line number on which a problem occurred.
 
 2. "Find" searches for words or phrases. Use "Find" to locate code that has been identified in error messages or to replace all instances of an improperly spelled word.
 

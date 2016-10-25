@@ -99,12 +99,12 @@ g.set(0, 1.0);
 // random impulse response
 
 	{
-	var input, inputAmp, threshhold, gate;
+	var input, inputAmp, threshold, gate;
 
 	input = SoundIn.ar(0); 
 	inputAmp = Amplitude.kr(input);
-	threshhold = 0.02;	// noise gating threshold
-	gate = Lag.kr(inputAmp > threshhold, 0.01);	
+	threshold = 0.02;	// noise gating threshold
+	gate = Lag.kr(inputAmp > threshold, 0.01);	
 	
 	Out.ar(0, Convolution2.ar(input*gate, g, 0, a, 0.5));
 	}.play;

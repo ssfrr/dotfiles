@@ -140,7 +140,7 @@ f.asCompileString.postln;
 
 postcs
 
-As postln, but posts the compileString of the reciever
+As postln, but posts the compileString of the receiver
 
 List[1, 2, ["comment", [3, 2]], { 1.0.rand }].postcs;
 

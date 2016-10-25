@@ -15,7 +15,7 @@ c = a + b;
 
 Multiple Assignment
 
-A multiple assignment statement assigns the elements of a Collection which is the result of an expression on the right hand side, to a list of variables on the left hand side. A multiple assignment statement is preceeded by the symbol #. If the last variable on the left is preceeded by three dots, then the entire remainder of the collection is assigned to that variable. There must be at least one variable name before the ellipsis.
+A multiple assignment statement assigns the elements of a Collection which is the result of an expression on the right hand side, to a list of variables on the left hand side. A multiple assignment statement is preceded by the symbol #. If the last variable on the left is preceded by three dots, then the entire remainder of the collection is assigned to that variable. There must be at least one variable name before the ellipsis.
 
 The form of a multiple assignment is:
 

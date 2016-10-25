@@ -155,7 +155,7 @@ Equality and Identity
 		
 	fuzzyEqual(that, precision)
 	
-		Retruns the degree of equality (in the range from 0 to 1) between two objects with regard to a given precision. Objects to compare must support max, substraction and division.
+		Retruns the degree of equality (in the range from 0 to 1) between two objects with regard to a given precision. Objects to compare must support max, subtraction and division.
 		
 		5.0.fuzzyEqual(5.0, 0.5); // 1 - full equality
 		5.25.fuzzyEqual(5.0, 0.5); // 0.5 - 50 % equality

@@ -6,9 +6,9 @@ Linear interpolating wavetable lookup oscillator with frequency and phase modula
 
 This oscillator requires a buffer to be filled with a wavetable format signal.  This preprocesses the Signal into a form which can be used efficiently by the Oscillator.  The buffer size must be a power of 2.
 
-This can be acheived by creating a Buffer object and sending it one of the "b_gen" messages ( sine1, sine2, sine3 ) with the wavetable flag set to true.  
+This can be achieved by creating a Buffer object and sending it one of the "b_gen" messages ( sine1, sine2, sine3 ) with the wavetable flag set to true.  
 
-This can also be acheived by creating a Signal object and sending it the 'asWavetable' message, saving it to disk, and having the server load it from there.
+This can also be achieved by creating a Signal object and sending it the 'asWavetable' message, saving it to disk, and having the server load it from there.
 
 table - buffer index
 freq - frequency in Hertz

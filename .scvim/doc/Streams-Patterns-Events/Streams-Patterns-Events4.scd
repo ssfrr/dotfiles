@@ -1,6 +1,6 @@
 Understanding Streams, Patterns and Events - Part 4
 
-The preceeding sections showed how to use Streams and Patterns to generate complex sequences of values for a single parameter at a time.
+The preceding sections showed how to use Streams and Patterns to generate complex sequences of values for a single parameter at a time.
 
 This section covers Environments and Events, which are used to build a symbolic event framework for patterns, allowing you to control all aspects of a composition using patterns.
 

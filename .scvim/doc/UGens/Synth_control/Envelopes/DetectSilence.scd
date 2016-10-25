@@ -1,4 +1,4 @@
-DetectSilence			when input falls below a threshhold, evaluate doneAction
+DetectSilence			when input falls below a threshold, evaluate doneAction
 
 superclass: UGen
 	

@@ -75,7 +75,7 @@ But what if you want to have one block of code which contains a number of synchr
 	Synth.new(name, s);
 	)
 	
-A crude solution would be to schedule the dependant code for execution after a seemingly sufficient delay using a clock.
+A crude solution would be to schedule the dependent code for execution after a seemingly sufficient delay using a clock.
 
 // This one works since the def gets to the server app first
 	(

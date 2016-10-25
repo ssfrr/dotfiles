@@ -357,7 +357,7 @@ Sending synths to server
 		freeLast: if to free the last synth at that index or not (default: true)
 		
 	sendEach(extraArgs, freeLast)
-		Like send, just iterating seperately over the objects.
+		Like send, just iterating separately over the objects.
 		
 		
 	wakeUp 

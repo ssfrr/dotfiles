@@ -6,7 +6,7 @@ See also: SCRangeSlider, EZSlider
 
 Some Important Issues Regarding SCSlider
 
-SCSlider always has a range between zero and one. You must scale the output and input values to your needs. Using map and unmap, combined with a Spec, is helpful for this. To set the increment or decrement value of the slider, set the step.  By default, the shift, ctrl, and alt keys will modify the stepping by 100x, 10x, or 0.1x repectively, though you can customize this by setting shift_scale, ctrl_scale, or alt_scale  (see SCSliderBase) .  Inherits some formatting from SCSliderBase.
+SCSlider always has a range between zero and one. You must scale the output and input values to your needs. Using map and unmap, combined with a Spec, is helpful for this. To set the increment or decrement value of the slider, set the step.  By default, the shift, ctrl, and alt keys will modify the stepping by 100x, 10x, or 0.1x respectively, though you can customize this by setting shift_scale, ctrl_scale, or alt_scale  (see SCSliderBase) .  Inherits some formatting from SCSliderBase.
 
 By default, SCSlider will respond only to drags where the drag contains a Number.
 

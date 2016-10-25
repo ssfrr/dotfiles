@@ -18,7 +18,7 @@ Use of the automatic help file generating faciliies of Helper and AutoClassHelpe
 
 HTML should be basic. On OSX it can be generated automatically and is WYSIWYG editable. (See Notes-on-the-HTML-Help-System for details.) The use of hand-coded or overly complex HTML should be avoided wherever possible since it may not be parsed correctly on all platforms. HTML documents should not load non-local resources and should always function correctly in an offline context.
 
-Authors should aim to strike an appropriate balance between specialist discussion and accessibility to new users. Jargon should be used where it enhances clarity, but not where it is unnecessary. Naturally the particular level at which a given document is written will be context dependant.
+Authors should aim to strike an appropriate balance between specialist discussion and accessibility to new users. Jargon should be used where it enhances clarity, but not where it is unnecessary. Naturally the particular level at which a given document is written will be context dependent.
 
 Links should be hyperlinks rather than the old style help links.
 
@@ -53,7 +53,7 @@ Examples can be placed in an examples section at the end of the text or interspe
 
 The initial examples in any help file should be as simple and clear as possible.
 
-Examples in the general SC documentation should not be dependant on any third party libraries, Quarks, etc. in order to function.
+Examples in the general SC documentation should not be dependent on any third party libraries, Quarks, etc. in order to function.
 
 Examples should include any necessary cleanup code. This includes explicitly freeing any created synths. Examples should not rely on an implicit use of Cmd-.
 

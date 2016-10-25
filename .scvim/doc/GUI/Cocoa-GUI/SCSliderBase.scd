@@ -2,7 +2,7 @@ SCSliderBase			an abstract superclass for various sliders
 
 Inherits from: Object : SCView : SCControlView
 
-Users will not normally directly create instances of SCSliderBase, but only use it through its subclasses. It provides a few methods common to various slider views. To set the increment or decrement value of a slider, set the step .  By default, the shift, ctrl, and alt keys will modify the stepping by 100x, 10x, or 0.1x repectively, though you can customize this by setting shift_scale, ctrl_scale, or alt_scale.
+Users will not normally directly create instances of SCSliderBase, but only use it through its subclasses. It provides a few methods common to various slider views. To set the increment or decrement value of a slider, set the step .  By default, the shift, ctrl, and alt keys will modify the stepping by 100x, 10x, or 0.1x respectively, though you can customize this by setting shift_scale, ctrl_scale, or alt_scale.
 
 See also: SCSlider, SCRangeSlider, SC2DSlider
 

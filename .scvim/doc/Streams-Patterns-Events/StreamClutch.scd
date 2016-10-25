@@ -42,7 +42,7 @@ clutch = StreamClutch(pat, decicion);
 clutch.asEventStreamPlayer.play;
 )
 
-// independant stepping
+// independent stepping
 (
 var clutch, pat, decicion;
 pat = Pbind(\freq, Pseq([200, [300, 302], 400, 450], inf), \dur, 0.3);

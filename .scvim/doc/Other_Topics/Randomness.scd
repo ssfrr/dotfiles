@@ -207,7 +207,7 @@ coin 	simulates a coin toss and results in true or false. 
 20.do({ 0.5.coin.postln });
 
 biased random decision can be simulated bygenerating a single value 
-and check against a threshhold:
+and check against a threshold:
 
 20.do({ (1.0.linrand > 0.5).postln });
 20.do({ (exprand(0.05, 1.0) > 0.5).postln });

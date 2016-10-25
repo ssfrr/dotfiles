@@ -15,7 +15,7 @@ You can listen for this:
 		// or stop the music
 	});
 
-The Buffer class register a function to clear its info cache whenever a server restarts.  The server is emiting changed messages quite often (every 0.4 secs for the status updates), and the Buffer class is only interested in boot/quit events, so this is a more lightweight system for this purpose.
+The Buffer class register a function to clear its info cache whenever a server restarts.  The server is emitting changed messages quite often (every 0.4 secs for the status updates), and the Buffer class is only interested in boot/quit events, so this is a more lightweight system for this purpose.
 
 
 *notify(object,message,args)

@@ -77,7 +77,7 @@ examples of symbols:
 	'somewhere there' 
 	'.+o*o+.'
 	
-A symbol consisting of a single word can be written with a preceeding backslash.
+A symbol consisting of a single word can be written with a preceding backslash.
 
 	\x
 	\aiff
@@ -132,7 +132,7 @@ z = nil;
 
 Literal Arrays
 
-Arrays of literals are created at compile time and are written with a # preceeding the array as follows:
+Arrays of literals are created at compile time and are written with a # preceding the array as follows:
 
 #[1, 2, 'abc', "def", 4]
 

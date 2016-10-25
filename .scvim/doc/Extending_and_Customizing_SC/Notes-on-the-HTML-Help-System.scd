@@ -26,7 +26,7 @@ Generated HTML
 
 - HTML is generated afresh each time a file is saved. This allows for WYSIWYG editing. The general html support is reasonable, but because of this custom and hand-coded html should be used as a last resort only.
 
-- Occurences of %20 are converted to " " for compatibility with PsyCollider.
+- Occurrences of %20 are converted to " " for compatibility with PsyCollider.
 
 - NSTextView doesn't like <b> tags within spans, but unfortunately the html export outputs bold underlined text in that way. For this reason on save a function determines the span class for underlines and places these spans within the corresponding <b></b> tags, rather than the other way around.
 

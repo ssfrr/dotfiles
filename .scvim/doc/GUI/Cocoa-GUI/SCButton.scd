@@ -98,7 +98,7 @@ Subclassing and Internal Methods
 						
 	defaultReceiveDrag
 	
-		The default method called when a drag has been recieved. If the drag contains a number, then action ist set to the current drag. Otherwise valueAction_() is performed using the currentDrag.
+		The default method called when a drag has been received. If the drag contains a number, then action ist set to the current drag. Otherwise valueAction_() is performed using the currentDrag.
 				
 Examples
 

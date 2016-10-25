@@ -49,7 +49,7 @@ w.view.background = Color.white;
 
 b.background = Color.grey;
 
-d.bounds = Rect(100,0,1000,100); // the 'canvas' grows to accomodate it
+d.bounds = Rect(100,0,1000,100); // the 'canvas' grows to accommodate it
 
 b.resize = 5; // the ScrollView resizes, but not its contents
 

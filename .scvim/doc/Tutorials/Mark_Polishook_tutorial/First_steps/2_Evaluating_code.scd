@@ -71,7 +71,7 @@ Press cmd-. to stop sound synthesis.
 
 Recording sound
 
-The localhost and the internal server windows have buttons, on the far right, to activate recording. To record, choose the a default server. The button on the default server of your choice intially will say "prepare rec." Press it once and it will say record >. Press it again to start recording.
+The localhost and the internal server windows have buttons, on the far right, to activate recording. To record, choose the a default server. The button on the default server of your choice initially will say "prepare rec." Press it once and it will say record >. Press it again to start recording.
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

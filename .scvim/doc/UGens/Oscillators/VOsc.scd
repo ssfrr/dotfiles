@@ -6,9 +6,9 @@ A wavetable lookup oscillator which can be swept smoothly across wavetables. All
 
 This oscillator requires at least two buffers to be filled with a wavetable format signal.  This preprocesses the Signal into a form which can be used efficiently by the Oscillator.  The buffer size must be a power of 2.
 
-This can be acheived by creating a Buffer object and sending it one of the "b_gen" messages ( sine1, sine2, sine3 ) with the wavetable flag set to true.  
+This can be achieved by creating a Buffer object and sending it one of the "b_gen" messages ( sine1, sine2, sine3 ) with the wavetable flag set to true.  
 
-This can also be acheived by creating a Signal object and sending it the 'asWavetable' message, saving it to disk, and having the server load it from there.
+This can also be achieved by creating a Signal object and sending it the 'asWavetable' message, saving it to disk, and having the server load it from there.
 
 If you use Buffer objects to manage buffer numbers, you can use the *allocConsecutive method to allocate a continuous block of buffers. See the Buffer helpfile for details. Note that since VOsc uses fractional buffer numbers you will need to call bufnum on any Buffer objects which are used directly as UGen inputs.
 

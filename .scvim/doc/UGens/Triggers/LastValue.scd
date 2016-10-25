@@ -3,11 +3,11 @@ LastValue 
 LastValue.ar(in, diff)
 LastValue.kr(in, diff)
 
-output the last value before the input changed more than a threshhold
+output the last value before the input changed more than a threshold
 
 
 	in	input
-	diff 	difference threshhold 
+	diff 	difference threshold 
 
 
 	d = { arg freq=440; SinOsc.ar(LastValue.ar(freq, 20), 0, 0.2) }.play;

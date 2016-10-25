@@ -1068,7 +1068,7 @@ Building a sense of space into a sound by setting up phase differences between t
 
 // two waves mixed together coming out both speakers
 { var x; x = Mix.ar(VarSaw.ar([100,101], 0, 0.1, 0.2)); [x,x] }.scope(2);
-// two waves coming out each speaker independantly
+// two waves coming out each speaker independently
 { VarSaw.ar([100,101], 0, 0.1, 0.2 * 1.414) }.scope(2); // * 1.414 to compensate for power
 
 // delays as cues to direction
