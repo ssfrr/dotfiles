@@ -41,6 +41,9 @@ do
    ln -s ${file}
 done
 
+# make swap directory for vim swapfiles
+mkdir ~/.vim/swp
+
 # remove the link to the .git directory so that our home dir isn't
 # seen as versioned
 rm ~/.git
