@@ -24,6 +24,7 @@
       "whitespace"
     ]
     excludeVcsIgnoredPaths: false
+    telemetryConsent: "no"
   editor:
     fontSize: 13
     invisibles: {}
@@ -81,6 +82,7 @@
       "tex"
     ]
   zentabs:
+    maximumOpenedTabs: 8
     neverCloseUnsaved: true
 ".asciidoc.source":
   editor:
