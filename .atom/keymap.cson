@@ -32,21 +32,19 @@
   ': v s enter': 'pane:split-right'
   ': s p enter': 'pane:split-down'
   'Z Z': 'custom:save-and-close'
-  '/': 'find-and-replace:show'
-  'g q': 'autoflow:reflow-selection'
 
 'atom-text-editor.vim-mode-plus.visual-mode':
   'g q': 'autoflow:reflow-selection'
 
-'atom-text-editor.vim-mode-plus:not(.insert-mode)':
-  'g q': 'autoflow:reflow-selection'
-  's': 'vim-mode-plus:surround-smart-word'
-  's d': 'vim-mode-plus:delete-surround-any-pair'
-  's c': 'vim-mode-plus:change-surround-any-pair'
-  's y': 'vim-mode-plus:surround'
-
 'atom-text-editor.vim-mode-plus':
   'ctrl-n': 'autocomplete-plus:activate'
+  'ctrl-[': 'vim-mode-plus:reset-normal-mode'
+
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+  'cmd-enter': 'hydrogen:run'
+  
+'atom-workspace:not(.editor)':
+  'cmd-enter': 'hydrogen:run'
 
 'atom-text-editor:not(mini).autocomplete-active !important':
   'ctrl-n': 'core:move-down'
@@ -68,10 +66,6 @@
 
 'atom-workspace':
   'ctrl-shift-t': 'terminal-status:toggle'
-
-'atom-workspace atom-text-editor:not([mini])':
-  'ctrl-[': 'unset!'
-  'ctrl-enter': 'hydrogen:run'
 
 '.ink-console atom-text-editor:not([mini])':
   'down': 'console:next-in-history'
