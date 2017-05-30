@@ -6,3 +6,5 @@ tags
 *.err
 .vim/.netrwhist
 .vim/swp
+.atom/blob-store
+.config/*
