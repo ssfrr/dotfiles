@@ -14,7 +14,7 @@
     minimumPrefixLength: 1
   "autocomplete-julia": {}
   "autocomplete-plus":
-    enableAutoActivation: false
+    confirmCompletion: "tab always, enter when suggestion explicitly selected"
     minimumWordLength: 1
   build:
     saveOnBuild: true
@@ -24,6 +24,7 @@
       "whitespace"
     ]
     excludeVcsIgnoredPaths: false
+    telemetryConsent: "no"
   editor:
     fontSize: 13
     invisibles: {}
@@ -37,6 +38,7 @@
     monotypeResults: true
   "julia-client":
     juliaPath: "julia5"
+  "latex-completions": {}
   latexer: {}
   "lcov-info":
     highlightType: "gutter"
@@ -45,6 +47,7 @@
   "markdown-preview-katex": {}
   minimap:
     absoluteMode: true
+    disablePythonDocLinks: true
     textOpacity: 0.1
   "one-dark-ui": {}
   "spell-check":
@@ -81,6 +84,7 @@
       "tex"
     ]
   zentabs:
+    maximumOpenedTabs: 8
     neverCloseUnsaved: true
 ".asciidoc.source":
   editor:

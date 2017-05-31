@@ -27,13 +27,8 @@ atom-text-editor {
 }
 
 
-atom-text-editor::shadow .line.cursor-line, :host .line.cursor-line {
+atom-text-editor .line.cursor-line, .line.cursor-line {
     background-color: rgba(153, 187, 255, 0.10);
-}
-
-// To style other content in the text editor's shadow DOM, use the ::shadow expression
-atom-text-editor::shadow .cursor {
-  // border-color: red;
 }
 
 // otherwise the main paragraph text color is too weak
