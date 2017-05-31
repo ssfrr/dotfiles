@@ -63,7 +63,7 @@
 	url = https://github.com/vim-scripts/opencl.vim.git
 [submodule ".zprezto"]
 	path = .zprezto
-	url = git@github.com:ssfrr/prezto.git
+	url = git@github.com:sorin-ionescu/prezto.git
 [submodule ".vim/bundle/OmniCppComplete"]
 	path = .vim/bundle/OmniCppComplete
 	url = https://github.com/vim-scripts/OmniCppComplete.git

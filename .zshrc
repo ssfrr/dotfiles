@@ -93,6 +93,8 @@ alias j6=julia6
 
 alias v=vim
 
+alias git_fetchpr='git config --local --add remote.origin.fetch "+refs/pull/*/head:refs/remotes/origin/pr/*"'
+
 
 if [ -e $HOME/.zshrc_local ]; then
     source $HOME/.zshrc_local
