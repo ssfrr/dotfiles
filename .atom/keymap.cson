@@ -42,7 +42,9 @@
 
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
   'cmd-enter': 'hydrogen:run'
-  
+  'j': 'vim-mode-plus:move-down-screen'
+  'k': 'vim-mode-plus:move-up-screen'
+
 'atom-workspace:not(.editor)':
   'cmd-enter': 'hydrogen:run'
 
