@@ -43,8 +43,10 @@
   ink:
     monotypeResults: true
   "julia-client":
+    enableMenu: true
+    enableToolBar: true
     juliaPath: "julia5"
-  "latex-completions": {}
+    launchOnStartup: true
   latexer: {}
   "lcov-info":
     highlightType: "gutter"
@@ -53,7 +55,6 @@
   "markdown-preview-katex": {}
   minimap:
     absoluteMode: true
-    disablePythonDocLinks: true
     textOpacity: 0.1
   "one-dark-ui": {}
   "python-indent":
@@ -68,11 +69,15 @@
     ]
     juliaPath: "/usr/local/bin/julia"
     terminal: "x-terminal-emulator -e"
+  "tool-bar":
+    position: "Left"
   "trailing-spaces":
     enableForIndentation: true
   "tree-view":
     hideIgnoredNames: true
     squashDirectoryNames: true
+  "uber-juno":
+    disable: true
   "vim-mode":
     useClipboardAsDefaultRegister: true
     useSmartcaseForSearch: true
@@ -92,7 +97,6 @@
       "tex"
     ]
   zentabs:
-    maximumOpenedTabs: 8
     neverCloseUnsaved: true
 ".asciidoc.source":
   editor:
