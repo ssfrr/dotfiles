@@ -95,6 +95,10 @@ alias v=vim
 
 alias git_fetchpr='git config --local --add remote.origin.fetch "+refs/pull/*/head:refs/remotes/origin/pr/*"'
 
+function pullprs() {
+    git config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*'
+    echo "Now pulling PRs with git pull"
+}
 
 if [ -e $HOME/.zshrc_local ]; then
     source $HOME/.zshrc_local

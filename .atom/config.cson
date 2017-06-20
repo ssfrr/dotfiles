@@ -32,7 +32,6 @@
     excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
   editor:
-    fontSize: 13
     invisibles: {}
     scrollPastEnd: true
     softWrapAtPreferredLineLength: true
@@ -45,7 +44,6 @@
   "julia-client":
     enableMenu: true
     enableToolBar: true
-    juliaPath: "julia5"
     launchOnStartup: true
   latexer: {}
   "lcov-info":
