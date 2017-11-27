@@ -14,12 +14,14 @@
     minimumPrefixLength: 1
   "autocomplete-julia": {}
   "autocomplete-plus":
+    autoActivationDelay: 50
     confirmCompletion: "tab always, enter when suggestion explicitly selected"
     fileBlacklist: [
       ".*"
       "*.md"
       "*.asciidoc"
       "*.txt"
+      "*.tex"
     ]
     minimumWordLength: 1
   build:
@@ -32,7 +34,7 @@
     excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
   editor:
-    fontSize: 18
+    fontSize: 13
     invisibles: {}
     scrollPastEnd: true
     showIndentGuide: true
@@ -52,11 +54,11 @@
       ]
     juliaPath: "julia6"
     launchOnStartup: true
-  latexer: {}
+  latexer:
+    autocomplete_environments: false
   "lcov-info":
     highlightType: "gutter"
-  linter:
-    showErrorPanel: false
+  linter: {}
   "markdown-preview-katex": {}
   minimap:
     absoluteMode: true
@@ -65,6 +67,7 @@
   "python-indent":
     hangingIndentTabs: 2
   "spell-check":
+    addKnownWords: true
     grammars: [
       "source.asciidoc"
       "source.gfm"
@@ -73,6 +76,13 @@
       "text.tex.latex"
     ]
     juliaPath: "/usr/local/bin/julia"
+    knownWords: [
+      "immersive"
+      "soundfield"
+      "ambisonic"
+      "resynthesize"
+      "naïve"
+    ]
     terminal: "x-terminal-emulator -e"
   "split-diff":
     diffWords: true
@@ -100,6 +110,7 @@
     ignoreCaseForSearch: true
     ignoreCaseForSearchCurrentWord: true
     incrementalSearch: true
+    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
   "vim-surround": {}
   welcome:
     showOnStartup: false

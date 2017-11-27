@@ -51,6 +51,9 @@
 'atom-workspace:not(.editor)':
   'cmd-enter': 'hydrogen:run'
 
+'atom-workspace atom-text-editor[data-grammar~=\'supercollider\']':
+  'ctrl-enter': 'supercollider:eval'
+
 'atom-text-editor:not(mini).autocomplete-active !important':
   'ctrl-n': 'core:move-down'
   'ctrl-p': 'core:move-up'
