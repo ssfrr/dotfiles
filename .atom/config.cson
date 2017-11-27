@@ -32,8 +32,10 @@
     excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
   editor:
+    fontSize: 18
     invisibles: {}
     scrollPastEnd: true
+    showIndentGuide: true
     softWrapAtPreferredLineLength: true
     tabLength: 4
   "exception-reporting":
@@ -44,6 +46,11 @@
   "julia-client":
     enableMenu: true
     enableToolBar: true
+    juliaOptions:
+      arguments: [
+        "--color=true"
+      ]
+    juliaPath: "julia6"
     launchOnStartup: true
   latexer: {}
   "lcov-info":
@@ -67,8 +74,17 @@
     ]
     juliaPath: "/usr/local/bin/julia"
     terminal: "x-terminal-emulator -e"
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    scrollSyncType: "Vertical + Horizontal"
+  supercollider:
+    sclangPath: "/usr/bin/sclang"
   "tool-bar":
     position: "Left"
+    visible: false
   "trailing-spaces":
     enableForIndentation: true
   "tree-view":

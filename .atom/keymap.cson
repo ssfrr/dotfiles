@@ -37,9 +37,12 @@
   'g q': 'autoflow:reflow-selection'
 
 'atom-text-editor.vim-mode-plus':
-  'ctrl-n': 'autocomplete-plus:activate'
+  # 'ctrl-n': 'autocomplete-plus:activate'
   'ctrl-[': 'vim-mode-plus:reset-normal-mode'
 
+'atom-text-editor.vim-mode-plus.insert-mode':
+  'j k': 'vim-mode-plus:activate-normal-mode' # jk to escape
+  
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
   'cmd-enter': 'hydrogen:run'
   'j': 'vim-mode-plus:move-down-screen'
