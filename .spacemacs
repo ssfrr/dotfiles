@@ -54,7 +54,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -134,7 +136,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 18
+                               :size 14
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -310,10 +312,18 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  (setq auto-save-visited-file-name t) ; save directly to the file
+  (setq auto-save-timeout 300) ; number of idle seconds before saving
   (setq org-todo-keywords
-        '((sequence "TODO" "DOING" "BLOCKED" "|" "DONE" "CANCELED")))
-
-  (setq org-agenda-files '("~/Dropbox/org")))
+        '((sequence "TODO(t)" "DOING(g)" "BLOCKED(b)" "|" "DONE(d)" "CANCELED(c)")))
+  (setq org-blank-before-new-entry '((heading . nil)
+                                     (plain-list-item . nil)))
+  (setq org-agenda-files '("~/Dropbox/org"))
+  (add-hook 'text-mode-hook #'turn-on-visual-line-mode)
+  (setq undo-tree-visualizer-diff nil) ; disable the diff in the undo tree
+  ;; force undo-tree enabled in org mode
+  (add-hook 'org-mode-hook (lambda ()
+                             (undo-tree-mode 1))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
