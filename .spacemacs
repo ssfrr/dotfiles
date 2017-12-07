@@ -323,7 +323,24 @@ you should place your code here."
   (setq undo-tree-visualizer-diff nil) ; disable the diff in the undo tree
   ;; force undo-tree enabled in org mode
   (add-hook 'org-mode-hook (lambda ()
-                             (undo-tree-mode 1))))
+                             (undo-tree-mode 1)))
+  (setq org-refile-targets '((("~/Dropbox/org/todo.org") :maxlevel . 2)))
+  (setq org-refile-allow-creating-parent-nodes 'confirm)
+  (setq org-agenda-sorting-strategy
+        '((agenda todo-state-up habit-down time-up priority-down category-keep)
+          (todo priority-down category-keep)
+          (tags priority-down category-keep)
+          (search category-keep)))
+  (setq org-agenda-span 'day)
+  ;; this view is in-progress - can't figure out how to show DONE items in log mode
+  ;; but not in the item list
+  (setq org-agenda-custom-commands
+        '(("d" "Day View"
+           ((agenda ""
+                    ((org-agenda-span 'day)
+                     (org-agenda-skip-function
+                      '(org-agenda-skip-entry-if 'todo 'done)))
+            (alltodo "")))))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
