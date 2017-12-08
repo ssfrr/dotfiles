@@ -314,6 +314,8 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq auto-save-visited-file-name t) ; save directly to the file
   (setq auto-save-timeout 300) ; number of idle seconds before saving
+  (setq org-agenda-skip-scheduled-if-done t)
+  (setq org-agenda-skip-deadline-if-done t)
   (setq org-todo-keywords
         '((sequence "TODO(t)" "DOING(g)" "BLOCKED(b)" "|" "DONE(d)" "CANCELED(c)")))
   (setq org-blank-before-new-entry '((heading . nil)
