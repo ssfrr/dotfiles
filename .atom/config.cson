@@ -34,7 +34,7 @@
     excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
   editor:
-    fontSize: 13
+    fontSize: 17
     invisibles: {}
     scrollPastEnd: true
     showIndentGuide: true
@@ -110,7 +110,6 @@
     ignoreCaseForSearch: true
     ignoreCaseForSearchCurrentWord: true
     incrementalSearch: true
-    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
   "vim-surround": {}
   welcome:
     showOnStartup: false
