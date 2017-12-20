@@ -56,7 +56,8 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
-     zotxt
+     helm-bibtex
+     org-ref
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -313,17 +314,64 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;; -- move through softwrapped lines naturally
-  ;;    https://stackoverflow.com/a/20899418/269247
+
+  ;; move through softwrapped lines naturally
+  ;; from https://stackoverflow.com/a/20899418/269247
   (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
   (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
   (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
   ;; make horizontal movement cross lines
   (setq-default evil-cross-lines t)
+
+  ;; enable <C-RET> for code eval
+  (global-set-key (kbd "C-<return>") 'eval-defun)
+  (global-set-key (kbd "C-S-<return>") 'eval-buffer)
+
+  ;; Some generic file-handling config
   (setq vc-follow-symlinks t) ; act as if we'd opened the real file, makes VC integration work better
   (setq auto-save-visited-file-name t) ; save directly to the file
   (setq auto-save-timeout 300) ; number of idle seconds before saving
+
+  ;; Bibliography config
+  (require 'org-ref)
+  (define-key evil-normal-state-map "\"" 'org-ref-insert-link)
+  (setq bibtex-completion-bibliography '("~/Dropbox/org/bibliography.bib"))
+  (setq org-ref-default-bibliography bibtex-completion-bibliography)
+  (setq bibtex-completion-notes-path "~/Dropbox/org/bibliography.org")
+  (setq org-ref-bibliography-notes bibtex-completion-notes-path)
+  (setq bibtex-completion-pdf-field "file")
+  (setq bibtex-completion-notes-template-one-file
+"
+* ${author} (${year}): ${title}
+  :PROPERTIES:
+  :Custom_ID: ${=key=}
+  :END:
+  cite:${=key=}
+")
+  (define-key evil-normal-state-map (kbd "C-' C-'") 'helm-bibtex)
+  (define-key evil-insert-state-map (kbd "C-' C-'") 'helm-bibtex)
+  (setq bibtex-completion-pdf-open-function
+        (lambda (fpath)
+          (call-process "evince" nil 0 nil fpath)))
+  (with-eval-after-load "org-ref"
+    ;; adapted from @shu-cheng at https://github.com/jkitchin/org-ref/issues/485
+    (setq org-ref-open-pdf-function
+          (lambda ()
+            (let* ((results (org-ref-get-bibtex-key-and-file))
+                   (key (car results)))
+              (bibtex-completion-open-pdf (list key)))))
+    ;; use helm-bibtex's note creation function. As of 2017-12-13 it's better at
+    ;; handling BibLaTeX-formatted files, which use =date= rather than =year= in
+    ;; interactive use the given key is (often?) =nil= so the function should
+    ;; use whatever is under the point
+    (setq org-ref-notes-function
+          (lambda (maybekey)
+            (let*
+                ((key (car (org-ref-get-bibtex-key-and-file maybekey))))
+              (bibtex-completion-edit-notes (list key))))))
+
+  ;; Org Agenda Config
   (setq org-agenda-skip-scheduled-if-done t)
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-todo-keywords
@@ -354,6 +402,9 @@ you should place your code here."
                      (org-agenda-skip-function
                       '(org-agenda-skip-entry-if 'todo 'done)))
                     (alltodo ""))))))
+  ;; make it so expanding/collapsing org-mode headings doesn't jump the window
+  (remove-hook 'org-cycle-hook
+               #'org-optimize-window-after-visibility-change)
   (setq org-log-into-drawer t))
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -365,7 +416,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
