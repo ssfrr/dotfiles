@@ -336,7 +336,8 @@ you should place your code here."
   ;; force undo-tree enabled in org mode
   (add-hook 'org-mode-hook (lambda ()
                              (undo-tree-mode 1)))
-  (setq org-refile-targets '((("~/Dropbox/org/todo.org") :maxlevel . 2)))
+  ;; (setq org-refile-targets '((("~/Dropbox/org/todo.org") :maxlevel . 2)))
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-agenda-sorting-strategy
         '((agenda todo-state-up habit-down time-up priority-down category-keep)
@@ -352,7 +353,8 @@ you should place your code here."
                     ((org-agenda-span 'day)
                      (org-agenda-skip-function
                       '(org-agenda-skip-entry-if 'todo 'done)))
-            (alltodo "")))))))
+                    (alltodo ""))))))
+  (setq org-log-into-drawer t))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
