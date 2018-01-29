@@ -307,6 +307,19 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   )
 
+(defun insert-url-as-org-link ()
+  "If there's a URL on the clipboard, insert it as an org-mode
+link in the form of [[url][*]], and leave point at *."
+  (interactive)
+  (let ((link (substring-no-properties (x-get-selection 'CLIPBOARD)))
+        (url  "\\(http[s]?://\\|www\\.\\)"))
+    (save-match-data
+      (if (string-match url link)
+          (progn
+            (insert (concat "[[" link "][]]"))
+            (backward-char 2))
+        (error "No URL on the clipboard")))))
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -314,7 +327,6 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-
   ;; move through softwrapped lines naturally
   ;; from https://stackoverflow.com/a/20899418/269247
   (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
@@ -330,6 +342,9 @@ you should place your code here."
 
   ;; Some generic file-handling config
   (setq vc-follow-symlinks t) ; act as if we'd opened the real file, makes VC integration work better
+  ;; enable markdown export for org-mode
+  (eval-after-load "org"
+    '(require 'ox-md nil t))
   (setq auto-save-visited-file-name t) ; save directly to the file
   (setq auto-save-timeout 300) ; number of idle seconds before saving
 
@@ -384,6 +399,8 @@ you should place your code here."
   ;; force undo-tree enabled in org mode
   (add-hook 'org-mode-hook (lambda ()
                              (undo-tree-mode 1)))
+
+  (define-key evil-normal-state-map (kbd ", i l") 'insert-url-as-org-link)
   ;; (setq org-refile-targets '((("~/Dropbox/org/todo.org") :maxlevel . 2)))
   (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
@@ -407,9 +424,7 @@ you should place your code here."
   ;; make it so expanding/collapsing org-mode headings doesn't jump the window
   (remove-hook 'org-cycle-hook
                #'org-optimize-window-after-visibility-change)
-  (setq org-log-into-drawer t)
-  (eval-after-load "org"
-    '(require 'ox-md nil t)))
+  (setq org-log-into-drawer t))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
