@@ -402,10 +402,14 @@ you should place your code here."
                      (org-agenda-skip-function
                       '(org-agenda-skip-entry-if 'todo 'done)))
                     (alltodo ""))))))
+  ;; workaround for hl-todo-mode messing up highlighting in org TODO lists
+  (add-hook 'org-mode-hook (lambda () (hl-todo-mode -1) nil))
   ;; make it so expanding/collapsing org-mode headings doesn't jump the window
   (remove-hook 'org-cycle-hook
                #'org-optimize-window-after-visibility-change)
-  (setq org-log-into-drawer t))
+  (setq org-log-into-drawer t)
+  (eval-after-load "org"
+    '(require 'ox-md nil t)))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

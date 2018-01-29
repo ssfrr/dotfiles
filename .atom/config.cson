@@ -48,6 +48,7 @@
   "julia-client":
     enableMenu: true
     enableToolBar: true
+    firstBoot: false
     juliaOptions:
       arguments: [
         "--color=true"
