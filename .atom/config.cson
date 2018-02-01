@@ -34,7 +34,6 @@
     excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
   editor:
-    fontSize: 17
     invisibles: {}
     scrollPastEnd: true
     showIndentGuide: true

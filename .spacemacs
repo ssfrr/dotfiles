@@ -351,11 +351,11 @@ you should place your code here."
   ;; Bibliography config
   (require 'org-ref)
   (define-key evil-normal-state-map "\"" 'org-ref-insert-link)
-  (setq bibtex-completion-bibliography '("~/Dropbox/org/bibliography.bib"))
+  (setq bibtex-completion-bibliography '("~/bibliography.bib"))
   (setq org-ref-default-bibliography bibtex-completion-bibliography)
+  (setq bibtex-completion-pdf-field "file")
   (setq bibtex-completion-notes-path "~/Dropbox/org/bibliography.org")
   (setq org-ref-bibliography-notes bibtex-completion-notes-path)
-  (setq bibtex-completion-pdf-field "file")
   (setq bibtex-completion-notes-template-one-file
 "
 * ${author} (${year}): ${title}
