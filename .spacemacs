@@ -336,6 +336,82 @@ link in the form of [[url][*]], and leave point at *."
     (let ((process-connection-type nil))
       (start-process "" nil "xdg-open" fpath)))))
 
+;; Improved RET behavior in org-mode, stolen whole-cloth from
+;; https://github.com/jkitchin/scimax/blob/9f71d3cd4a766c168772f293d9d6890266e210d1/scimax-org.el#L1258
+(defun better-org-return (&optional ignore)
+  "Add new list item, heading or table row with RET. A double return on an empty
+   element deletes it. Use a prefix arg to get regular RET. "
+  (interactive "P")
+  (if ignore
+      (org-return)
+    (cond
+
+     ((eq 'line-break (car (org-element-context)))
+      (org-return-indent))
+
+     ;; Open links like usual, unless point is at the end of a line.
+     ;; and if at beginning of line, just press enter.
+     ((or (and (eq 'link (car (org-element-context))) (not (eolp)))
+          (bolp))
+      (org-return))
+
+     ;; It doesn't make sense to add headings in inline tasks. Thanks Anders
+     ;; Johansson!
+     ((org-inlinetask-in-task-p)
+      (org-return))
+
+     ;; checkboxes too
+     ((org-at-item-checkbox-p)
+      (if (org-element-property :contents-begin
+                                (org-element-context))
+          ;; we have content so add a new checkbox
+          (org-insert-todo-heading nil)
+        ;; no content so delete it
+        (setf (buffer-substring (line-beginning-position) (point)) "")
+        (org-return)))
+
+     ;; lists end with two blank lines, so we need to make sure we are also not
+     ;; at the beginning of a line to avoid a loop where a new entry gets
+     ;; created with only one blank line.
+     ((org-in-item-p)
+      (if (save-excursion
+            (beginning-of-line) (org-element-property :contents-begin (org-element-context)))
+          (org-insert-item)
+        (beginning-of-line)
+        (delete-region (line-beginning-position) (line-end-position))
+        (org-return)))
+
+     ;; org-heading
+     ((org-at-heading-p)
+      (if (not (string= "" (org-element-property :title (org-element-context))))
+          (progn
+            ;; Go to end of subtree suggested by Pablo GG on Disqus post.
+            (org-end-of-subtree)
+            (org-insert-heading-respect-content)
+            (outline-show-entry))
+        ;; The heading was empty, so we delete it 
+        (beginning-of-line)
+        (setf (buffer-substring
+               (line-beginning-position) (line-end-position)) "")))
+
+     ;; tables
+     ((org-at-table-p)
+      (if (-any?
+           (lambda (x) (not (string= "" x)))
+           (nth
+            (- (org-table-current-dline) 1)
+            (remove 'hline (org-table-to-lisp))))
+          (org-return)
+        ;; empty row
+        (beginning-of-line)
+        (setf (buffer-substring
+               (line-beginning-position) (line-end-position)) "")
+        (org-return)))
+
+     ;; fall-through case
+     (t
+      (org-return)))))
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -361,6 +437,8 @@ you should place your code here."
   (with-eval-after-load "org"
     (require 'ox-md nil t) ; enable markdown export for org mode
     (setq org-startup-indented t) ; Enable `org-indent-mode' by default
+    (require 'org-inlinetask) ; needed for better-org-return
+    (evil-define-key 'insert org-mode-map (kbd "RET") 'better-org-return)
     )
   (setq auto-save-visited-file-name t) ; save directly to the file
   (setq auto-save-timeout 300) ; number of idle seconds before saving
