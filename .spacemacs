@@ -62,8 +62,11 @@ values."
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   ;; currently excluding org-projectile as it's incompatible with spacemacs v0.200.10
-   dotspacemacs-excluded-packages '(org-projectile)
+   dotspacemacs-excluded-packages
+   '(
+     org-projectile ;; incompatible with spacemacs v0.200.10
+     adaptive-wrap ;; messes up wrapping with org-indent-mode
+     )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -355,9 +358,10 @@ you should place your code here."
 
   ;; Some generic file-handling config
   (setq vc-follow-symlinks t) ; act as if we'd opened the real file, makes VC integration work better
-  ;; enable markdown export for org-mode
-  (eval-after-load "org"
-    '(require 'ox-md nil t))
+  (with-eval-after-load "org"
+    (require 'ox-md nil t) ; enable markdown export for org mode
+    (setq org-startup-indented t) ; Enable `org-indent-mode' by default
+    )
   (setq auto-save-visited-file-name t) ; save directly to the file
   (setq auto-save-timeout 300) ; number of idle seconds before saving
 
