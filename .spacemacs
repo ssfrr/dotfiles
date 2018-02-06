@@ -376,10 +376,10 @@ you should place your code here."
   (setq bibtex-completion-notes-template-one-file
 "
 * ${author} (${year}): ${title}
-  :PROPERTIES:
-  :Custom_ID: ${=key=}
-  :END:
-  cite:${=key=}
+:PROPERTIES:
+:Custom_ID: ${=key=}
+:END:
+cite:${=key=}
 ")
   (define-key evil-normal-state-map (kbd "C-' C-'") 'helm-bibtex)
   (define-key evil-insert-state-map (kbd "C-' C-'") 'helm-bibtex)
