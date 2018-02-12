@@ -495,8 +495,10 @@ cite:${=key=}
 
   (define-key evil-normal-state-map (kbd ", i l") 'insert-url-as-org-link)
   ;; (setq org-refile-targets '((("~/Dropbox/org/todo.org") :maxlevel . 2)))
+  (setq org-refile-use-outline-path 'file)
   (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
+  (setq org-outline-path-complete-in-steps nil) ; show children all at once to helm
   (setq org-agenda-sorting-strategy
         '((agenda todo-state-up habit-down time-up priority-down category-keep)
           (todo priority-down category-keep)
