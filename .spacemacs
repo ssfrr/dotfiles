@@ -58,6 +58,7 @@ values."
    '(
      helm-bibtex
      org-ref
+     org-drill-table
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -141,7 +142,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 18
+                               :size 15
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -439,6 +440,8 @@ you should place your code here."
     (setq org-startup-indented t) ; Enable `org-indent-mode' by default
     (require 'org-inlinetask) ; needed for better-org-return
     (evil-define-key 'insert org-mode-map (kbd "RET") 'better-org-return)
+    (evil-define-key 'normal org-mode-map (kbd "X") 'org-toggle-latex-fragment)
+    (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)) ; bigger latex previews
     )
   (setq auto-save-visited-file-name t) ; save directly to the file
   (setq auto-save-timeout 300) ; number of idle seconds before saving
