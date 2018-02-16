@@ -441,7 +441,7 @@ you should place your code here."
     (require 'org-inlinetask) ; needed for better-org-return
     (evil-define-key 'insert org-mode-map (kbd "RET") 'better-org-return)
     (evil-define-key 'normal org-mode-map (kbd "X") 'org-toggle-latex-fragment)
-    (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.5)) ; bigger latex previews
+    (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.25)) ; bigger latex previews
     )
   (setq auto-save-visited-file-name t) ; save directly to the file
   (setq auto-save-timeout 300) ; number of idle seconds before saving
@@ -517,11 +517,47 @@ cite:${=key=}
                      (org-agenda-skip-function
                       '(org-agenda-skip-entry-if 'todo 'done)))
                     (alltodo ""))))))
+  (setq org-default-notes-file "~/Dropbox/org/capture.org")
+  (setq org-capture-templates
+        '(("t" "Todo")
+          ("tt" "Todo" entry (file "")
+"* TODO %?
+%i")
+          ("tl" "Todo (Linked)" entry (file "")
+"* TODO %?
+%i
+[[%l][link]]")
+          ("d" "Drill Card")
+          ("dn" "Drill Card (single-sided)" entry (file "")
+"* %?     :drill:
+** Term
+** Definition
+")
+          ("dt" "Drill Card (two-sided)" entry (file "")
+"* %?     :drill:
+:PROPERTIES:
+:DRILL_CARD_TYPE: twosided
+:END:
+** Term
+** Definition
+")
+          ("dm" "Drill Card (multi-sided)" entry (file "")
+"* %?     :drill:
+:PROPERTIES:
+:DRILL_CARD_TYPE: multisided
+:END:
+** Term
+** Definition
+")
+          ("j" "Journal" entry (file+olp+datetree "~/Dropbox/org/journal.org")
+"* %?
+Entered on %U
+%i")))
   ;; workaround for hl-todo-mode messing up highlighting in org TODO lists
   (add-hook 'org-mode-hook (lambda () (hl-todo-mode -1) nil))
   ;; make it so expanding/collapsing org-mode headings doesn't jump the window
   (remove-hook 'org-cycle-hook
-               #'org-optimize-window-after-visibility-change)
+               'org-optimize-window-after-visibility-change)
   (setq org-log-into-drawer t))
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -531,9 +567,10 @@ cite:${=key=}
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-modules (quote (org-bibtex org-drill org-learn)))
  '(package-selected-packages
    (quote
-    (org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
