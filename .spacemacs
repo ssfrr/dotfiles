@@ -315,8 +315,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   "If there's a URL on the clipboard, insert it as an org-mode
 link in the form of [[url][*]], and leave point at *."
   (interactive)
-  (let ((link (substring-no-properties (x-get-selection 'CLIPBOARD)))
-        (url  "\\(http[s]?://\\|www\\.\\)"))
+  (let* ((clipdata (or (x-get-selection 'CLIPBOARD) "")) ; selection is nil for empty
+         (link (substring-no-properties clipdata))
+         (url  "\\(http[s]?://\\|www\\.\\)"))
     (save-match-data
       (if (string-match url link)
           (progn
@@ -413,6 +414,14 @@ link in the form of [[url][*]], and leave point at *."
      (t
       (org-return)))))
 
+(defun org-pom-notify (msg)
+  "Send an org-pomodoro desktop notification"
+  ;; note that they're required to be closed before another can be displayed, but there's no
+  ;; problem with double-closing and the ID seems to always be 42, so we just proactively close
+  ;; any open notifications before trying to display another.
+    (w32-notification-close 42)
+    (w32-notification-notify :title "org-pomodoro" :body msg))
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -496,7 +505,8 @@ cite:${=key=}
   (add-hook 'org-mode-hook (lambda ()
                              (undo-tree-mode 1)))
 
-  (define-key evil-normal-state-map (kbd ", i l") 'insert-url-as-org-link)
+  (define-key evil-normal-state-map (kbd "C-l") 'insert-url-as-org-link)
+  (define-key evil-insert-state-map (kbd "C-l") 'insert-url-as-org-link)
   ;; (setq org-refile-targets '((("~/Dropbox/org/todo.org") :maxlevel . 2)))
   (setq org-refile-use-outline-path 'file)
   (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
@@ -558,7 +568,25 @@ Entered on %U
   ;; make it so expanding/collapsing org-mode headings doesn't jump the window
   (remove-hook 'org-cycle-hook
                'org-optimize-window-after-visibility-change)
-  (setq org-log-into-drawer t))
+  (setq org-log-into-drawer t)
+  ;; org-pomodoro mode hooks
+  (with-eval-after-load "org-pomodoro"
+    (add-hook 'org-pomodoro-started-hook
+              (lambda ()
+                (org-pom-notify "Pomodoro Started. You can do it!")))
+    (add-hook 'org-pomodoro-finished-hook
+              (lambda ()
+                (org-pom-notify "Pomodoro Finished, time for a break")))
+    (add-hook 'org-pomodoro-break-finished-hook
+              (lambda ()
+                (org-pom-notify "Break Finished, try one more!")))
+    (add-hook 'org-pomodoro-long-break-finished-hook
+              (lambda ()
+                (org-pom-notify "Long Break Finished, try one more!")))
+    (add-hook 'org-pomodoro-killed-hook
+              (lambda ()
+                (org-pom-notify "Pomodoro Cancelled"))))
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
