@@ -455,7 +455,7 @@ you should place your code here."
     (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.25)) ; bigger latex previews
     )
   ;;(setq auto-save-visited-file-name t) ; save directly to the file
-  (setq auto-save-timeout 10) ; number of idle seconds before saving
+  (setq auto-save-timeout 300) ; number of idle seconds before saving
 
   ;; Bibliography config
   (require 'org-ref)
