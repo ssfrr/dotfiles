@@ -2,6 +2,14 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
+;; set defaults that can be overridden by a .spacemacs_local config
+(setq sfr-fontsize 12)
+(setq sfr-latexscale 1.5)
+
+(if (file-exists-p "~/.spacemacs_local")
+    (load-file "~/.spacemacs_local")
+    (message "~/.spacemacs_local doesn't exist, no local configuration applied"))
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration.
 You should not put any user code in this function besides modifying the variable
@@ -142,8 +150,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 15
+   dotspacemacs-default-font `("Source Code Pro"
+                               :size ,sfr-fontsize
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -452,7 +460,8 @@ you should place your code here."
     ;; (require 'org-inlinetask) ; needed for better-org-return
     ;; (evil-define-key 'insert org-mode-map (kbd "RET") 'better-org-return)
     (evil-define-key 'normal org-mode-map (kbd "X") 'org-toggle-latex-fragment)
-    (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.25)) ; bigger latex previews
+    ;; bigger latex previews
+    (setq org-format-latex-options (plist-put org-format-latex-options :scale sfr-latexscale))
     )
   ;;(setq auto-save-visited-file-name t) ; save directly to the file
   (setq auto-save-timeout 300) ; number of idle seconds before saving
@@ -497,7 +506,9 @@ cite:${=key=}
   (setq org-agenda-skip-scheduled-if-done t)
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "DOING(g)" "BLOCKED(b)" "|" "DONE(d)" "CANCELED(c)")))
+        '((sequence "TODO(t)" "BLOCKED(b@/!)" "|" "DONE(d!/!)" "CANCELED(c@/!)")))
+  (setq org-log-reschedule 'time)
+  (setq org-log-into-drawer t)
   (setq org-blank-before-new-entry '((heading . nil)
                                      (plain-list-item . nil)))
   (setq org-agenda-files '("~/Dropbox/org"))
@@ -570,7 +581,6 @@ Entered on %U
   ;; make it so expanding/collapsing org-mode headings doesn't jump the window
   (remove-hook 'org-cycle-hook
                'org-optimize-window-after-visibility-change)
-  (setq org-log-into-drawer t)
   ;; org-pomodoro mode hooks
   (with-eval-after-load "org-pomodoro"
     (add-hook 'org-pomodoro-started-hook
