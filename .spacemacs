@@ -425,11 +425,17 @@ link in the form of [[url][*]], and leave point at *."
 
 (defun org-pom-notify (msg)
   "Send an org-pomodoro desktop notification"
-  ;; note that they're required to be closed before another can be displayed, but there's no
-  ;; problem with double-closing and the ID seems to always be 42, so we just proactively close
-  ;; any open notifications before trying to display another.
+  (cond
+   ((string-equal system-type "windows-nt")
+    ;; note that they're required to be closed before another can be displayed, but there's no
+    ;; problem with double-closing and the ID seems to always be 42, so we just proactively close
+    ;; any open notifications before trying to display another.
     (w32-notification-close 42)
     (w32-notification-notify :title "org-pomodoro" :body msg))
+   ((string-equal system-type "darwin")
+    (message "Pomodoro notifications not yet supported on OSX"))
+   ((string-equal system-type "gnu/linux")
+    (notifications-notify :title "org-pomodoro" :body msg))))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
