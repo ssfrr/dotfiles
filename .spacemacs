@@ -68,6 +68,7 @@ values."
      org-ref
      org-drill-table
      visual-fill-column
+     ob-ipython
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -463,6 +464,16 @@ you should place your code here."
   (with-eval-after-load "org"
     (require 'ox-md nil t) ; enable markdown export for org mode
     (setq org-startup-indented t) ; Enable `org-indent-mode' by default
+    ;; (require 'ob-ipython)
+    ;; (org-babel-do-load-languages
+    ;;  'org-babel-load-languages
+    ;;  '((ipython . t)
+    ;;    ;; other languages..
+    ;;    ))
+    ;; ;; use the julia-installed python stuff to run jupyter
+    ;; (setq ob-ipython-resources-dir "C:\\Users\\sfr\\Dropbox\\org\\obipy-resources")
+    ;; (setq ob-ipython-command "~/Miniconda3/Scripts/jupyter")
+    ;; (setq python-shell-interpreter "~/Miniconda3/python")
     ;; (require 'org-inlinetask) ; needed for better-org-return
     ;; (evil-define-key 'insert org-mode-map (kbd "RET") 'better-org-return)
     (evil-define-key 'normal org-mode-map (kbd "X") 'org-toggle-latex-fragment)
@@ -516,6 +527,7 @@ cite:${=key=}
         '((sequence "TODO(t)" "BLOCKED(b@/!)" "|" "DONE(d!/!)" "CANCELED(c@/!)")))
   (setq org-log-reschedule 'time)
   (setq org-log-into-drawer t)
+  (setq org-log-done nil) ; don't add CLOSED line because we're logging in the logbook
   (setq org-blank-before-new-entry '((heading . nil)
                                      (plain-list-item . nil)))
   (setq org-agenda-files '("~/Dropbox/org"))
@@ -617,7 +629,7 @@ Entered on %U
  '(org-modules (quote (org-bibtex org-drill org-learn)))
  '(package-selected-packages
    (quote
-    (visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
