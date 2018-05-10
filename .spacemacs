@@ -438,6 +438,7 @@ link in the form of [[url][*]], and leave point at *."
    ((string-equal system-type "gnu/linux")
     (notifications-notify :title "org-pomodoro" :body msg))))
 
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -464,16 +465,27 @@ you should place your code here."
   (with-eval-after-load "org"
     (require 'ox-md nil t) ; enable markdown export for org mode
     (setq org-startup-indented t) ; Enable `org-indent-mode' by default
-    ;; (require 'ob-ipython)
-    ;; (org-babel-do-load-languages
-    ;;  'org-babel-load-languages
-    ;;  '((ipython . t)
-    ;;    ;; other languages..
-    ;;    ))
-    ;; ;; use the julia-installed python stuff to run jupyter
-    ;; (setq ob-ipython-resources-dir "C:\\Users\\sfr\\Dropbox\\org\\obipy-resources")
+    (require 'ob-ipython)
+    (org-babel-do-load-languages
+      'org-babel-load-languages
+      '((ipython . t)
+        ;; other languages..
+        ))
+    ;; use the julia-installed python stuff to run jupyter
+    (setq ob-ipython-resources-dir "C:\\Users\\sfr\\Dropbox\\org\\obipy-resources")
     ;; (setq ob-ipython-command "~/Miniconda3/Scripts/jupyter")
+    (define-key evil-normal-state-map (kbd "M-<return>") 'org-babel-execute-src-block)
+    (define-key evil-insert-state-map (kbd "M-<return>") 'org-babel-execute-src-block)
+    ;; don't prompt me to confirm everytime I want to evaluate a block
+    (setq org-confirm-babel-evaluate nil)
     ;; (setq python-shell-interpreter "~/Miniconda3/python")
+    (add-to-list 'org-structure-template-alist
+                 '("j"
+"
+#+BEGIN_SRC ipython :session :results raw drawer :kernel julia-0.6
+?
+#+END_SRC
+"))
     ;; (require 'org-inlinetask) ; needed for better-org-return
     ;; (evil-define-key 'insert org-mode-map (kbd "RET") 'better-org-return)
     (evil-define-key 'normal org-mode-map (kbd "X") 'org-toggle-latex-fragment)
@@ -530,7 +542,7 @@ cite:${=key=}
   (setq org-log-done nil) ; don't add CLOSED line because we're logging in the logbook
   (setq org-blank-before-new-entry '((heading . nil)
                                      (plain-list-item . nil)))
-  (setq org-agenda-files '("~/Dropbox/org"))
+  (setq org-agenda-files '("~/Dropbox/org/todo.org" "~/Dropbox/org/capture.org"))
   (add-hook 'text-mode-hook #'turn-on-visual-line-mode)
   (setq undo-tree-visualizer-diff nil) ; disable the diff in the undo tree
   ;; force undo-tree enabled in org mode
@@ -539,9 +551,12 @@ cite:${=key=}
 
   (define-key evil-normal-state-map (kbd "C-l") 'insert-url-as-org-link)
   (define-key evil-insert-state-map (kbd "C-l") 'insert-url-as-org-link)
+  (setq org-id-link-to-org-use-id t) ;; store org-mode links using IDs
   ;; (setq org-refile-targets '((("~/Dropbox/org/todo.org") :maxlevel . 2)))
   (setq org-refile-use-outline-path 'file)
-  (setq org-refile-targets '((org-agenda-files :maxlevel . 2)))
+  ;; note this will get the list of refile targets when this config is evaluated
+  (setq org-refile-targets `((,(directory-files "~/Dropbox/org" nil "^[^.].*.org")
+                              :maxlevel . 2)))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-outline-path-complete-in-steps nil) ; show children all at once to helm
   (setq org-agenda-sorting-strategy
