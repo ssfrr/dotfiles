@@ -472,7 +472,7 @@ you should place your code here."
         ;; other languages..
         ))
     ;; use the julia-installed python stuff to run jupyter
-    (setq ob-ipython-resources-dir "C:\\Users\\sfr\\Dropbox\\org\\obipy-resources")
+    (setq ob-ipython-resources-dir "C:\\Users\\sfr\\Dropbox\\org\\obipy-resources\\")
     ;; (setq ob-ipython-command "~/Miniconda3/Scripts/jupyter")
     (define-key evil-normal-state-map (kbd "M-<return>") 'org-babel-execute-src-block)
     (define-key evil-insert-state-map (kbd "M-<return>") 'org-babel-execute-src-block)
