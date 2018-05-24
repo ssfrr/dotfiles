@@ -206,7 +206,7 @@ values."
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
-   dotspacemacs-auto-save-file-location 'original
+   dotspacemacs-auto-save-file-location 'cache
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
    ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
@@ -438,6 +438,12 @@ link in the form of [[url][*]], and leave point at *."
    ((string-equal system-type "gnu/linux")
     (notifications-notify :title "org-pomodoro" :body msg))))
 
+(defun sfr-save-org-buffers ()
+  "Save all org buffers that are visiting a file"
+  (mapc (lambda (buf)
+          (if (buffer-file-name buf)
+              (with-current-buffer buf (save-buffer))))
+        (org-buffer-list 'files)))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
@@ -494,6 +500,10 @@ you should place your code here."
     )
   ;;(setq auto-save-visited-file-name t) ; save directly to the file
   (setq auto-save-timeout 300) ; number of idle seconds before saving
+  ;; custom auto-save for org files, so they stay synced even if I forget to save.
+  ;; for some reason the default auto-save doesn't clear the lockfiles, so we roll
+  ;; our own
+  (run-with-idle-timer auto-save-timeout t 'sfr-save-org-buffers)
 
   ;; Bibliography config
   (require 'org-ref)
@@ -536,7 +546,7 @@ cite:${=key=}
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-agenda-log-mode-items '(clock state))
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "BLOCKED(b@/!)" "|" "DONE(d!/!)" "CANCELED(c@/!)")))
+        '((sequence "TODO(t)" "BLOCKED(b@/!)" "|" "CANCELED(c@/!)" "DONE(d!/!)")))
   (setq org-log-reschedule 'time)
   (setq org-log-into-drawer t)
   (setq org-log-done nil) ; don't add CLOSED line because we're logging in the logbook
