@@ -514,6 +514,8 @@ you should place your code here."
   (setq bibtex-completion-pdf-field "file")
   (setq bibtex-completion-notes-path "~/Dropbox/org/bibliography.org")
   (setq org-ref-bibliography-notes bibtex-completion-notes-path)
+  ;; set up latex export to run bibtex
+  (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
   (setq bibtex-completion-notes-template-one-file
 "
 * ${author} (${year}): ${title}
