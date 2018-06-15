@@ -495,7 +495,8 @@ you should place your code here."
 "))
     ;; (require 'org-inlinetask) ; needed for better-org-return
     ;; (evil-define-key 'insert org-mode-map (kbd "RET") 'better-org-return)
-    (evil-define-key 'normal org-mode-map (kbd "X") 'org-toggle-latex-fragment)
+    (evil-define-key 'normal org-mode-map (kbd "C-k") 'org-toggle-latex-fragment)
+    (evil-define-key 'insert org-mode-map (kbd "C-k") 'org-toggle-latex-fragment)
     ;; bigger latex previews
     (setq org-format-latex-options (plist-put org-format-latex-options :scale sfr-latexscale))
     )
