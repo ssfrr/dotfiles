@@ -470,6 +470,7 @@ you should place your code here."
   (setq vc-follow-symlinks t) ; act as if we'd opened the real file, makes VC integration work better
   (with-eval-after-load "org"
     (require 'ox-md nil t) ; enable markdown export for org mode
+    (setq org-export-initial-scope 'subtree)
     (setq org-startup-indented t) ; Enable `org-indent-mode' by default
     (require 'ob-ipython)
     (org-babel-do-load-languages
@@ -631,6 +632,7 @@ Entered on %U
                'org-optimize-window-after-visibility-change)
   ;; org-pomodoro mode hooks
   (with-eval-after-load "org-pomodoro"
+    (setq org-pomodoro-play-sounds nil)
     (add-hook 'org-pomodoro-started-hook
               (lambda ()
                 (org-pom-notify "Pomodoro Started. You can do it!")))

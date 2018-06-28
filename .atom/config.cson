@@ -46,20 +46,19 @@
   ink:
     monotypeResults: true
   "julia-client":
-    enableMenu: true
-    enableToolBar: true
     firstBoot: false
     juliaOptions:
       arguments: [
         "--color=true"
       ]
     juliaPath: "julia6"
-    launchOnStartup: true
   latexer:
     autocomplete_environments: false
   "lcov-info":
     highlightType: "gutter"
   linter: {}
+  "linter-ui-default":
+    panelHeight: 203
   "markdown-preview-katex": {}
   minimap:
     absoluteMode: true
