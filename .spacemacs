@@ -39,6 +39,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     csv
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -468,6 +469,7 @@ you should place your code here."
 
   ;; Some generic file-handling config
   (setq vc-follow-symlinks t) ; act as if we'd opened the real file, makes VC integration work better
+  (setq exec-path-from-shell-check-startup-files t) ; don't complain about setting PATH from .zshrc
   (with-eval-after-load "org"
     (require 'ox-md nil t) ; enable markdown export for org mode
     (setq org-export-initial-scope 'subtree)
@@ -557,7 +559,12 @@ cite:${=key=}
   (setq org-log-done nil) ; don't add CLOSED line because we're logging in the logbook
   (setq org-blank-before-new-entry '((heading . nil)
                                      (plain-list-item . nil)))
-  (setq org-agenda-files '("~/Dropbox/org/todo.org" "~/Dropbox/org/capture.org"))
+  ;; note that this will update the agenda files list whenver this config is evaluated,
+  ;; not every time the agenda is opened
+  (setq org-agenda-files `("~/Dropbox/org/todo.org"
+                           "~/Dropbox/org/capture.org"
+                           "~/Dropbox/org/habits.org"
+                           "~/Dropbox/org/projects"))
   (add-hook 'text-mode-hook #'turn-on-visual-line-mode)
   (setq undo-tree-visualizer-diff nil) ; disable the diff in the undo tree
   ;; force undo-tree enabled in org mode
@@ -567,11 +574,14 @@ cite:${=key=}
   (define-key evil-normal-state-map (kbd "C-l") 'insert-url-as-org-link)
   (define-key evil-insert-state-map (kbd "C-l") 'insert-url-as-org-link)
   (setq org-id-link-to-org-use-id t) ;; store org-mode links using IDs
-  ;; (setq org-refile-targets '((("~/Dropbox/org/todo.org") :maxlevel . 2)))
   (setq org-refile-use-outline-path 'file)
   ;; note this will get the list of refile targets when this config is evaluated
-  (setq org-refile-targets `((,(directory-files "~/Dropbox/org" nil "^[^.].*.org")
-                              :maxlevel . 2)))
+  ;; not every time the agenda is opened
+  (setq org-refile-targets `((("~/Dropbox/org/habits.org"
+                               "~/Dropbox/org/lists.org"
+                               "~/Dropbox/org/notes.org"
+                               "~/Dropbox/org/todo.org") . (:maxlevel . 2))
+                             (,(file-expand-wildcards "~/Dropbox/org/projects/[a-zA-Z]*.org") . (:maxlevel . 1))))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-outline-path-complete-in-steps nil) ; show children all at once to helm
   (setq org-agenda-sorting-strategy
@@ -660,7 +670,7 @@ Entered on %U
  '(org-modules (quote (org-bibtex org-drill org-learn)))
  '(package-selected-packages
    (quote
-    (ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

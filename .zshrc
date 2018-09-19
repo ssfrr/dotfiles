@@ -87,9 +87,11 @@ alias mkdir='mkdir -pv'
 alias julia4='julia4 --color=yes'
 alias julia5='julia5 --color=yes'
 alias julia6='julia6 --color=yes'
+alias julia1='julia1 --color=yes'
 alias j4=julia4
 alias j5=julia5
 alias j6=julia6
+alias j1=julia1
 
 alias v=vim
 
@@ -105,3 +107,6 @@ if [ -e $HOME/.zshrc_local ]; then
 else
     echo "${YELLOW}No file $HOME/.zshrc_local found. Feel free to create one${NORMAL}"
 fi
+
+# added by travis gem
+[ -f /home/sfr/.travis/travis.sh ] && source /home/sfr/.travis/travis.sh
