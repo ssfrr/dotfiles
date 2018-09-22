@@ -509,10 +509,14 @@ you should place your code here."
   ;; for some reason the default auto-save doesn't clear the lockfiles, so we roll
   ;; our own
   (run-with-idle-timer auto-save-timeout t 'sfr-save-org-buffers)
-
+  ;; set html export to use HTML checkboxes
+  (setq org-html-checkbox-type 'html)
   ;; Bibliography config
   (require 'org-ref)
   (define-key evil-normal-state-map "\"" 'org-ref-insert-link)
+  ;; make it so that when leaving insert mode the cursor doesn't get moved back 1. This way we can insert
+  ;; things where we want them.
+  (setq evil-move-cursor-back nil)
   (setq bibtex-completion-bibliography '("~/bibliography.bib"))
   (setq org-ref-default-bibliography bibtex-completion-bibliography)
   (setq bibtex-completion-pdf-field "file")
@@ -565,6 +569,8 @@ cite:${=key=}
                            "~/Dropbox/org/capture.org"
                            "~/Dropbox/org/habits.org"
                            "~/Dropbox/org/projects"))
+  ;; use global tags list from agenda files when offering tag completion
+  (setq org-complete-tags-always-offer-all-agenda-tags t)
   (add-hook 'text-mode-hook #'turn-on-visual-line-mode)
   (setq undo-tree-visualizer-diff nil) ; disable the diff in the undo tree
   ;; force undo-tree enabled in org mode
@@ -590,15 +596,15 @@ cite:${=key=}
           (tags priority-down category-keep)
           (search category-keep)))
   (setq org-agenda-span 'day)
-  ;; this view is in-progress - can't figure out how to show DONE items in log mode
-  ;; but not in the item list
+  ;; the PROJECT tag should only apply to the heading, not to all the child tasks
+  ;;(setq org-tags-exclude-from-inheritance )
   (setq org-agenda-custom-commands
-        '(("d" "Day View"
-           ((agenda ""
-                    ((org-agenda-span 'day)
-                     (org-agenda-skip-function
-                      '(org-agenda-skip-entry-if 'todo 'done)))
-                    (alltodo ""))))))
+        '(("a" "Daily Agenda" agenda ""
+           ((org-agenda-start-with-log-mode '(clock state))))
+          ("p" "Projects" tags "PROJECT"
+           ((org-use-tag-inheritance nil)))
+          ("m" "Misc. Unscheduled ToDos" tags-todo "-PROJECT-HABIT"
+           ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))))
   (setq org-default-notes-file "~/Dropbox/org/capture.org")
   (setq org-capture-templates
         '(("t" "Todo")
