@@ -39,7 +39,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     csv
+     ;; csv
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -587,7 +587,7 @@ cite:${=key=}
                                "~/Dropbox/org/lists.org"
                                "~/Dropbox/org/notes.org"
                                "~/Dropbox/org/todo.org") . (:maxlevel . 2))
-                             (,(file-expand-wildcards "~/Dropbox/org/projects/[a-zA-Z]*.org") . (:maxlevel . 1))))
+                             (,(file-expand-wildcards "~/Dropbox/org/projects/[a-zA-Z]*.org") . (:maxlevel . 2))))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-outline-path-complete-in-steps nil) ; show children all at once to helm
   (setq org-agenda-sorting-strategy
@@ -599,7 +599,7 @@ cite:${=key=}
   ;; the PROJECT tag should only apply to the heading, not to all the child tasks
   ;;(setq org-tags-exclude-from-inheritance )
   (setq org-agenda-custom-commands
-        '(("a" "Daily Agenda" agenda ""
+        '(("a" "Daily Agenda" ((agenda "") (tags "PROJECT+FOCUSED"))
            ((org-agenda-start-with-log-mode '(clock state))))
           ("p" "Projects" tags "PROJECT"
            ((org-use-tag-inheritance nil)))
