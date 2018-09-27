@@ -596,8 +596,17 @@ cite:${=key=}
           (tags priority-down category-keep)
           (search category-keep)))
   (setq org-agenda-span 'day)
-  ;; the PROJECT tag should only apply to the heading, not to all the child tasks
-  ;;(setq org-tags-exclude-from-inheritance )
+  ;; don't use different font heights for emphasis in the agenda
+  ;; (setq spacemacs-theme-org-agenda-height nil)
+  (custom-set-faces
+   '(org-agenda-done ((t (:foreground "#86dc2f" :height 1.0)))))
+
+  (custom-set-faces
+   '(org-scheduled-today ((t (:foreground "#bc6ec5" :height 1.0)))))
+  (setq org-agenda-prefix-format '((agenda . " %-12:c%?-12t% s")
+                                   (todo . " %-12:c%l")
+                                   (tags . " %-12:c%l")
+                                   (search . " %-12:c%l")))
   (setq org-agenda-custom-commands
         '(("a" "Daily Agenda" ((agenda "") (tags "PROJECT+FOCUSED"))
            ((org-agenda-start-with-log-mode '(clock state))))
