@@ -534,6 +534,16 @@ cite:${=key=}
 ")
   (define-key evil-normal-state-map (kbd "C-' C-'") 'helm-bibtex)
   (define-key evil-insert-state-map (kbd "C-' C-'") 'helm-bibtex)
+  ; prevent headlines from being bigger than normal text
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (dolist (face '(org-level-1
+                              org-level-2
+                              org-level-3
+                              org-level-4
+                              org-level-5))
+                (set-face-attribute face nil :weight 'semi-bold :height 1.0))))
+
   (setq bibtex-completion-pdf-open-function 'open-in-external-app)
   (with-eval-after-load "org-ref"
     ;; adapted from @shu-cheng at https://github.com/jkitchin/org-ref/issues/485
