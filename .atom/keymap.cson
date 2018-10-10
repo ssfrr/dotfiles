@@ -32,6 +32,9 @@
   ': v s enter': 'pane:split-right'
   ': s p enter': 'pane:split-down'
   'Z Z': 'custom:save-and-close'
+  'tab': 'vim-mode-plus:toggle-fold'
+  'shift-tab': 'editor:fold-all'
+  'Q': 'editor:unfold-all'
 
 'atom-text-editor.vim-mode-plus.visual-mode':
   'g q': 'autoflow:reflow-selection'
@@ -42,7 +45,7 @@
 
 'atom-text-editor.vim-mode-plus.insert-mode':
   'j k': 'vim-mode-plus:activate-normal-mode' # jk to escape
-  
+
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
   'cmd-enter': 'hydrogen:run'
   'j': 'vim-mode-plus:move-down-screen'

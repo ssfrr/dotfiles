@@ -39,6 +39,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     html
      ;; csv
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -52,6 +53,8 @@ values."
      ;; git
      ;; markdown
      org
+     (org :variables
+          org-enable-reveal-js-support t)
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -471,7 +474,8 @@ you should place your code here."
   (setq vc-follow-symlinks t) ; act as if we'd opened the real file, makes VC integration work better
   (setq exec-path-from-shell-check-startup-files t) ; don't complain about setting PATH from .zshrc
   (with-eval-after-load "org"
-    (require 'ox-md nil t) ; enable markdown export for org mode
+    (require 'ox-md) ; enable markdown export for org mode
+    (require 'ox-reveal) ; enable reveal.js export
     (setq org-export-initial-scope 'subtree)
     (setq org-startup-indented t) ; Enable `org-indent-mode' by default
     (require 'ob-ipython)
@@ -513,6 +517,37 @@ you should place your code here."
   (setq org-html-checkbox-type 'html)
   ;; Bibliography config
   (require 'org-ref)
+  ;; override the built-in bibtex reference formatting to strip braces {{}}
+  (defun org-ref-format-entry (key)
+    "Returns a formatted bibtex entry for KEY."
+    (let* ((bibtex-completion-bibliography (org-ref-find-bibliography))
+	         (s (org-ref-format-bibtex-entry (ignore-errors (bibtex-completion-get-entry key)))))
+      (replace-regexp-in-string "{\\|}" "" s)))
+  ;; use fancier formatted citations with org-mode formatting
+  (setq org-ref-formatted-citation-backend "org")
+  ;; override org-ref's default citation formats when copying into org and text files. My
+  ;; bibliography database tends to be not so clean, so we only want minimal fields
+  (setq org-ref-formatted-citation-formats
+        '(("text"
+           ("article" . "${author}, ${title}, ${journal}, ${volume}(${number}), ${pages} (${year}). ${doi}")
+           ("inproceedings" . "${author}, ${title}, In ${editor}, ${booktitle} (pp. ${pages}) (${year}). ${address}: ${publisher}.")
+           ("book" . "${author}, ${title} (${year}), ${address}: ${publisher}.")
+           ("phdthesis" . "${author}, ${title} (Doctoral dissertation) (${year}). ${school}, ${address}.")
+           ("inbook" . "${author}, ${title}, In ${editor} (Eds.), ${booktitle} (pp. ${pages}) (${year}). ${address}: ${publisher}.")
+           ("incollection" . "${author}, ${title}, In ${editor} (Eds.), ${booktitle} (pp. ${pages}) (${year}). ${address}: ${publisher}.")
+           ("proceedings" . "${editor} (Eds.), ${booktitle} (${year}). ${address}: ${publisher}.")
+           ("unpublished" . "${author}, ${title} (${year}). Unpublished manuscript.")
+           (nil . "${author}, ${title} (${year})."))
+          ("org"
+           ("article" . "${author}, /${title}/, ${journal}, *${volume}(${number})*, ${pages} (${year}). ${doi}")
+           ("inproceedings" . "${author}, /${title}/, In ${booktitle} (pp. ${pages}) (${year}). ${address}")
+           ("book" . "${author}, /${title}/ (${year}), ${address}: ${publisher}.")
+           ("phdthesis" . "${author}, /${title}/ (Doctoral dissertation) (${year}). ${school}, ${address}.")
+           ("inbook" . "${author}, /${title}/, In ${editor} (Eds.), ${booktitle} (pp. ${pages}) (${year}). ${address}: ${publisher}.")
+           ("incollection" . "${author}, /${title}/, In ${editor} (Eds.), ${booktitle} (pp. ${pages}) (${year}). ${address}: ${publisher}.")
+           ("proceedings" . "${editor} (Eds.), _${booktitle}_ (${year}). ${address}: ${publisher}.")
+           ("unpublished" . "${author}, /${title}/ (${year}). Unpublished manuscript.")
+           (nil . "${author}, /${title}/ (${year})."))))
   (define-key evil-normal-state-map "\"" 'org-ref-insert-link)
   ;; make it so that when leaving insert mode the cursor doesn't get moved back 1. This way we can insert
   ;; things where we want them.
@@ -622,7 +657,7 @@ cite:${=key=}
            ((org-agenda-start-with-log-mode '(clock state))))
           ("p" "Projects" tags "PROJECT"
            ((org-use-tag-inheritance nil)))
-          ("m" "Misc. Unscheduled ToDos" tags-todo "-PROJECT-HABIT"
+          ("m" "Misc. Unscheduled ToDos" tags "-PROJECT-HABIT/TODO|BLOCKED|DONE|CANCELED"
            ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))))
   (setq org-default-notes-file "~/Dropbox/org/capture.org")
   (setq org-capture-templates
@@ -695,10 +730,15 @@ Entered on %U
  '(org-modules (quote (org-bibtex org-drill org-learn)))
  '(package-selected-packages
    (quote
-    (csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode ox-reveal csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+ '(safe-local-variable-values
+   (quote
+    ((org-export-initial-scope . buffer)
+     (org-export-initial-scope . subtree)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(org-agenda-done ((t (:foreground "#86dc2f" :height 1.0))))
+ '(org-scheduled-today ((t (:foreground "#bc6ec5" :height 1.0)))))
