@@ -505,8 +505,7 @@ you should place your code here."
     (evil-define-key 'normal org-mode-map (kbd "C-k") 'org-toggle-latex-fragment)
     (evil-define-key 'insert org-mode-map (kbd "C-k") 'org-toggle-latex-fragment)
     ;; bigger latex previews
-    (setq org-format-latex-options (plist-put org-format-latex-options :scale sfr-latexscale))
-    )
+    (setq org-format-latex-options (plist-put org-format-latex-options :scale sfr-latexscale)))
   ;;(setq auto-save-visited-file-name t) ; save directly to the file
   (setq auto-save-timeout 300) ; number of idle seconds before saving
   ;; custom auto-save for org files, so they stay synced even if I forget to save.
@@ -601,11 +600,6 @@ cite:${=key=}
   (setq org-agenda-skip-scheduled-if-done t)
   (setq org-agenda-skip-deadline-if-done t)
   (setq org-clock-report-include-clocking-task t)
-  ;; don't display items and files with 0 times in the clockreport
-  (setq org-agenda-clockreport-parameter-plist
-        (plist-put org-agenda-clockreport-parameter-plist :stepskip0 t))
-  (setq org-agenda-clockreport-parameter-plist
-        (plist-put org-agenda-clockreport-parameter-plist :fileskip0 t))
   (setq org-agenda-log-mode-items '(clock state))
   (setq org-todo-keywords
         '((sequence "TODO(t)" "BLOCKED(b@/!)" "|" "CANCELED(c@/!)" "DONE(d!/!)")))
@@ -658,13 +652,17 @@ cite:${=key=}
                                    (todo . " %-12:c%l")
                                    (tags . " %-12:c%l")
                                    (search . " %-12:c%l")))
+  ;; don't display items and files with 0 times in the clockreport
+  (setq org-agenda-clockreport-parameter-plist
+        '(:link t :maxlevel 2 :stepskip0 t :fileskip0 t))
   (setq org-agenda-custom-commands
         '(("a" "Daily Agenda" ((agenda "") (tags "PROJECT+FOCUSED"))
            ((org-agenda-start-with-log-mode '(clock state))))
           ("p" "Projects" tags "PROJECT"
            ((org-use-tag-inheritance nil)))
           ("m" "Misc. Unscheduled ToDos" tags "-PROJECT-HABIT/TODO|BLOCKED|DONE|CANCELED"
-           ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled))))))
+           ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled)))))
+        )
   (setq org-default-notes-file "~/Dropbox/org/capture.org")
   (setq org-capture-templates
         '(("t" "Todo")
@@ -736,7 +734,7 @@ Entered on %U
  '(org-modules (quote (org-bibtex org-drill org-learn)))
  '(package-selected-packages
    (quote
-    (auto-yasnippet ac-ispell helm-company helm-c-yasnippet fuzzy web-completion-data company-statistics company yasnippet auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode ox-reveal csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (company-web auto-yasnippet ac-ispell helm-company helm-c-yasnippet fuzzy web-completion-data company-statistics company yasnippet auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode ox-reveal csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(safe-local-variable-values
    (quote
     ((org-export-initial-scope . buffer)
