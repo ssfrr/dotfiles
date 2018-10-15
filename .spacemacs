@@ -615,7 +615,7 @@ cite:${=key=}
                            "~/Dropbox/org/habits.org"
                            "~/Dropbox/org/projects"))
   ;; use global tags list from agenda files when offering tag completion
-  (setq org-complete-tags-always-offer-all-agenda-tags t)
+  ;; (setq org-complete-tags-always-offer-all-agenda-tags t)
   (add-hook 'text-mode-hook #'turn-on-visual-line-mode)
   (setq undo-tree-visualizer-diff nil) ; disable the diff in the undo tree
   ;; force undo-tree enabled in org mode
@@ -634,6 +634,8 @@ cite:${=key=}
                                "~/Dropbox/org/todo.org") . (:maxlevel . 2))
                              (,(file-expand-wildcards "~/Dropbox/org/projects/[a-zA-Z]*.org") . (:maxlevel . 2))))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
+  ;; short list of common tags to be set with ,,
+  (setq org-tag-alist '(("PROJECT" . ?p) ("FOCUSED" . ?f) ("HABIT" . ?h)))
   (setq org-outline-path-complete-in-steps nil) ; show children all at once to helm
   (setq org-agenda-sorting-strategy
         '((agenda todo-state-up habit-down time-up priority-down category-keep)
