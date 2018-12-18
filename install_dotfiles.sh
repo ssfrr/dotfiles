@@ -52,7 +52,9 @@ cd dotfiles
 # pull submodules
 git submodule update --init
 
-for conffile in zlogin zlogout zprofile zshenv
+# we're using a custom zprofile so that we can add
+# settings for non-interactive shells
+for conffile in zlogin zlogout zshenv
 do
     echo "Linking ${conffile}"
     ln -s ~/.zprezto/runcoms/${conffile} ~/.${conffile}
