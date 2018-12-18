@@ -34,7 +34,6 @@
     excludeVcsIgnoredPaths: false
     telemetryConsent: "no"
   editor:
-    fontSize: 17
     invisibles: {}
     scrollPastEnd: true
     scrollSensitivity: 20
@@ -51,6 +50,8 @@
     juliaOptions:
       bootMode: "Basic"
     juliaPath: "/home/sfr/local/bin/julia"
+    uiOptions:
+      resultsDisplayMode: "block"
   latexer:
     autocomplete_environments: false
   "lcov-info":

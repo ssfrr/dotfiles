@@ -606,6 +606,8 @@ cite:${=key=}
   (setq org-log-reschedule 'time)
   (setq org-log-into-drawer t)
   (setq org-log-done nil) ; don't add CLOSED line because we're logging in the logbook
+  ;; refile into top rather than bottom of headings
+  (setq org-reverse-note-order t)
   (setq org-blank-before-new-entry '((heading . nil)
                                      (plain-list-item . nil)))
   ;; note that this will update the agenda files list whenver this config is evaluated,
