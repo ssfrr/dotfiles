@@ -456,6 +456,8 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; apparently faster than the default scp
+  (setq tramp-default-method "ssh")
   ;; move through softwrapped lines naturally
   ;; from https://stackoverflow.com/a/20899418/269247
   (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
@@ -629,7 +631,6 @@ cite:${=key=}
   ;; note this will get the list of refile targets when this config is evaluated
   ;; not every time the agenda is opened
   (setq org-refile-targets `((("~/Dropbox/org/habits.org"
-                               "~/Dropbox/org/lists.org"
                                "~/Dropbox/org/notes.org"
                                "~/Dropbox/org/todo.org") . (:maxlevel . 2))
                              (,(file-expand-wildcards "~/Dropbox/org/projects/[a-zA-Z]*.org") . (:maxlevel . 2))))

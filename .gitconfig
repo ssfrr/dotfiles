@@ -28,3 +28,5 @@
     subup = submodule update --init --recursive
 [github]
     user = ssfrr
+[credential]
+	helper = /usr/lib/git-core/git-credential-libsecret
