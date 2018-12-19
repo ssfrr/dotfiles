@@ -1,4 +1,5 @@
 ENV["EDITOR"] = "atom -a"
+ENV["JULIA_PKG_DEVDIR"] = "$(ENV["HOME"])/Dropbox/juliadev"
 
 @info "Importing Revise"
 try
