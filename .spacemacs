@@ -73,6 +73,7 @@ values."
      org-drill-table
      visual-fill-column
      ob-ipython
+     julia-mode
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -464,6 +465,8 @@ you should place your code here."
   (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
   (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
   (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+  ;; enable auto-indent on RET
+  ;; (evil-define-key 'insert org-mode-map (kbd "RET") 'newline-and-indent)
   ;; make horizontal movement cross lines
   (setq-default evil-cross-lines t)
 
@@ -471,6 +474,7 @@ you should place your code here."
   (global-set-key (kbd "C-<return>") 'eval-defun)
   (global-set-key (kbd "C-S-<return>") 'eval-buffer)
   (spacemacs/set-leader-keys "b z" `visual-fill-column-mode) ; toggle wrapping
+
 
   ;; Some generic file-handling config
   (setq vc-follow-symlinks t) ; act as if we'd opened the real file, makes VC integration work better
@@ -480,6 +484,8 @@ you should place your code here."
     (require 'ox-reveal) ; enable reveal.js export
     (setq org-export-initial-scope 'subtree)
     (setq org-startup-indented t) ; Enable `org-indent-mode' by default
+    (setq org-src-tab-acts-natively t)
+    (setq org-src-preserve-indentation t)
     (require 'ob-ipython)
     (org-babel-do-load-languages
       'org-babel-load-languages
@@ -506,6 +512,8 @@ you should place your code here."
     ;; (evil-define-key 'insert org-mode-map (kbd "RET") 'better-org-return)
     (evil-define-key 'normal org-mode-map (kbd "C-k") 'org-toggle-latex-fragment)
     (evil-define-key 'insert org-mode-map (kbd "C-k") 'org-toggle-latex-fragment)
+    (evil-define-key 'normal org-mode-map (kbd "C-/") 'comment-line)
+    (evil-define-key 'visual org-mode-map (kbd "C-/") 'comment-region)
     ;; bigger latex previews
     (setq org-format-latex-options (plist-put org-format-latex-options :scale sfr-latexscale)))
   ;;(setq auto-save-visited-file-name t) ; save directly to the file
@@ -739,7 +747,7 @@ Entered on %U
  '(org-modules (quote (org-bibtex org-drill org-learn)))
  '(package-selected-packages
    (quote
-    (company-web auto-yasnippet ac-ispell helm-company helm-c-yasnippet fuzzy web-completion-data company-statistics company yasnippet auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode ox-reveal csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (julia-mode company-web auto-yasnippet ac-ispell helm-company helm-c-yasnippet fuzzy web-completion-data company-statistics company yasnippet auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode ox-reveal csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(safe-local-variable-values
    (quote
     ((org-export-initial-scope . buffer)
