@@ -1,13 +1,14 @@
 ENV["EDITOR"] = "atom -a"
 ENV["JULIA_PKG_DEVDIR"] = "$(ENV["HOME"])/Dropbox/juliadev"
 
-@info "Importing Revise"
-try
-    using Revise
-    # Turn on Revise's automatic-evaluation behavior
-    Revise.async_steal_repl_backend()
-catch
-    @warn "Could not load Revise"
+atreplinit() do repl
+    @info "Importing Revise"
+    try
+        @eval using Revise
+        @async Revise.wait_steal_repl_backend()
+    catch
+        @warn "Could not load Revise"
+    end
 end
 
 @info "Importing OhMyREPL"
