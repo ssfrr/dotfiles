@@ -5,6 +5,11 @@
 
 PLATFORM=`uname`
 
+RED="\e[0;31m"
+YELLOW="\e[0;33m"
+GREEN="\e[0;32m"
+NORMAL="\e[0m"
+
 if [ $PLATFORM == 'Darwin' ]; then
     which zsh > /dev/null || (echo "Installing ZSH"; brew install zsh)
     grep /usr/local/bin/zsh /etc/shells || echo "Adding ZSH to shells"; sudo echo "/usr/local/bin/zsh" >> /etc/shells
@@ -33,37 +38,55 @@ else
     exit 1
 fi
 
-cd ~
-
-# create symbolic links for config files
-for file in ~/dotfiles/.*
-do
-   ln -s ${file}
-done
-
-# make swap directory for vim swapfiles
-mkdir ~/.vim/swp
-
-# remove the link to the .git directory so that our home dir isn't
-# seen as versioned
-rm ~/.git
-
-cd dotfiles
+cd ~/dotfiles
 # pull submodules
 git submodule update --init
 
+cd ~
+
+# we don't want all of .julia symlinked, just the config files
+mkdir -p .julia/config
+
+# create symbolic links for config files
+for file in dotfiles/.* dotfiles/.julia/config/*
+do
+    dest="${file#dotfiles/}"
+    [ "${dest}" == "." ] && continue
+    [ "${dest}" == ".." ] && continue
+    [ "${dest}" == ".julia" ] && continue
+    [ "${dest}" == ".config" ] && continue
+    [ "${dest}" == ".git" ] && continue
+    if [[ -L ${dest} ]]; then
+        echo -e "${YELLOW}${dest} symlink exists, skipping...${NORMAL}"
+    elif [[ -e ${dest} ]]; then
+        echo -e "${RED}WARNING: ${dest} exists as file, skipping...${NORMAL}"
+    else
+        echo -e "${GREEN}symlinking ${dest}${NORMAL}"
+        ln -s ${file} ${dest}
+    fi
+done
+
+# make swap directory for vim swapfiles
+mkdir -p ~/.vim/swp
+
 # we're using a custom zprofile so that we can add
 # settings for non-interactive shells
-for conffile in zlogin zlogout zshenv
+for file in zlogin zlogout zshenv
 do
-    echo "Linking ${conffile}"
-    ln -s ~/.zprezto/runcoms/${conffile} ~/.${conffile}
+    dest=.${file}
+    if [[ -L ${dest} ]]; then
+        echo -e "${YELLOW}${dest} symlink exists, skipping...${NORMAL}"
+    elif [[ -e ${dest} ]]; then
+        echo -e "${RED}WARNING: ${dest} exists as file, skipping...${NORMAL}"
+    else
+        echo -e "${GREEN}symlinking ${dest}${NORMAL}"
+        ln -s .zprezto/runcoms/${file} ${dest}
+    fi
 done
 
 # install atom packages
-which apm > /dev/null && \
-    apm install --packages-file .atom/packages.txt || \
-    echo "apm not found. not installing Atom packages"
-
+# which apm > /dev/null && \
+#     apm install --packages-file .atom/packages.txt || \
+#     echo "apm not found. not installing Atom packages"
 
 echo "Dotfile setup complete. You may need to log out completely for new settings to take effect"
