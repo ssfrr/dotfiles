@@ -74,6 +74,7 @@ This function should only modify configuration layer settings."
      ob-ipython
      julia-mode
      evil-commentary
+     company-math
      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -619,13 +620,14 @@ before packages are loaded."
     (setq org-startup-indented t) ; Enable `org-indent-mode' by default
     (setq org-src-tab-acts-natively t)
     (setq org-src-preserve-indentation t)
-    (require 'ob-ipython)
-    (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((ipython . t)
-        ;; other languages..
-        ))
-    ;; use the julia-installed python stuff to run jupyter
+    ;; currently ob-ipython seems to be throwing an error, so disable it
+    ;; (require 'ob-ipython)
+    ;; (org-babel-do-load-languages
+    ;;   'org-babel-load-languages
+    ;;   '((ipython . t)
+    ;;     ;; other languages..
+    ;;     ))
+    ;; ;; use the julia-installed python stuff to run jupyter
     (setq ob-ipython-resources-dir "C:\\Users\\sfr\\Dropbox\\org\\obipy-resources\\")
     ;; (setq ob-ipython-command "~/Miniconda3/Scripts/jupyter")
     (spacemacs/set-leader-keys "j h" 'helm-org-agenda-files-headings)
@@ -874,6 +876,8 @@ Entered on %U
     (add-hook 'org-pomodoro-killed-hook
               (lambda ()
                 (org-pom-notify "Pomodoro Cancelled"))))
+  ;; enable unicode math symbol completion
+  (add-to-list 'company-backends 'company-math-symbols-unicode)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -911,7 +915,7 @@ This function is called at the very end of Spacemacs initialization."
  '(org-modules (quote (org-bibtex org-drill org-learn)))
  '(package-selected-packages
    (quote
-    (evil-commentary julia-mode company-web auto-yasnippet ac-ispell helm-company helm-c-yasnippet fuzzy web-completion-data company-statistics company yasnippet auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode ox-reveal csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (company-math math-symbol-lists julia-mode company-web auto-yasnippet ac-ispell helm-company helm-c-yasnippet fuzzy web-completion-data company-statistics company yasnippet auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode ox-reveal csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(safe-local-variable-values
    (quote
     ((org-export-initial-scope . buffer)
