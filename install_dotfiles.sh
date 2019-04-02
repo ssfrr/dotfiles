@@ -15,9 +15,15 @@ if [ $PLATFORM == 'Darwin' ]; then
     grep /usr/local/bin/zsh /etc/shells || echo "Adding ZSH to shells"; sudo echo "/usr/local/bin/zsh" >> /etc/shells
     chsh -s /usr/local/bin/zsh
 
-elif [ $PLATFORM == 'Linux' ] && which apt-get > /dev/null; then
+elif [ $PLATFORM == 'Linux' ] && which apt-get > /dev/null 2>&1; then
     # install ZSH if necessary
     which zsh > /dev/null || (echo "Installing ZSH..."; sudo apt-get install zsh)
+    grep /usr/bin/zsh /etc/shells > /dev/null || (echo "Adding ZSH to shells";  sudo echo "/usr/bin/zsh" >> /etc/shells)
+    grep `whoami` /etc/passwd | grep zsh  > /dev/null || (echo "Changing default shell to ZSH..."; chsh -s /usr/bin/zsh)
+
+elif [ $PLATFORM == 'Linux' ] && which pacman > /dev/null 2>&1; then
+    # install ZSH if necessary
+    which zsh > /dev/null || (echo "Installing ZSH..."; sudo pacman -Ss zsh)
     grep /usr/bin/zsh /etc/shells > /dev/null || (echo "Adding ZSH to shells";  sudo echo "/usr/bin/zsh" >> /etc/shells)
     grep `whoami` /etc/passwd | grep zsh  > /dev/null || (echo "Changing default shell to ZSH..."; chsh -s /usr/bin/zsh)
 
