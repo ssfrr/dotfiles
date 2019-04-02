@@ -48,16 +48,21 @@ cd ~
 mkdir -p .julia/config
 
 # create symbolic links for config files
-for file in dotfiles/.* dotfiles/.julia/config/*
+for file in ~/dotfiles/.* ~/dotfiles/.julia/config/*
 do
-    dest="${file#dotfiles/}"
+    dest="${file#~/dotfiles/}"
     [ "${dest}" == "." ] && continue
     [ "${dest}" == ".." ] && continue
     [ "${dest}" == ".julia" ] && continue
     [ "${dest}" == ".config" ] && continue
     [ "${dest}" == ".git" ] && continue
     if [[ -L ${dest} ]]; then
-        echo -e "${YELLOW}${dest} symlink exists, skipping...${NORMAL}"
+        linktgt=`readlink -f ${dest}`
+        if [ "${linktgt}" == "${file}" ]; then
+            echo -e "${YELLOW}${dest} symlink exists, skipping...${NORMAL}"
+        else
+            echo -e "${RED}WARNING: ${dest} exists as symlink but destination is ${linktgt}, skipping...${NORMAL}"
+        fi
     elif [[ -e ${dest} ]]; then
         echo -e "${RED}WARNING: ${dest} exists as file, skipping...${NORMAL}"
     else
