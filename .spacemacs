@@ -38,6 +38,7 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     markdown
      html
      ;; csv
      ;; ----------------------------------------------------------------
@@ -763,6 +764,7 @@ cite:${=key=}
                                      (plain-list-item . nil)))
   ;; note that this will update the agenda files list whenver this config is evaluated,
   ;; not every time the agenda is opened
+  ;; should this includes notes.org??
   (setq org-agenda-files `("~/Dropbox/org/todo.org"
                            "~/Dropbox/org/capture.org"
                            "~/Dropbox/org/habits.org"
@@ -817,7 +819,9 @@ cite:${=key=}
           ("m" "Misc. Unscheduled ToDos" tags "-PROJECT-HABIT/TODO|BLOCKED|DONE|CANCELED"
            ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled)))))
         )
-  (setq org-default-notes-file "~/Dropbox/org/capture.org")
+  ;; added with-eval-after-load so the spacemacs layer wouldn't clobber this config
+  (with-eval-after-load 'org
+    (setq org-default-notes-file "~/Dropbox/org/capture.org"))
   (setq org-capture-templates
         '(("t" "Todo")
           ("tt" "Todo" entry (file "")
@@ -890,7 +894,7 @@ Entered on %U
  '(org-modules (quote (org-bibtex org-drill org-learn)))
  '(package-selected-packages
    (quote
-    (julia-mode company-web auto-yasnippet ac-ispell helm-company helm-c-yasnippet fuzzy web-completion-data company-statistics company yasnippet auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode ox-reveal csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
+    (mmm-mode markdown-toc markdown-mode gh-md julia-mode company-web auto-yasnippet ac-ispell helm-company helm-c-yasnippet fuzzy web-completion-data company-statistics company yasnippet auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode ox-reveal csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
  '(safe-local-variable-values
    (quote
     ((org-export-initial-scope . buffer)

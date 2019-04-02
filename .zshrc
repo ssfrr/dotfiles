@@ -41,7 +41,7 @@ export PATH="$HOME/dev/codingstandards:$PATH"
 export PATH="$HOME/local/bin:$PATH"
 export PATH="$HOME/scripts:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
-export EDITOR="atom -a"
+export EDITOR="vim"
 export VISUAL=$EDITOR
 
 alias ijulia="ipython notebook --profile=julia"
