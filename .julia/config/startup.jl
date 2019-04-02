@@ -1,22 +1,25 @@
-ENV["EDITOR"] = "atom -a"
 ENV["JULIA_PKG_DEVDIR"] = "$(ENV["HOME"])/Dropbox/juliadev"
+
+using Pkg
+if isfile("Project.toml")
+    # auto-activate project in current directory
+    @info "Activating project in $(pwd())"
+    Pkg.activate(".")
+end
 
 @info "Importing Revise"
 try
     using Revise
-    # Turn on Revise's automatic-evaluation behavior
+    # configure Revise to run revise() before every REPL eval
     Revise.async_steal_repl_backend()
-catch
-    @warn "Could not load Revise"
+catch ex
+    @warn "Could not load Revise: $ex"
 end
 
 @info "Importing OhMyREPL"
 try
     using OhMyREPL
     colorscheme!("Monokai24bit")
-catch
-    @warn "Could not load OhMyREPL"
+catch ex
+    @warn "Could not load OhMyREPL: $ex"
 end
-
-using Pkg
-isfile("Project.toml") && Pkg.activate(".") # auto-activate Project in Juno
