@@ -881,7 +881,8 @@ Entered on %U
               (lambda ()
                 (org-pom-notify "Pomodoro Cancelled"))))
   ;; enable unicode math symbol completion
-  (add-to-list 'company-backends 'company-math-symbols-unicode)
+  (with-eval-after-load 'company
+    (add-to-list 'company-backends 'company-math-symbols-unicode))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

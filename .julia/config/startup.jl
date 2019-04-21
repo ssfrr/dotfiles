@@ -23,10 +23,15 @@ end
 try
     using OhMyREPL
     colorscheme!("Monokai24bit")
+    @async begin
+        # reinstall keybindings to work around https://github.com/KristofferC/OhMyREPL.jl/issues/166
+        sleep(1)
+        OhMyREPL.Prompt.insert_keybindings()
+    end
 catch ex
     @warn "Could not load OhMyREPL: $ex"
 end
 
 # redisplay the prompt so we know we're done
-using REPL: REPL
-REPL.LineEdit.refresh_line(Base.active_repl.mistate)
+#using REPL: REPL
+#REPL.LineEdit.refresh_line(Base.active_repl.mistate)
