@@ -769,6 +769,7 @@ cite:${=key=}
   ;; not every time the agenda is opened
   ;; should this includes notes.org??
   (setq org-agenda-files `("~/Dropbox/org/todo.org"
+                           "~/Dropbox/org/habits.org"
                            "~/Dropbox/org/capture.org"
                            "~/Dropbox/org/projects"))
   ;; use global tags list from agenda files when offering tag completion
@@ -785,12 +786,15 @@ cite:${=key=}
   (setq org-refile-use-outline-path 'file)
   ;; note this will get the list of refile targets when this config is evaluated
   ;; not every time the agenda is opened
-  (setq org-refile-targets `((("~/Dropbox/org/notes.org"
+  (setq org-refile-targets `((("~/Dropbox/org/habits.org"
+                               "~/Dropbox/org/notes.org"
                                "~/Dropbox/org/todo.org") . (:maxlevel . 2))
                              (,(file-expand-wildcards "~/Dropbox/org/projects/[a-zA-Z]*.org") . (:maxlevel . 2))))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   ;; short list of common tags to be set with ,,
   (setq org-tag-alist '(("PROJECT" . ?p) ("FOCUSED" . ?f) ("HABIT" . ?h)))
+  ;; tasks without an explicit priority are treated as lowest priority
+  (setq org-default-priority org-lowest-priority)
   (setq org-outline-path-complete-in-steps nil) ; show children all at once to helm
   (setq org-agenda-sorting-strategy
         '((agenda todo-state-up habit-down time-up priority-down category-keep)
