@@ -621,6 +621,9 @@ before packages are loaded."
     (setq org-startup-indented t) ; Enable `org-indent-mode' by default
     (setq org-src-tab-acts-natively t)
     (setq org-src-preserve-indentation t)
+    (setq org-clock-mode-line-total 'today)
+    ;; show the currently clocked task in the modeline
+    (spaceline-toggle-org-clock-on)
     ;; currently ob-ipython seems to be throwing an error, so disable it
     ;; (require 'ob-ipython)
     ;; (org-babel-do-load-languages
@@ -767,7 +770,6 @@ cite:${=key=}
   ;; should this includes notes.org??
   (setq org-agenda-files `("~/Dropbox/org/todo.org"
                            "~/Dropbox/org/capture.org"
-                           "~/Dropbox/org/habits.org"
                            "~/Dropbox/org/projects"))
   ;; use global tags list from agenda files when offering tag completion
   ;; (setq org-complete-tags-always-offer-all-agenda-tags t)
@@ -783,8 +785,7 @@ cite:${=key=}
   (setq org-refile-use-outline-path 'file)
   ;; note this will get the list of refile targets when this config is evaluated
   ;; not every time the agenda is opened
-  (setq org-refile-targets `((("~/Dropbox/org/habits.org"
-                               "~/Dropbox/org/notes.org"
+  (setq org-refile-targets `((("~/Dropbox/org/notes.org"
                                "~/Dropbox/org/todo.org") . (:maxlevel . 2))
                              (,(file-expand-wildcards "~/Dropbox/org/projects/[a-zA-Z]*.org") . (:maxlevel . 2))))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
