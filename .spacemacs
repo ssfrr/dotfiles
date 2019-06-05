@@ -767,7 +767,6 @@ cite:${=key=}
   ;; should this includes notes.org??
   (setq org-agenda-files `("~/Dropbox/org/todo.org"
                            "~/Dropbox/org/capture.org"
-                           "~/Dropbox/org/habits.org"
                            "~/Dropbox/org/projects"))
   ;; use global tags list from agenda files when offering tag completion
   ;; (setq org-complete-tags-always-offer-all-agenda-tags t)
@@ -783,8 +782,7 @@ cite:${=key=}
   (setq org-refile-use-outline-path 'file)
   ;; note this will get the list of refile targets when this config is evaluated
   ;; not every time the agenda is opened
-  (setq org-refile-targets `((("~/Dropbox/org/habits.org"
-                               "~/Dropbox/org/notes.org"
+  (setq org-refile-targets `((("~/Dropbox/org/notes.org"
                                "~/Dropbox/org/todo.org") . (:maxlevel . 2))
                              (,(file-expand-wildcards "~/Dropbox/org/projects/[a-zA-Z]*.org") . (:maxlevel . 2))))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
@@ -812,10 +810,27 @@ cite:${=key=}
   (setq org-agenda-clockreport-parameter-plist
         '(:link t :maxlevel 2 :stepskip0 t :fileskip0 t))
   (setq org-agenda-custom-commands
-        '(("a" "Daily Agenda" ((agenda "") (tags "PROJECT+FOCUSED"))
+        '(;; scheduled TODOs for today, and my focused project for the week
+          ("d" "Daily Agenda" ((agenda "") (tags "PROJECT+FOCUSED"))
            ((org-agenda-start-with-log-mode '(clock state))))
+          ;; all top-level headings with the PROJECT tag
           ("p" "Projects" tags "PROJECT"
            ((org-use-tag-inheritance nil)))
+          ;; tasks completed within the past week or scheduled in the next week,
+          ;; and a time report
+          ("r" "Weekly Review"
+           ((agenda "" ((org-agenda-span 7)
+                        (org-agenda-start-day "-7d")
+                        (org-agenda-overriding-header "Last Week")
+                        (org-agenda-clockreport-mode t)))
+            (agenda "" ((org-agenda-span 7)
+                        (org-agenda-overriding-header "This Week"))))
+           ((org-agenda-start-with-log-mode '(state))
+            (org-agenda-use-tag-inheritance nil)
+            (org-agenda-show-all-dates t)
+            (org-agenda-time-grid nil)
+            (org-agenda-start-on-weekday nil)))
+          ;; TODOs that are not part of a project and are not currently scheduled
           ("m" "Misc. Unscheduled ToDos" tags "-PROJECT-HABIT/TODO|BLOCKED|DONE|CANCELED"
            ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled)))))
         )
