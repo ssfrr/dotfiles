@@ -617,6 +617,8 @@ before packages are loaded."
   (with-eval-after-load "org"
     (require 'ox-md) ; enable markdown export for org mode
     (require 'ox-reveal) ; enable reveal.js export
+    ;; set clock report time format (default shows 24hrs as "days")
+    (setq org-duration-format (quote h:mm))
     (setq org-export-initial-scope 'subtree)
     (setq org-startup-indented t) ; Enable `org-indent-mode' by default
     (setq org-src-tab-acts-natively t)
@@ -759,6 +761,7 @@ cite:${=key=}
   (setq org-todo-keywords
         '((sequence "TODO(t)" "BLOCKED(b@/!)" "|" "CANCELED(c@/!)" "DONE(d!/!)")))
   (setq org-log-reschedule 'time)
+  (setq org-log-redeadline 'time)
   (setq org-log-into-drawer t)
   (setq org-log-done nil) ; don't add CLOSED line because we're logging in the logbook
   ;; refile into top rather than bottom of headings
@@ -838,8 +841,8 @@ cite:${=key=}
             (org-agenda-time-grid nil)
             (org-agenda-start-on-weekday nil)))
           ;; TODOs that are not part of a project and are not currently scheduled
-          ("m" "Misc. Unscheduled ToDos" tags "-PROJECT-HABIT/TODO|BLOCKED|DONE|CANCELED"
-           ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled)))))
+          ("m" "Misc. Dangling ToDos" tags "-PROJECT-HABIT/TODO|BLOCKED"
+           ((org-agenda-skip-function '(org-agenda-skip-entry-if 'scheduled 'deadline)))))
         )
   ;; added with-eval-after-load so the spacemacs layer wouldn't clobber this config
   (with-eval-after-load 'org
@@ -914,7 +917,7 @@ Entered on %U
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-modules (quote (org-bibtex org-drill org-learn)))
+ '(org-modules (quote (org-bibtex org-drill org-learn org-habit)))
  '(package-selected-packages
    (quote
     (mmm-mode markdown-toc markdown-mode gh-md julia-mode company-web auto-yasnippet ac-ispell helm-company helm-c-yasnippet fuzzy web-completion-data company-statistics company yasnippet auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode ox-reveal csv-mode ob-ipython dash-functional visual-fill-column org-drill-table org-mime org-ref pdf-tools key-chord ivy tablist helm-bibtex biblio parsebib biblio-core zotxt request-deferred deferred org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-download htmlize gnuplot ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hydra hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu highlight elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async)))
