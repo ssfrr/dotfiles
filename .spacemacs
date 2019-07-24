@@ -5,6 +5,9 @@
 ;; set defaults that can be overridden by a .spacemacs_local config
 (setq sfr-fontsize 12)
 (setq sfr-latexscale 1.5)
+;; workaround for emacs bug that should be fixed in emacs 26.3+
+;; discovered here: https://www.reddit.com/r/emacs/comments/cdei4p/failed_to_download_gnu_archive_bad_request/
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (if (file-exists-p "~/.spacemacs_local")
     (load-file "~/.spacemacs_local")
@@ -765,16 +768,16 @@ cite:${=key=}
   (setq org-log-into-drawer t)
   (setq org-log-done nil) ; don't add CLOSED line because we're logging in the logbook
   ;; refile into top rather than bottom of headings
-  (setq org-reverse-note-order t)
+  ;; NOTE: I don't know why I wanted this at some point.
+  ;; (setq org-reverse-note-order t)
   (setq org-blank-before-new-entry '((heading . nil)
                                      (plain-list-item . nil)))
   ;; note that this will update the agenda files list whenver this config is evaluated,
   ;; not every time the agenda is opened
-  ;; should this includes notes.org??
-  (setq org-agenda-files `("~/Dropbox/org/todo.org"
-                           "~/Dropbox/org/habits.org"
-                           "~/Dropbox/org/capture.org"
-                           "~/Dropbox/org/projects"))
+  (setq org-agenda-files (append `("~/Dropbox/org/todo.org"
+                                   "~/Dropbox/org/habits.org"
+                                   "~/Dropbox/org/capture.org")
+                                 (f-glob "~/Dropbox/org/project_*.org")))
   ;; use global tags list from agenda files when offering tag completion
   ;; (setq org-complete-tags-always-offer-all-agenda-tags t)
   (add-hook 'text-mode-hook #'turn-on-visual-line-mode)
@@ -789,21 +792,18 @@ cite:${=key=}
   (setq org-refile-use-outline-path 'file)
   ;; note this will get the list of refile targets when this config is evaluated
   ;; not every time the agenda is opened
-  (setq org-refile-targets `((("~/Dropbox/org/habits.org"
-                               "~/Dropbox/org/notes.org"
-                               "~/Dropbox/org/todo.org") . (:maxlevel . 2))
-                             (,(file-expand-wildcards "~/Dropbox/org/projects/[a-zA-Z]*.org") . (:maxlevel . 2))))
+  (setq org-refile-targets `((,(cons "~/Dropbox/org/notes.org" org-agenda-files) . (:maxlevel . 2))))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   ;; short list of common tags to be set with ,,
   (setq org-tag-alist '(("PROJECT" . ?p) ("FOCUSED" . ?f) ("HABIT" . ?h)))
   ;; tasks without an explicit priority are treated as lowest priority
   (setq org-default-priority org-lowest-priority)
   (setq org-outline-path-complete-in-steps nil) ; show children all at once to helm
-  (setq org-agenda-sorting-strategy
-        '((agenda todo-state-up habit-down time-up priority-down category-keep)
-          (todo priority-down category-keep)
-          (tags priority-down category-keep)
-          (search category-keep)))
+  ;; (setq org-agenda-sorting-strategy
+  ;;       '((agenda ts-up priority-down)
+  ;;         (todo ts-up priority-down)
+  ;;         (tags priority-down category-keep)
+  ;;         (search category-keep)))
   (setq org-agenda-span 'day)
   ;; don't use different font heights for emphasis in the agenda
   ;; (setq spacemacs-theme-org-agenda-height nil)
@@ -821,7 +821,12 @@ cite:${=key=}
         '(:link t :maxlevel 2 :stepskip0 t :fileskip0 t))
   (setq org-agenda-custom-commands
         '(;; scheduled TODOs for today, and my focused project for the week
-          ("d" "Daily Agenda" ((agenda "") (tags "PROJECT+FOCUSED/TODO|BLOCKED"))
+          ("d" "Daily Agenda"
+           ((agenda "" ((org-agenda-sorting-strategy
+                         '(time-up deadline-up scheduled-up))))
+            (tags "PROJECT+FOCUSED/TODO|BLOCKED"
+                  ((org-agenda-skip-function '(org-agenda-skip-entry-if
+                                               'scheduled 'deadline)))))
            ((org-agenda-start-with-log-mode '(clock state))))
           ;; all top-level headings with the PROJECT tag
           ("p" "Projects" tags "PROJECT"
@@ -943,13 +948,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-sorting-strategy
-   ;; for some reason this doesn't seem to be working to sort things as I want.
-   (quote
-    ((agenda ts-up habit-down priority-down category-keep)
-     (todo priority-down category-keep)
-     (tags priority-down category-keep)
-     (search category-keep))))
  '(org-modules (quote (org-bibtex org-drill org-learn org-habit)))
  '(package-selected-packages
    (quote
