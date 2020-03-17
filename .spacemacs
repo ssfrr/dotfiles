@@ -75,7 +75,8 @@ This function should only modify configuration layer settings."
      org-ref
      org-drill-table
      visual-fill-column
-     ob-ipython
+     ;; ob-ipython
+     jupyter
      julia-mode
      evil-commentary
      company-math
@@ -455,19 +456,24 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   )
 
-(defun insert-url-as-org-link ()
+(defun insert-clipboard-as-org-link ()
   "If there's a URL on the clipboard, insert it as an org-mode
 link in the form of [[url][*]], and leave point at *."
   (interactive)
   (let* ((clipdata (or (x-get-selection 'CLIPBOARD) "")) ; selection is nil for empty
-         (link (substring-no-properties clipdata))
-         (url  "\\(http[s]?://\\|www\\.\\)"))
+         (raw (substring-no-properties clipdata))
+         (url-regex  "^http[s]?://\\|www\\.")
+         (file-regex "^/.*"))
     (save-match-data
-      (if (string-match url link)
-          (progn
-            (insert (concat "[[" link "][]]"))
-            (backward-char 2))
-        (error "No URL on the clipboard")))))
+      (cond ((string-match url-regex raw)
+             (progn
+               (insert (concat "[[" raw "][]]"))
+               (backward-char 2)))
+            ((string-match file-regex raw)
+             (progn
+               (insert (concat "[[file:" raw "][]]"))
+               (backward-char 2)))
+            (t (error "No recognized link target on the clipboard"))))))
 
 ;; modified from example at http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html
 (defun open-in-external-app (fpath)
@@ -596,6 +602,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; open .jmd files with markdown mode
+  (add-to-list 'auto-mode-alist '("\\.jmd$" . markdown-mode))
   ;; apparently faster than the default scp
   (setq tramp-default-method "ssh")
   ;; move through softwrapped lines naturally
@@ -637,8 +645,14 @@ before packages are loaded."
     ;;     ;; other languages..
     ;;     ))
     ;; ;; use the julia-installed python stuff to run jupyter
-    (setq ob-ipython-resources-dir "C:\\Users\\sfr\\Dropbox\\org\\obipy-resources\\")
+    ;; (setq ob-ipython-resources-dir "C:\\Users\\sfr\\Dropbox\\org\\obipy-resources\\")
     ;; (setq ob-ipython-command "~/Miniconda3/Scripts/jupyter")
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(;;(emacs-lisp . t)
+       ;;(julia . t)
+       ;;(python . t)
+       (jupyter . t)))
     (spacemacs/set-leader-keys "j h" 'helm-org-agenda-files-headings)
     (define-key evil-normal-state-map (kbd "M-<return>") 'org-babel-execute-src-block)
     (define-key evil-insert-state-map (kbd "M-<return>") 'org-babel-execute-src-block)
@@ -786,8 +800,8 @@ cite:${=key=}
   (add-hook 'org-mode-hook (lambda ()
                              (undo-tree-mode 1)))
 
-  (define-key evil-normal-state-map (kbd "C-l") 'insert-url-as-org-link)
-  (define-key evil-insert-state-map (kbd "C-l") 'insert-url-as-org-link)
+  (define-key evil-normal-state-map (kbd "C-l") 'insert-clipboard-as-org-link)
+  (define-key evil-insert-state-map (kbd "C-l") 'insert-clipboard-as-org-link)
   (setq org-id-link-to-org-use-id t) ;; store org-mode links using IDs
   (setq org-refile-use-outline-path 'file)
   ;; note this will get the list of refile targets when this config is evaluated
@@ -897,6 +911,7 @@ Entered on %U
   ;; make it so expanding/collapsing org-mode headings doesn't jump the window
   (remove-hook 'org-cycle-hook
                'org-optimize-window-after-visibility-change)
+  (setq yas-snippet-dirs (cons "/home/sfr/.yasnippets" yas-snippet-dirs))
   ;; org-pomodoro mode hooks
   (with-eval-after-load "org-pomodoro"
     (setq org-pomodoro-play-sounds nil)
@@ -959,6 +974,7 @@ This function is called at the very end of Spacemacs initialization."
      (todo priority-down category-keep)
      (tags priority-down category-keep)
      (search category-keep))))
+ '(org-agenda-window-setup (quote current-window))
  '(org-modules (quote (org-bibtex org-drill org-learn org-habit)))
  '(package-selected-packages
    (quote

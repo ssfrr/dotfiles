@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: Julia Setup Block
+# key: jlsetup
+# --
+#+BEGIN_SRC jupyter-julia :kernel julia-nocolor-1.1 :session ${1:jl} :async yes
+using Pkg
+envname = "$2"
+envdir = joinpath("jlenvs", envname)
+Pkg.activate(envdir)
+
+Pkg.add("Revise")
+Pkg.add(PackageSpec(name="SampledSignals", rev="nojs"))
+Pkg.add(PackageSpec(name="LibSndFile", rev="master"))
+Pkg.add("Plots")
+Pkg.add("DSP")
+Pkg.add("Unitful")
+$0
+#+END_SRC

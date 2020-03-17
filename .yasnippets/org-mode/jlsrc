@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Julia Source Block
+# key: jlsrc
+# contributor : Spencer Russell
+# --
+#+BEGIN_SRC jupyter-julia :kernel julia-nocolor-1.1 :session ${1:jl} :async yes
+$0
+#+END_SRC
